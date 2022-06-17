@@ -43,8 +43,7 @@ func (dst *MisbehaviorAction) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Ban
 	err = newStrictDecoder(data).Decode(&dst.Ban)
 	if err == nil {
-		jsonBan, _ := json.Marshal(dst.Ban)
-		if string(jsonBan) == "{}" { // empty struct
+		if dst.Ban == nil || dst.Ban.Type != "Ban" { // not the right type
 			dst.Ban = nil
 		} else {
 			match++
@@ -56,8 +55,7 @@ func (dst *MisbehaviorAction) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Unban
 	err = newStrictDecoder(data).Decode(&dst.Unban)
 	if err == nil {
-		jsonUnban, _ := json.Marshal(dst.Unban)
-		if string(jsonUnban) == "{}" { // empty struct
+		if dst.Unban == nil || dst.Unban.Type != "Unban" { // not the right type
 			dst.Unban = nil
 		} else {
 			match++
