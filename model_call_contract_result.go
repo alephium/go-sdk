@@ -35,47 +35,35 @@ func CallContractSucceededAsCallContractResult(v *CallContractSucceeded) CallCon
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CallContractResult) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into CallContractFailed
-	err = newStrictDecoder(data).Decode(&dst.CallContractFailed)
-	if err == nil {
-		jsonCallContractFailed, _ := json.Marshal(dst.CallContractFailed)
-		if string(jsonCallContractFailed) == "{}" { // empty struct
-			dst.CallContractFailed = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.CallContractFailed = nil
+	var fields map[string]interface{}
+	if err := json.Unmarshal(data, &fields); err != nil {
+		return nil
 	}
-
-	// try to unmarshal data into CallContractSucceeded
-	err = newStrictDecoder(data).Decode(&dst.CallContractSucceeded)
-	if err == nil {
-		jsonCallContractSucceeded, _ := json.Marshal(dst.CallContractSucceeded)
-		if string(jsonCallContractSucceeded) == "{}" { // empty struct
-			dst.CallContractSucceeded = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.CallContractSucceeded = nil
+	tpe, ok := fields["type"]
+	if !ok {
+		return fmt.Errorf("type field not exist")
 	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.CallContractFailed = nil
-		dst.CallContractSucceeded = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(CallContractResult)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(CallContractResult)")
+	tpeStr, ok := tpe.(string)
+	if !ok {
+		return fmt.Errorf("expect string for `type`")
+	}
+	switch tpeStr {
+	case "CallContractSucceeded":
+		var result CallContractSucceeded
+		err := json.Unmarshal(data, &result)
+		if err == nil {
+			dst.CallContractSucceeded = &result
+		}
+		return err
+	case "CallContractFailed":
+		var result CallContractFailed
+		err := json.Unmarshal(data, &result)
+		dst.CallContractFailed = &result
+		return err
+	default:
+		return fmt.Errorf("invalid type: %v", tpeStr)
 	}
 }
 

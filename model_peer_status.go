@@ -43,8 +43,7 @@ func (dst *PeerStatus) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Banned
 	err = newStrictDecoder(data).Decode(&dst.Banned)
 	if err == nil {
-		jsonBanned, _ := json.Marshal(dst.Banned)
-		if string(jsonBanned) == "{}" { // empty struct
+		if dst.Banned == nil || dst.Banned.Type != "Banned" { // not the right type
 			dst.Banned = nil
 		} else {
 			match++
@@ -56,8 +55,7 @@ func (dst *PeerStatus) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Penalty
 	err = newStrictDecoder(data).Decode(&dst.Penalty)
 	if err == nil {
-		jsonPenalty, _ := json.Marshal(dst.Penalty)
-		if string(jsonPenalty) == "{}" { // empty struct
+		if dst.Penalty == nil || dst.Penalty.Type != "Penalty" { // not the right type
 			dst.Penalty = nil
 		} else {
 			match++
