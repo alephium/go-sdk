@@ -67,104 +67,135 @@ func ValU256AsVal(v *ValU256) Val {
 	}
 }
 
+func unmarshalVal(fields map[string]interface{}) (*Val, error) {
+	tpe, ok := fields["type"]
+	if !ok {
+		return nil, fmt.Errorf("type field not exist")
+	}
+	value, ok := fields["value"]
+	if !ok {
+		return nil, fmt.Errorf("value field not exist")
+	}
+
+	tpeStr, ok := tpe.(string)
+	if !ok {
+		return nil, fmt.Errorf("expect string for `type`")
+	}
+
+	switch tpeStr {
+	case "Bool":
+		return toValBool(value)
+	case "I256":
+		return toValI256(value)
+	case "U256":
+		return toValU256(value)
+	case "ByteVec":
+		return toValByteVec(value)
+	case "Address":
+		return toValAddress(value)
+	case "Array":
+		return toValArray(value)
+	default:
+		return nil, fmt.Errorf("invalid type: %v", tpeStr)
+	}
+}
+
+func toValBool(value interface{}) (*Val, error) {
+	if v, ok := value.(bool); ok {
+		return &Val{
+			ValBool: &ValBool{
+				Type:  "Bool",
+				Value: v,
+			},
+		}, nil
+	}
+	return nil, fmt.Errorf("invalid bool type")
+}
+
+func toValI256(value interface{}) (*Val, error) {
+	if v, ok := value.(string); ok {
+		return &Val{
+			ValI256: &ValI256{
+				Type:  "I256",
+				Value: v,
+			},
+		}, nil
+	}
+	return nil, fmt.Errorf("invalid i256 type")
+}
+
+func toValU256(value interface{}) (*Val, error) {
+	if v, ok := value.(string); ok {
+		return &Val{
+			ValU256: &ValU256{
+				Type:  "U256",
+				Value: v,
+			},
+		}, nil
+	}
+	return nil, fmt.Errorf("invalid u256 type")
+}
+
+func toValByteVec(value interface{}) (*Val, error) {
+	if v, ok := value.(string); ok {
+		return &Val{
+			ValByteVec: &ValByteVec{
+				Type:  "ByteVec",
+				Value: v,
+			},
+		}, nil
+	}
+	return nil, fmt.Errorf("invalid bytevec type")
+}
+
+func toValAddress(value interface{}) (*Val, error) {
+	if v, ok := value.(string); ok {
+		return &Val{
+			ValAddress: &ValAddress{
+				Type:  "Address",
+				Value: v,
+			},
+		}, nil
+	}
+	return nil, fmt.Errorf("invalid address type")
+}
+
+func toValArray(value interface{}) (*Val, error) {
+	if v, ok := value.([]interface{}); ok {
+		elements := make([]Val, len(v))
+		for i, e := range v {
+			fields, ok := e.(map[string]interface{})
+			if !ok {
+				return nil, fmt.Errorf("invalid array value")
+			}
+			value, err := unmarshalVal(fields)
+			if err != nil {
+				return nil, err
+			}
+			elements[i] = *value
+		}
+		return &Val{
+			ValArray: &ValArray{
+				Type:  "Array",
+				Value: elements,
+			},
+		}, nil
+	}
+	return nil, fmt.Errorf("invalid array type")
+}
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Val) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into ValAddress
-	err = newStrictDecoder(data).Decode(&dst.ValAddress)
-	if err == nil {
-		jsonValAddress, _ := json.Marshal(dst.ValAddress)
-		if string(jsonValAddress) == "{}" { // empty struct
-			dst.ValAddress = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ValAddress = nil
+	var fields map[string]interface{}
+	if err := json.Unmarshal(data, &fields); err != nil {
+		return nil
 	}
-
-	// try to unmarshal data into ValArray
-	err = newStrictDecoder(data).Decode(&dst.ValArray)
-	if err == nil {
-		jsonValArray, _ := json.Marshal(dst.ValArray)
-		if string(jsonValArray) == "{}" { // empty struct
-			dst.ValArray = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ValArray = nil
+	result, err := unmarshalVal(fields)
+	if err != nil {
+		return err
 	}
-
-	// try to unmarshal data into ValBool
-	err = newStrictDecoder(data).Decode(&dst.ValBool)
-	if err == nil {
-		jsonValBool, _ := json.Marshal(dst.ValBool)
-		if string(jsonValBool) == "{}" { // empty struct
-			dst.ValBool = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ValBool = nil
-	}
-
-	// try to unmarshal data into ValByteVec
-	err = newStrictDecoder(data).Decode(&dst.ValByteVec)
-	if err == nil {
-		jsonValByteVec, _ := json.Marshal(dst.ValByteVec)
-		if string(jsonValByteVec) == "{}" { // empty struct
-			dst.ValByteVec = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ValByteVec = nil
-	}
-
-	// try to unmarshal data into ValI256
-	err = newStrictDecoder(data).Decode(&dst.ValI256)
-	if err == nil {
-		jsonValI256, _ := json.Marshal(dst.ValI256)
-		if string(jsonValI256) == "{}" { // empty struct
-			dst.ValI256 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ValI256 = nil
-	}
-
-	// try to unmarshal data into ValU256
-	err = newStrictDecoder(data).Decode(&dst.ValU256)
-	if err == nil {
-		jsonValU256, _ := json.Marshal(dst.ValU256)
-		if string(jsonValU256) == "{}" { // empty struct
-			dst.ValU256 = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.ValU256 = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.ValAddress = nil
-		dst.ValArray = nil
-		dst.ValBool = nil
-		dst.ValByteVec = nil
-		dst.ValI256 = nil
-		dst.ValU256 = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(Val)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(Val)")
-	}
+	*dst = *result
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

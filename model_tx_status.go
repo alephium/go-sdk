@@ -44,61 +44,73 @@ func TxNotFoundAsTxStatus(v *TxNotFound) TxStatus {
 }
 
 
+func unmarshalTxStatus(fields map[string]interface{}) (*TxStatus, error) {
+	tpe, ok := fields["type"]
+	if !ok {
+		return nil, fmt.Errorf("type field not exist")
+	}
+	tpeStr, ok := tpe.(string)
+	if !ok {
+		return nil, fmt.Errorf("expect string for `type`")
+	}
+
+	switch tpeStr {
+	case "Confirmed":
+		return toConfirmed(fields)
+	case "MemPooled":
+		return &TxStatus{MemPooled: &MemPooled{"MemPooled"}}, nil
+	case "TxNotFound":
+		return &TxStatus{TxNotFound: &TxNotFound{"TxNotFound"}}, nil
+	default:
+		return nil, fmt.Errorf("invalid type: %v", tpeStr)
+	}
+}
+
+func toConfirmed(fields map[string]interface{}) (*TxStatus, error) {
+	blockHash, ok := fields["blockHash"]
+	if !ok {
+		return nil, fmt.Errorf("field `blockHash` not exist")
+	}
+	txIndex, ok := fields["txIndex"]
+	if !ok {
+		return nil, fmt.Errorf("field `txIndex` not exist")
+	}
+	chainConfirmations, ok := fields["chainConfirmations"]
+	if !ok {
+		return nil, fmt.Errorf("field `chainConfirmations` not exist")
+	}
+	fromGroupConfirmations, ok := fields["fromGroupConfirmations"]
+	if !ok {
+		return nil, fmt.Errorf("field `fromGroupConfirmations` not exist")
+	}
+	toGroupConfirmations, ok := fields["toGroupConfirmations"]
+	if !ok {
+		return nil, fmt.Errorf("field `toGroupConfirmations` not exist")
+	}
+	return &TxStatus{
+		Confirmed: &Confirmed{
+			Type:                   "Confirmed",
+			BlockHash:              blockHash.(string),
+			TxIndex:                int32(txIndex.(float64)),
+			ChainConfirmations:     int32(chainConfirmations.(float64)),
+			FromGroupConfirmations: int32(fromGroupConfirmations.(float64)),
+			ToGroupConfirmations:   int32(toGroupConfirmations.(float64)),
+		},
+	}, nil
+}
+
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *TxStatus) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into Confirmed
-	err = newStrictDecoder(data).Decode(&dst.Confirmed)
-	if err == nil {
-		jsonConfirmed, _ := json.Marshal(dst.Confirmed)
-		if string(jsonConfirmed) == "{}" { // empty struct
-			dst.Confirmed = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.Confirmed = nil
+	var fields map[string]interface{}
+	if err := json.Unmarshal(data, &fields); err != nil {
+		return nil
 	}
-
-	// try to unmarshal data into MemPooled
-	err = newStrictDecoder(data).Decode(&dst.MemPooled)
-	if err == nil {
-		jsonMemPooled, _ := json.Marshal(dst.MemPooled)
-		if string(jsonMemPooled) == "{}" { // empty struct
-			dst.MemPooled = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.MemPooled = nil
+	result, err := unmarshalTxStatus(fields)
+	if err != nil {
+		return err
 	}
-
-	// try to unmarshal data into TxNotFound
-	err = newStrictDecoder(data).Decode(&dst.TxNotFound)
-	if err == nil {
-		jsonTxNotFound, _ := json.Marshal(dst.TxNotFound)
-		if string(jsonTxNotFound) == "{}" { // empty struct
-			dst.TxNotFound = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.TxNotFound = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.Confirmed = nil
-		dst.MemPooled = nil
-		dst.TxNotFound = nil
-
-		return fmt.Errorf("Data matches more than one schema in oneOf(TxStatus)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("Data failed to match schemas in oneOf(TxStatus)")
-	}
+	*dst = *result
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
