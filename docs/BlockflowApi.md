@@ -1,11 +1,13 @@
 # \BlockflowApi
 
-All URIs are relative to *http://127.0.0.1:12973*
+All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetBlockflow**](BlockflowApi.md#GetBlockflow) | **Get** /blockflow | List blocks on the given time interval
+[**GetBlockflowBlocks**](BlockflowApi.md#GetBlockflowBlocks) | **Get** /blockflow/blocks | List blocks on the given time interval
 [**GetBlockflowBlocksBlockHash**](BlockflowApi.md#GetBlockflowBlocksBlockHash) | **Get** /blockflow/blocks/{block_hash} | Get a block with hash
+[**GetBlockflowBlocksWithEvents**](BlockflowApi.md#GetBlockflowBlocksWithEvents) | **Get** /blockflow/blocks-with-events | List blocks with events on the given time interval
+[**GetBlockflowBlocksWithEventsBlockHash**](BlockflowApi.md#GetBlockflowBlocksWithEventsBlockHash) | **Get** /blockflow/blocks-with-events/{block_hash} | Get a block and events with hash
 [**GetBlockflowChainInfo**](BlockflowApi.md#GetBlockflowChainInfo) | **Get** /blockflow/chain-info | Get infos about the chain from the given groups
 [**GetBlockflowHashes**](BlockflowApi.md#GetBlockflowHashes) | **Get** /blockflow/hashes | Get all block&#39;s hashes at given height for given groups
 [**GetBlockflowHeadersBlockHash**](BlockflowApi.md#GetBlockflowHeadersBlockHash) | **Get** /blockflow/headers/{block_hash} | Get block header
@@ -13,9 +15,9 @@ Method | HTTP request | Description
 
 
 
-## GetBlockflow
+## GetBlockflowBlocks
 
-> FetchResponse GetBlockflow(ctx).FromTs(fromTs).ToTs(toTs).Execute()
+> BlocksPerTimeStampRange GetBlockflowBlocks(ctx).FromTs(fromTs).ToTs(toTs).Execute()
 
 List blocks on the given time interval
 
@@ -37,13 +39,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlockflowApi.GetBlockflow(context.Background()).FromTs(fromTs).ToTs(toTs).Execute()
+    resp, r, err := apiClient.BlockflowApi.GetBlockflowBlocks(context.Background()).FromTs(fromTs).ToTs(toTs).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlockflowApi.GetBlockflow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BlockflowApi.GetBlockflowBlocks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetBlockflow`: FetchResponse
-    fmt.Fprintf(os.Stdout, "Response from `BlockflowApi.GetBlockflow`: %v\n", resp)
+    // response from `GetBlockflowBlocks`: BlocksPerTimeStampRange
+    fmt.Fprintf(os.Stdout, "Response from `BlockflowApi.GetBlockflowBlocks`: %v\n", resp)
 }
 ```
 
@@ -53,7 +55,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetBlockflowRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetBlockflowBlocksRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -63,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FetchResponse**](FetchResponse.md)
+[**BlocksPerTimeStampRange**](BlocksPerTimeStampRange.md)
 
 ### Authorization
 
@@ -132,6 +134,140 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BlockEntry**](BlockEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBlockflowBlocksWithEvents
+
+> BlocksAndEventsPerTimeStampRange GetBlockflowBlocksWithEvents(ctx).FromTs(fromTs).ToTs(toTs).Execute()
+
+List blocks with events on the given time interval
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    fromTs := int64(789) // int64 | 
+    toTs := int64(789) // int64 |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BlockflowApi.GetBlockflowBlocksWithEvents(context.Background()).FromTs(fromTs).ToTs(toTs).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BlockflowApi.GetBlockflowBlocksWithEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBlockflowBlocksWithEvents`: BlocksAndEventsPerTimeStampRange
+    fmt.Fprintf(os.Stdout, "Response from `BlockflowApi.GetBlockflowBlocksWithEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBlockflowBlocksWithEventsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fromTs** | **int64** |  | 
+ **toTs** | **int64** |  | 
+
+### Return type
+
+[**BlocksAndEventsPerTimeStampRange**](BlocksAndEventsPerTimeStampRange.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBlockflowBlocksWithEventsBlockHash
+
+> BlockAndEvents GetBlockflowBlocksWithEventsBlockHash(ctx, blockHash).Execute()
+
+Get a block and events with hash
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    blockHash := "blockHash_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.BlockflowApi.GetBlockflowBlocksWithEventsBlockHash(context.Background(), blockHash).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BlockflowApi.GetBlockflowBlocksWithEventsBlockHash``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBlockflowBlocksWithEventsBlockHash`: BlockAndEvents
+    fmt.Fprintf(os.Stdout, "Response from `BlockflowApi.GetBlockflowBlocksWithEventsBlockHash`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**blockHash** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBlockflowBlocksWithEventsBlockHashRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**BlockAndEvents**](BlockAndEvents.md)
 
 ### Authorization
 

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Signature** | **string** |  | 
 **Names** | **[]string** |  | 
 **Types** | **[]string** |  | 
+**IsMutable** | **[]bool** |  | 
 
 ## Methods
 
 ### NewFieldsSig
 
-`func NewFieldsSig(signature string, names []string, types []string, ) *FieldsSig`
+`func NewFieldsSig(names []string, types []string, isMutable []bool, ) *FieldsSig`
 
 NewFieldsSig instantiates a new FieldsSig object
 This constructor will assign default values to properties that have it defined,
@@ -26,26 +26,6 @@ will change when the set of required properties is changed
 NewFieldsSigWithDefaults instantiates a new FieldsSig object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetSignature
-
-`func (o *FieldsSig) GetSignature() string`
-
-GetSignature returns the Signature field if non-nil, zero value otherwise.
-
-### GetSignatureOk
-
-`func (o *FieldsSig) GetSignatureOk() (*string, bool)`
-
-GetSignatureOk returns a tuple with the Signature field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSignature
-
-`func (o *FieldsSig) SetSignature(v string)`
-
-SetSignature sets Signature field to given value.
-
 
 ### GetNames
 
@@ -85,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *FieldsSig) SetTypes(v []string)`
 
 SetTypes sets Types field to given value.
+
+
+### GetIsMutable
+
+`func (o *FieldsSig) GetIsMutable() []bool`
+
+GetIsMutable returns the IsMutable field if non-nil, zero value otherwise.
+
+### GetIsMutableOk
+
+`func (o *FieldsSig) GetIsMutableOk() (*[]bool, bool)`
+
+GetIsMutableOk returns a tuple with the IsMutable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsMutable
+
+`func (o *FieldsSig) SetIsMutable(v []bool)`
+
+SetIsMutable sets IsMutable field to given value.
 
 
 

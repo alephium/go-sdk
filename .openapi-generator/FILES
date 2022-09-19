@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -27,9 +26,12 @@ docs/Balance.md
 docs/Balances.md
 docs/Ban.md
 docs/Banned.md
+docs/BlockAndEvents.md
 docs/BlockEntry.md
 docs/BlockHeaderEntry.md
 docs/BlockflowApi.md
+docs/BlocksAndEventsPerTimeStampRange.md
+docs/BlocksPerTimeStampRange.md
 docs/BrokerInfo.md
 docs/BrokerInfoAddress.md
 docs/BuildDeployContractTx.md
@@ -50,12 +52,16 @@ docs/ChainInfo.md
 docs/ChainParams.md
 docs/ChangeActiveAddress.md
 docs/CompileContractResult.md
+docs/CompileProjectResult.md
 docs/CompileScriptResult.md
+docs/CompilerOptions.md
 docs/Confirmed.md
 docs/Contract.md
 docs/ContractEvent.md
+docs/ContractEventByBlockHash.md
 docs/ContractEventByTxId.md
 docs/ContractEvents.md
+docs/ContractEventsByBlockHash.md
 docs/ContractEventsByTxId.md
 docs/ContractOutput.md
 docs/ContractState.md
@@ -66,7 +72,6 @@ docs/Destination.md
 docs/DiscoveryAction.md
 docs/EventSig.md
 docs/EventsApi.md
-docs/FetchResponse.md
 docs/FieldsSig.md
 docs/FixedAssetOutput.md
 docs/FunctionSig.md
@@ -90,6 +95,7 @@ docs/PeerAddress.md
 docs/PeerMisbehavior.md
 docs/PeerStatus.md
 docs/Penalty.md
+docs/Project.md
 docs/Reachable.md
 docs/ReleaseVersion.md
 docs/RevealMnemonic.md
@@ -154,8 +160,11 @@ model_balance.go
 model_balances.go
 model_ban.go
 model_banned.go
+model_block_and_events.go
 model_block_entry.go
 model_block_header_entry.go
+model_blocks_and_events_per_time_stamp_range.go
+model_blocks_per_time_stamp_range.go
 model_broker_info.go
 model_broker_info_address.go
 model_build_deploy_contract_tx.go
@@ -176,12 +185,16 @@ model_chain_info.go
 model_chain_params.go
 model_change_active_address.go
 model_compile_contract_result.go
+model_compile_project_result.go
 model_compile_script_result.go
+model_compiler_options.go
 model_confirmed.go
 model_contract.go
 model_contract_event.go
+model_contract_event_by_block_hash.go
 model_contract_event_by_tx_id.go
 model_contract_events.go
+model_contract_events_by_block_hash.go
 model_contract_events_by_tx_id.go
 model_contract_output.go
 model_contract_state.go
@@ -190,7 +203,6 @@ model_decode_unsigned_tx_result.go
 model_destination.go
 model_discovery_action.go
 model_event_sig.go
-model_fetch_response.go
 model_fields_sig.go
 model_fixed_asset_output.go
 model_function_sig.go
@@ -211,6 +223,7 @@ model_peer_address.go
 model_peer_misbehavior.go
 model_peer_status.go
 model_penalty.go
+model_project.go
 model_reachable.go
 model_release_version.go
 model_reveal_mnemonic.go

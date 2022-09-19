@@ -1,6 +1,6 @@
 # \MultiSignatureApi
 
-All URIs are relative to *http://127.0.0.1:12973*
+All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

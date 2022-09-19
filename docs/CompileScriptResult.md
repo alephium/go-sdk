@@ -4,15 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Name** | **string** |  | 
 **BytecodeTemplate** | **string** |  | 
 **Fields** | [**FieldsSig**](FieldsSig.md) |  | 
 **Functions** | [**[]FunctionSig**](FunctionSig.md) |  | 
+**Warnings** | **[]string** |  | 
 
 ## Methods
 
 ### NewCompileScriptResult
 
-`func NewCompileScriptResult(bytecodeTemplate string, fields FieldsSig, functions []FunctionSig, ) *CompileScriptResult`
+`func NewCompileScriptResult(name string, bytecodeTemplate string, fields FieldsSig, functions []FunctionSig, warnings []string, ) *CompileScriptResult`
 
 NewCompileScriptResult instantiates a new CompileScriptResult object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +28,26 @@ will change when the set of required properties is changed
 NewCompileScriptResultWithDefaults instantiates a new CompileScriptResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetName
+
+`func (o *CompileScriptResult) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CompileScriptResult) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CompileScriptResult) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetBytecodeTemplate
 
@@ -85,6 +107,26 @@ and a boolean to check if the value has been set.
 `func (o *CompileScriptResult) SetFunctions(v []FunctionSig)`
 
 SetFunctions sets Functions field to given value.
+
+
+### GetWarnings
+
+`func (o *CompileScriptResult) GetWarnings() []string`
+
+GetWarnings returns the Warnings field if non-nil, zero value otherwise.
+
+### GetWarningsOk
+
+`func (o *CompileScriptResult) GetWarningsOk() (*[]string, bool)`
+
+GetWarningsOk returns a tuple with the Warnings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWarnings
+
+`func (o *CompileScriptResult) SetWarnings(v []string)`
+
+SetWarnings sets Warnings field to given value.
 
 
 

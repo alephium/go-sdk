@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **BalanceHint** | **string** |  | 
 **LockedBalance** | **string** |  | 
 **LockedBalanceHint** | **string** |  | 
+**TokenBalances** | Pointer to [**[]Token**](Token.md) |  | [optional] 
+**LockedTokenBalances** | Pointer to [**[]Token**](Token.md) |  | [optional] 
 **UtxoNum** | **int32** |  | 
 **Warning** | Pointer to **string** |  | [optional] 
 
@@ -109,6 +111,56 @@ and a boolean to check if the value has been set.
 
 SetLockedBalanceHint sets LockedBalanceHint field to given value.
 
+
+### GetTokenBalances
+
+`func (o *Balance) GetTokenBalances() []Token`
+
+GetTokenBalances returns the TokenBalances field if non-nil, zero value otherwise.
+
+### GetTokenBalancesOk
+
+`func (o *Balance) GetTokenBalancesOk() (*[]Token, bool)`
+
+GetTokenBalancesOk returns a tuple with the TokenBalances field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenBalances
+
+`func (o *Balance) SetTokenBalances(v []Token)`
+
+SetTokenBalances sets TokenBalances field to given value.
+
+### HasTokenBalances
+
+`func (o *Balance) HasTokenBalances() bool`
+
+HasTokenBalances returns a boolean if a field has been set.
+
+### GetLockedTokenBalances
+
+`func (o *Balance) GetLockedTokenBalances() []Token`
+
+GetLockedTokenBalances returns the LockedTokenBalances field if non-nil, zero value otherwise.
+
+### GetLockedTokenBalancesOk
+
+`func (o *Balance) GetLockedTokenBalancesOk() (*[]Token, bool)`
+
+GetLockedTokenBalancesOk returns a tuple with the LockedTokenBalances field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLockedTokenBalances
+
+`func (o *Balance) SetLockedTokenBalances(v []Token)`
+
+SetLockedTokenBalances sets LockedTokenBalances field to given value.
+
+### HasLockedTokenBalances
+
+`func (o *Balance) HasLockedTokenBalances() bool`
+
+HasLockedTokenBalances returns a boolean if a field has been set.
 
 ### GetUtxoNum
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | **string** |  | 
+**CompilerOptions** | Pointer to [**CompilerOptions**](CompilerOptions.md) |  | [optional] 
 
 ## Methods
 
@@ -44,6 +45,31 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
+
+### GetCompilerOptions
+
+`func (o *Contract) GetCompilerOptions() CompilerOptions`
+
+GetCompilerOptions returns the CompilerOptions field if non-nil, zero value otherwise.
+
+### GetCompilerOptionsOk
+
+`func (o *Contract) GetCompilerOptionsOk() (*CompilerOptions, bool)`
+
+GetCompilerOptionsOk returns a tuple with the CompilerOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompilerOptions
+
+`func (o *Contract) SetCompilerOptions(v CompilerOptions)`
+
+SetCompilerOptions sets CompilerOptions field to given value.
+
+### HasCompilerOptions
+
+`func (o *Contract) HasCompilerOptions() bool`
+
+HasCompilerOptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

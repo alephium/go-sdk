@@ -1,12 +1,13 @@
 # \ContractsApi
 
-All URIs are relative to *http://127.0.0.1:12973*
+All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetContractsAddressState**](ContractsApi.md#GetContractsAddressState) | **Get** /contracts/{address}/state | Get contract state
 [**PostContractsCallContract**](ContractsApi.md#PostContractsCallContract) | **Post** /contracts/call-contract | Call contract
 [**PostContractsCompileContract**](ContractsApi.md#PostContractsCompileContract) | **Post** /contracts/compile-contract | Compile a smart contract
+[**PostContractsCompileProject**](ContractsApi.md#PostContractsCompileProject) | **Post** /contracts/compile-project | Compile a project
 [**PostContractsCompileScript**](ContractsApi.md#PostContractsCompileScript) | **Post** /contracts/compile-script | Compile a script
 [**PostContractsTestContract**](ContractsApi.md#PostContractsTestContract) | **Post** /contracts/test-contract | Test contract
 [**PostContractsUnsignedTxDeployContract**](ContractsApi.md#PostContractsUnsignedTxDeployContract) | **Post** /contracts/unsigned-tx/deploy-contract | Build an unsigned contract
@@ -197,6 +198,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CompileContractResult**](CompileContractResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostContractsCompileProject
+
+> CompileProjectResult PostContractsCompileProject(ctx).Project(project).Execute()
+
+Compile a project
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    project := *openapiclient.NewProject("Code_example") // Project | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContractsApi.PostContractsCompileProject(context.Background()).Project(project).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ContractsApi.PostContractsCompileProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostContractsCompileProject`: CompileProjectResult
+    fmt.Fprintf(os.Stdout, "Response from `ContractsApi.PostContractsCompileProject`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostContractsCompileProjectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | [**Project**](Project.md) |  | 
+
+### Return type
+
+[**CompileProjectResult**](CompileProjectResult.md)
 
 ### Authorization
 

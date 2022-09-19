@@ -1,12 +1,13 @@
 # \MinersApi
 
-All URIs are relative to *http://127.0.0.1:12973*
+All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetMinersAddresses**](MinersApi.md#GetMinersAddresses) | **Get** /miners/addresses | List miner&#39;s addresses
 [**GetWalletsWalletNameMinerAddresses**](MinersApi.md#GetWalletsWalletNameMinerAddresses) | **Get** /wallets/{wallet_name}/miner-addresses | List all miner addresses per group
 [**PostMinersCpuMining**](MinersApi.md#PostMinersCpuMining) | **Post** /miners/cpu-mining | Execute an action on CPU miner. !!! for test only !!!
+[**PostMinersCpuMiningMineOneBlock**](MinersApi.md#PostMinersCpuMiningMineOneBlock) | **Post** /miners/cpu-mining/mine-one-block | Mine a block on CPU miner. !!! for test only !!!
 [**PostWalletsWalletNameDeriveNextMinerAddresses**](MinersApi.md#PostWalletsWalletNameDeriveNextMinerAddresses) | **Post** /wallets/{wallet_name}/derive-next-miner-addresses | Derive your next miner addresses for each group
 [**PutMinersAddresses**](MinersApi.md#PutMinersAddresses) | **Put** /miners/addresses | Update miner&#39;s addresses, but better to use user.conf instead
 
@@ -186,6 +187,72 @@ Other parameters are passed through a pointer to a apiPostMinersCpuMiningRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **action** | **string** |  | 
+
+### Return type
+
+**bool**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostMinersCpuMiningMineOneBlock
+
+> bool PostMinersCpuMiningMineOneBlock(ctx).FromGroup(fromGroup).ToGroup(toGroup).Execute()
+
+Mine a block on CPU miner. !!! for test only !!!
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    fromGroup := int32(56) // int32 | 
+    toGroup := int32(56) // int32 | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MinersApi.PostMinersCpuMiningMineOneBlock(context.Background()).FromGroup(fromGroup).ToGroup(toGroup).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MinersApi.PostMinersCpuMiningMineOneBlock``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostMinersCpuMiningMineOneBlock`: bool
+    fmt.Fprintf(os.Stdout, "Response from `MinersApi.PostMinersCpuMiningMineOneBlock`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostMinersCpuMiningMineOneBlockRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fromGroup** | **int32** |  | 
+ **toGroup** | **int32** |  | 
 
 ### Return type
 

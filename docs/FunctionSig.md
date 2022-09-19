@@ -5,16 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**Signature** | **string** |  | 
-**ArgNames** | **[]string** |  | 
-**ArgTypes** | **[]string** |  | 
+**UsePreapprovedAssets** | **bool** |  | 
+**UseAssetsInContract** | **bool** |  | 
+**IsPublic** | **bool** |  | 
+**ParamNames** | **[]string** |  | 
+**ParamTypes** | **[]string** |  | 
+**ParamIsMutable** | **[]bool** |  | 
 **ReturnTypes** | **[]string** |  | 
 
 ## Methods
 
 ### NewFunctionSig
 
-`func NewFunctionSig(name string, signature string, argNames []string, argTypes []string, returnTypes []string, ) *FunctionSig`
+`func NewFunctionSig(name string, usePreapprovedAssets bool, useAssetsInContract bool, isPublic bool, paramNames []string, paramTypes []string, paramIsMutable []bool, returnTypes []string, ) *FunctionSig`
 
 NewFunctionSig instantiates a new FunctionSig object
 This constructor will assign default values to properties that have it defined,
@@ -49,64 +52,124 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetSignature
+### GetUsePreapprovedAssets
 
-`func (o *FunctionSig) GetSignature() string`
+`func (o *FunctionSig) GetUsePreapprovedAssets() bool`
 
-GetSignature returns the Signature field if non-nil, zero value otherwise.
+GetUsePreapprovedAssets returns the UsePreapprovedAssets field if non-nil, zero value otherwise.
 
-### GetSignatureOk
+### GetUsePreapprovedAssetsOk
 
-`func (o *FunctionSig) GetSignatureOk() (*string, bool)`
+`func (o *FunctionSig) GetUsePreapprovedAssetsOk() (*bool, bool)`
 
-GetSignatureOk returns a tuple with the Signature field if it's non-nil, zero value otherwise
+GetUsePreapprovedAssetsOk returns a tuple with the UsePreapprovedAssets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSignature
+### SetUsePreapprovedAssets
 
-`func (o *FunctionSig) SetSignature(v string)`
+`func (o *FunctionSig) SetUsePreapprovedAssets(v bool)`
 
-SetSignature sets Signature field to given value.
+SetUsePreapprovedAssets sets UsePreapprovedAssets field to given value.
 
 
-### GetArgNames
+### GetUseAssetsInContract
 
-`func (o *FunctionSig) GetArgNames() []string`
+`func (o *FunctionSig) GetUseAssetsInContract() bool`
 
-GetArgNames returns the ArgNames field if non-nil, zero value otherwise.
+GetUseAssetsInContract returns the UseAssetsInContract field if non-nil, zero value otherwise.
 
-### GetArgNamesOk
+### GetUseAssetsInContractOk
 
-`func (o *FunctionSig) GetArgNamesOk() (*[]string, bool)`
+`func (o *FunctionSig) GetUseAssetsInContractOk() (*bool, bool)`
 
-GetArgNamesOk returns a tuple with the ArgNames field if it's non-nil, zero value otherwise
+GetUseAssetsInContractOk returns a tuple with the UseAssetsInContract field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetArgNames
+### SetUseAssetsInContract
 
-`func (o *FunctionSig) SetArgNames(v []string)`
+`func (o *FunctionSig) SetUseAssetsInContract(v bool)`
 
-SetArgNames sets ArgNames field to given value.
+SetUseAssetsInContract sets UseAssetsInContract field to given value.
 
 
-### GetArgTypes
+### GetIsPublic
 
-`func (o *FunctionSig) GetArgTypes() []string`
+`func (o *FunctionSig) GetIsPublic() bool`
 
-GetArgTypes returns the ArgTypes field if non-nil, zero value otherwise.
+GetIsPublic returns the IsPublic field if non-nil, zero value otherwise.
 
-### GetArgTypesOk
+### GetIsPublicOk
 
-`func (o *FunctionSig) GetArgTypesOk() (*[]string, bool)`
+`func (o *FunctionSig) GetIsPublicOk() (*bool, bool)`
 
-GetArgTypesOk returns a tuple with the ArgTypes field if it's non-nil, zero value otherwise
+GetIsPublicOk returns a tuple with the IsPublic field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetArgTypes
+### SetIsPublic
 
-`func (o *FunctionSig) SetArgTypes(v []string)`
+`func (o *FunctionSig) SetIsPublic(v bool)`
 
-SetArgTypes sets ArgTypes field to given value.
+SetIsPublic sets IsPublic field to given value.
+
+
+### GetParamNames
+
+`func (o *FunctionSig) GetParamNames() []string`
+
+GetParamNames returns the ParamNames field if non-nil, zero value otherwise.
+
+### GetParamNamesOk
+
+`func (o *FunctionSig) GetParamNamesOk() (*[]string, bool)`
+
+GetParamNamesOk returns a tuple with the ParamNames field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParamNames
+
+`func (o *FunctionSig) SetParamNames(v []string)`
+
+SetParamNames sets ParamNames field to given value.
+
+
+### GetParamTypes
+
+`func (o *FunctionSig) GetParamTypes() []string`
+
+GetParamTypes returns the ParamTypes field if non-nil, zero value otherwise.
+
+### GetParamTypesOk
+
+`func (o *FunctionSig) GetParamTypesOk() (*[]string, bool)`
+
+GetParamTypesOk returns a tuple with the ParamTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParamTypes
+
+`func (o *FunctionSig) SetParamTypes(v []string)`
+
+SetParamTypes sets ParamTypes field to given value.
+
+
+### GetParamIsMutable
+
+`func (o *FunctionSig) GetParamIsMutable() []bool`
+
+GetParamIsMutable returns the ParamIsMutable field if non-nil, zero value otherwise.
+
+### GetParamIsMutableOk
+
+`func (o *FunctionSig) GetParamIsMutableOk() (*[]bool, bool)`
+
+GetParamIsMutableOk returns a tuple with the ParamIsMutable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParamIsMutable
+
+`func (o *FunctionSig) SetParamIsMutable(v []bool)`
+
+SetParamIsMutable sets ParamIsMutable field to given value.
 
 
 ### GetReturnTypes

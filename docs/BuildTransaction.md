@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Utxos** | Pointer to [**[]OutputRef**](OutputRef.md) |  | [optional] 
 **GasAmount** | Pointer to **int32** |  | [optional] 
 **GasPrice** | Pointer to **string** |  | [optional] 
+**TargetBlockHash** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -143,6 +144,31 @@ SetGasPrice sets GasPrice field to given value.
 `func (o *BuildTransaction) HasGasPrice() bool`
 
 HasGasPrice returns a boolean if a field has been set.
+
+### GetTargetBlockHash
+
+`func (o *BuildTransaction) GetTargetBlockHash() string`
+
+GetTargetBlockHash returns the TargetBlockHash field if non-nil, zero value otherwise.
+
+### GetTargetBlockHashOk
+
+`func (o *BuildTransaction) GetTargetBlockHashOk() (*string, bool)`
+
+GetTargetBlockHashOk returns a tuple with the TargetBlockHash field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetBlockHash
+
+`func (o *BuildTransaction) SetTargetBlockHash(v string)`
+
+SetTargetBlockHash sets TargetBlockHash field to given value.
+
+### HasTargetBlockHash
+
+`func (o *BuildTransaction) HasTargetBlockHash() bool`
+
+HasTargetBlockHash returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

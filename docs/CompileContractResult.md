@@ -4,17 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Name** | **string** |  | 
 **Bytecode** | **string** |  | 
 **CodeHash** | **string** |  | 
 **Fields** | [**FieldsSig**](FieldsSig.md) |  | 
 **Functions** | [**[]FunctionSig**](FunctionSig.md) |  | 
 **Events** | [**[]EventSig**](EventSig.md) |  | 
+**Warnings** | **[]string** |  | 
 
 ## Methods
 
 ### NewCompileContractResult
 
-`func NewCompileContractResult(bytecode string, codeHash string, fields FieldsSig, functions []FunctionSig, events []EventSig, ) *CompileContractResult`
+`func NewCompileContractResult(name string, bytecode string, codeHash string, fields FieldsSig, functions []FunctionSig, events []EventSig, warnings []string, ) *CompileContractResult`
 
 NewCompileContractResult instantiates a new CompileContractResult object
 This constructor will assign default values to properties that have it defined,
@@ -28,6 +30,26 @@ will change when the set of required properties is changed
 NewCompileContractResultWithDefaults instantiates a new CompileContractResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetName
+
+`func (o *CompileContractResult) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CompileContractResult) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CompileContractResult) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetBytecode
 
@@ -127,6 +149,26 @@ and a boolean to check if the value has been set.
 `func (o *CompileContractResult) SetEvents(v []EventSig)`
 
 SetEvents sets Events field to given value.
+
+
+### GetWarnings
+
+`func (o *CompileContractResult) GetWarnings() []string`
+
+GetWarnings returns the Warnings field if non-nil, zero value otherwise.
+
+### GetWarningsOk
+
+`func (o *CompileContractResult) GetWarningsOk() (*[]string, bool)`
+
+GetWarningsOk returns a tuple with the Warnings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWarnings
+
+`func (o *CompileContractResult) SetWarnings(v []string)`
+
+SetWarnings sets Warnings field to given value.
 
 
 

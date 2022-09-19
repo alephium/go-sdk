@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**Signature** | **string** |  | 
 **FieldNames** | **[]string** |  | 
 **FieldTypes** | **[]string** |  | 
 
@@ -13,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewEventSig
 
-`func NewEventSig(name string, signature string, fieldNames []string, fieldTypes []string, ) *EventSig`
+`func NewEventSig(name string, fieldNames []string, fieldTypes []string, ) *EventSig`
 
 NewEventSig instantiates a new EventSig object
 This constructor will assign default values to properties that have it defined,
@@ -46,26 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *EventSig) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetSignature
-
-`func (o *EventSig) GetSignature() string`
-
-GetSignature returns the Signature field if non-nil, zero value otherwise.
-
-### GetSignatureOk
-
-`func (o *EventSig) GetSignatureOk() (*string, bool)`
-
-GetSignatureOk returns a tuple with the Signature field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSignature
-
-`func (o *EventSig) SetSignature(v string)`
-
-SetSignature sets Signature field to given value.
 
 
 ### GetFieldNames
