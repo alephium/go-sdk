@@ -105,10 +105,6 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "..",
-				Description: "No description provided",
-			},
-			{
 				URL: "{protocol}://{host}:{port}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
