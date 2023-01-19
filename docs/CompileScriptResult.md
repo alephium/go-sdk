@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Version** | **string** |  | 
 **Name** | **string** |  | 
 **BytecodeTemplate** | **string** |  | 
+**BytecodeDebugPatch** | **string** |  | 
 **Fields** | [**FieldsSig**](FieldsSig.md) |  | 
 **Functions** | [**[]FunctionSig**](FunctionSig.md) |  | 
 **Warnings** | **[]string** |  | 
@@ -14,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewCompileScriptResult
 
-`func NewCompileScriptResult(name string, bytecodeTemplate string, fields FieldsSig, functions []FunctionSig, warnings []string, ) *CompileScriptResult`
+`func NewCompileScriptResult(version string, name string, bytecodeTemplate string, bytecodeDebugPatch string, fields FieldsSig, functions []FunctionSig, warnings []string, ) *CompileScriptResult`
 
 NewCompileScriptResult instantiates a new CompileScriptResult object
 This constructor will assign default values to properties that have it defined,
@@ -28,6 +30,26 @@ will change when the set of required properties is changed
 NewCompileScriptResultWithDefaults instantiates a new CompileScriptResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetVersion
+
+`func (o *CompileScriptResult) GetVersion() string`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *CompileScriptResult) GetVersionOk() (*string, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *CompileScriptResult) SetVersion(v string)`
+
+SetVersion sets Version field to given value.
+
 
 ### GetName
 
@@ -67,6 +89,26 @@ and a boolean to check if the value has been set.
 `func (o *CompileScriptResult) SetBytecodeTemplate(v string)`
 
 SetBytecodeTemplate sets BytecodeTemplate field to given value.
+
+
+### GetBytecodeDebugPatch
+
+`func (o *CompileScriptResult) GetBytecodeDebugPatch() string`
+
+GetBytecodeDebugPatch returns the BytecodeDebugPatch field if non-nil, zero value otherwise.
+
+### GetBytecodeDebugPatchOk
+
+`func (o *CompileScriptResult) GetBytecodeDebugPatchOk() (*string, bool)`
+
+GetBytecodeDebugPatchOk returns a tuple with the BytecodeDebugPatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBytecodeDebugPatch
+
+`func (o *CompileScriptResult) SetBytecodeDebugPatch(v string)`
+
+SetBytecodeDebugPatch sets BytecodeDebugPatch field to given value.
 
 
 ### GetFields

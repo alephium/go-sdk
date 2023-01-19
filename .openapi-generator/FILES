@@ -66,6 +66,7 @@ docs/ContractEventsByTxId.md
 docs/ContractOutput.md
 docs/ContractState.md
 docs/ContractsApi.md
+docs/DebugMessage.md
 docs/DecodeUnsignedTx.md
 docs/DecodeUnsignedTxResult.md
 docs/Destination.md
@@ -198,6 +199,7 @@ model_contract_events_by_block_hash.go
 model_contract_events_by_tx_id.go
 model_contract_output.go
 model_contract_state.go
+model_debug_message.go
 model_decode_unsigned_tx.go
 model_decode_unsigned_tx_result.go
 model_destination.go
@@ -272,4 +274,14 @@ model_wallet_restore_result.go
 model_wallet_status.go
 model_wallet_unlock.go
 response.go
+test/api_addresses_test.go
+test/api_blockflow_test.go
+test/api_contracts_test.go
+test/api_events_test.go
+test/api_infos_test.go
+test/api_miners_test.go
+test/api_multi_signature_test.go
+test/api_transactions_test.go
+test/api_utils_test.go
+test/api_wallets_test.go
 utils.go
