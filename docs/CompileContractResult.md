@@ -4,9 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Version** | **string** |  | 
 **Name** | **string** |  | 
 **Bytecode** | **string** |  | 
+**BytecodeDebugPatch** | **string** |  | 
 **CodeHash** | **string** |  | 
+**CodeHashDebug** | **string** |  | 
 **Fields** | [**FieldsSig**](FieldsSig.md) |  | 
 **Functions** | [**[]FunctionSig**](FunctionSig.md) |  | 
 **Events** | [**[]EventSig**](EventSig.md) |  | 
@@ -16,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewCompileContractResult
 
-`func NewCompileContractResult(name string, bytecode string, codeHash string, fields FieldsSig, functions []FunctionSig, events []EventSig, warnings []string, ) *CompileContractResult`
+`func NewCompileContractResult(version string, name string, bytecode string, bytecodeDebugPatch string, codeHash string, codeHashDebug string, fields FieldsSig, functions []FunctionSig, events []EventSig, warnings []string, ) *CompileContractResult`
 
 NewCompileContractResult instantiates a new CompileContractResult object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +33,26 @@ will change when the set of required properties is changed
 NewCompileContractResultWithDefaults instantiates a new CompileContractResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetVersion
+
+`func (o *CompileContractResult) GetVersion() string`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *CompileContractResult) GetVersionOk() (*string, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *CompileContractResult) SetVersion(v string)`
+
+SetVersion sets Version field to given value.
+
 
 ### GetName
 
@@ -71,6 +94,26 @@ and a boolean to check if the value has been set.
 SetBytecode sets Bytecode field to given value.
 
 
+### GetBytecodeDebugPatch
+
+`func (o *CompileContractResult) GetBytecodeDebugPatch() string`
+
+GetBytecodeDebugPatch returns the BytecodeDebugPatch field if non-nil, zero value otherwise.
+
+### GetBytecodeDebugPatchOk
+
+`func (o *CompileContractResult) GetBytecodeDebugPatchOk() (*string, bool)`
+
+GetBytecodeDebugPatchOk returns a tuple with the BytecodeDebugPatch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBytecodeDebugPatch
+
+`func (o *CompileContractResult) SetBytecodeDebugPatch(v string)`
+
+SetBytecodeDebugPatch sets BytecodeDebugPatch field to given value.
+
+
 ### GetCodeHash
 
 `func (o *CompileContractResult) GetCodeHash() string`
@@ -89,6 +132,26 @@ and a boolean to check if the value has been set.
 `func (o *CompileContractResult) SetCodeHash(v string)`
 
 SetCodeHash sets CodeHash field to given value.
+
+
+### GetCodeHashDebug
+
+`func (o *CompileContractResult) GetCodeHashDebug() string`
+
+GetCodeHashDebug returns the CodeHashDebug field if non-nil, zero value otherwise.
+
+### GetCodeHashDebugOk
+
+`func (o *CompileContractResult) GetCodeHashDebugOk() (*string, bool)`
+
+GetCodeHashDebugOk returns a tuple with the CodeHashDebug field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCodeHashDebug
+
+`func (o *CompileContractResult) SetCodeHashDebug(v string)`
+
+SetCodeHashDebug sets CodeHashDebug field to given value.
 
 
 ### GetFields

@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **IgnoreUnusedVariablesWarnings** | Pointer to **bool** |  | [optional] 
 **IgnoreUnusedFieldsWarnings** | Pointer to **bool** |  | [optional] 
 **IgnoreUnusedPrivateFunctionsWarnings** | Pointer to **bool** |  | [optional] 
-**IgnoreReadonlyCheckWarnings** | Pointer to **bool** |  | [optional] 
-**IgnoreExternalCallCheckWarnings** | Pointer to **bool** |  | [optional] 
+**IgnoreUpdateFieldsCheckWarnings** | Pointer to **bool** |  | [optional] 
+**IgnoreCheckExternalCallerWarnings** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -130,55 +130,55 @@ SetIgnoreUnusedPrivateFunctionsWarnings sets IgnoreUnusedPrivateFunctionsWarning
 
 HasIgnoreUnusedPrivateFunctionsWarnings returns a boolean if a field has been set.
 
-### GetIgnoreReadonlyCheckWarnings
+### GetIgnoreUpdateFieldsCheckWarnings
 
-`func (o *CompilerOptions) GetIgnoreReadonlyCheckWarnings() bool`
+`func (o *CompilerOptions) GetIgnoreUpdateFieldsCheckWarnings() bool`
 
-GetIgnoreReadonlyCheckWarnings returns the IgnoreReadonlyCheckWarnings field if non-nil, zero value otherwise.
+GetIgnoreUpdateFieldsCheckWarnings returns the IgnoreUpdateFieldsCheckWarnings field if non-nil, zero value otherwise.
 
-### GetIgnoreReadonlyCheckWarningsOk
+### GetIgnoreUpdateFieldsCheckWarningsOk
 
-`func (o *CompilerOptions) GetIgnoreReadonlyCheckWarningsOk() (*bool, bool)`
+`func (o *CompilerOptions) GetIgnoreUpdateFieldsCheckWarningsOk() (*bool, bool)`
 
-GetIgnoreReadonlyCheckWarningsOk returns a tuple with the IgnoreReadonlyCheckWarnings field if it's non-nil, zero value otherwise
+GetIgnoreUpdateFieldsCheckWarningsOk returns a tuple with the IgnoreUpdateFieldsCheckWarnings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIgnoreReadonlyCheckWarnings
+### SetIgnoreUpdateFieldsCheckWarnings
 
-`func (o *CompilerOptions) SetIgnoreReadonlyCheckWarnings(v bool)`
+`func (o *CompilerOptions) SetIgnoreUpdateFieldsCheckWarnings(v bool)`
 
-SetIgnoreReadonlyCheckWarnings sets IgnoreReadonlyCheckWarnings field to given value.
+SetIgnoreUpdateFieldsCheckWarnings sets IgnoreUpdateFieldsCheckWarnings field to given value.
 
-### HasIgnoreReadonlyCheckWarnings
+### HasIgnoreUpdateFieldsCheckWarnings
 
-`func (o *CompilerOptions) HasIgnoreReadonlyCheckWarnings() bool`
+`func (o *CompilerOptions) HasIgnoreUpdateFieldsCheckWarnings() bool`
 
-HasIgnoreReadonlyCheckWarnings returns a boolean if a field has been set.
+HasIgnoreUpdateFieldsCheckWarnings returns a boolean if a field has been set.
 
-### GetIgnoreExternalCallCheckWarnings
+### GetIgnoreCheckExternalCallerWarnings
 
-`func (o *CompilerOptions) GetIgnoreExternalCallCheckWarnings() bool`
+`func (o *CompilerOptions) GetIgnoreCheckExternalCallerWarnings() bool`
 
-GetIgnoreExternalCallCheckWarnings returns the IgnoreExternalCallCheckWarnings field if non-nil, zero value otherwise.
+GetIgnoreCheckExternalCallerWarnings returns the IgnoreCheckExternalCallerWarnings field if non-nil, zero value otherwise.
 
-### GetIgnoreExternalCallCheckWarningsOk
+### GetIgnoreCheckExternalCallerWarningsOk
 
-`func (o *CompilerOptions) GetIgnoreExternalCallCheckWarningsOk() (*bool, bool)`
+`func (o *CompilerOptions) GetIgnoreCheckExternalCallerWarningsOk() (*bool, bool)`
 
-GetIgnoreExternalCallCheckWarningsOk returns a tuple with the IgnoreExternalCallCheckWarnings field if it's non-nil, zero value otherwise
+GetIgnoreCheckExternalCallerWarningsOk returns a tuple with the IgnoreCheckExternalCallerWarnings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIgnoreExternalCallCheckWarnings
+### SetIgnoreCheckExternalCallerWarnings
 
-`func (o *CompilerOptions) SetIgnoreExternalCallCheckWarnings(v bool)`
+`func (o *CompilerOptions) SetIgnoreCheckExternalCallerWarnings(v bool)`
 
-SetIgnoreExternalCallCheckWarnings sets IgnoreExternalCallCheckWarnings field to given value.
+SetIgnoreCheckExternalCallerWarnings sets IgnoreCheckExternalCallerWarnings field to given value.
 
-### HasIgnoreExternalCallCheckWarnings
+### HasIgnoreCheckExternalCallerWarnings
 
-`func (o *CompilerOptions) HasIgnoreExternalCallCheckWarnings() bool`
+`func (o *CompilerOptions) HasIgnoreCheckExternalCallerWarnings() bool`
 
-HasIgnoreExternalCallCheckWarnings returns a boolean if a field has been set.
+HasIgnoreCheckExternalCallerWarnings returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

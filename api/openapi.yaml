@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Alephium API
-  version: 1.5.0
+  version: 1.6.2
 servers:
 - url: ../
 - url: "{protocol}://{host}:{port}"
@@ -533,8 +533,10 @@ paths:
                   lockedBalanceHint: 0 ALPH
               schema:
                 $ref: '#/components/schemas/Balances'
-          description: "Format 1: `1000000000000000000`\n\nFormat 2: `x.y ALPH`, where\
-            \ `1 ALPH = 1000000000000000000`"
+          description: |-
+            Format 1: `1000000000000000000`
+
+            Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
         "400":
           content:
             application/json:
@@ -690,8 +692,10 @@ paths:
                   utxosLimit: 512
             schema:
               $ref: '#/components/schemas/Transfer'
-        description: "Format 1: `1000000000000000000`\n\nFormat 2: `x.y ALPH`, where\
-          \ `1 ALPH = 1000000000000000000`"
+        description: |-
+          Format 1: `1000000000000000000`
+
+          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
         required: true
       responses:
         "200":
@@ -2833,8 +2837,10 @@ paths:
                     warning: Result might not include all utxos and is maybe unprecise
               schema:
                 $ref: '#/components/schemas/Balance'
-          description: "Format 1: `1000000000000000000`\n\nFormat 2: `x.y ALPH`, where\
-            \ `1 ALPH = 1000000000000000000`"
+          description: |-
+            Format 1: `1000000000000000000`
+
+            Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
         "400":
           content:
             application/json:
@@ -3380,8 +3386,10 @@ paths:
                   gasPrice: "100000000000"
             schema:
               $ref: '#/components/schemas/BuildTransaction'
-        description: "Format 1: `1000000000000000000`\n\nFormat 2: `x.y ALPH`, where\
-          \ `1 ALPH = 1000000000000000000`"
+        description: |-
+          Format 1: `1000000000000000000`
+
+          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
         required: true
       responses:
         "200":
@@ -3675,6 +3683,141 @@ paths:
       summary: Decode an unsigned transaction
       tags:
       - Transactions
+  /transactions/details/{txId}:
+    get:
+      operationId: getTransactionsDetailsTxid
+      parameters:
+      - explode: false
+        in: path
+        name: txId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fromGroup
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: toGroup
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Example:
+                  summary: Default
+                  value:
+                    unsigned:
+                      txId: 503bfb16230888af4924aa8f8250d7d348b862e267d75d3147f1998050b6da69
+                      version: 1
+                      networkId: 1
+                      gasAmount: 20000
+                      gasPrice: "100000000000"
+                      inputs:
+                      - outputRef:
+                          hint: 23412
+                          key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                        unlockScript: 00d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
+                      fixedOutputs:
+                      - hint: 1
+                        key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                        attoAlphAmount: "2000000000000000000"
+                        address: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                        tokens:
+                        - id: 2d11fd6c12435ffb07aaed4d190a505b621b927a5f6e51b61ce0ebe186397bdd
+                          amount: "42000000000000000000"
+                        - id: bd165d20bd063c7a023d22232a1e75bf46e904067f92b49323fe89fa0fd586bf
+                          amount: "1000000000000000000000"
+                        lockTime: 1611041396892
+                        message: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                    scriptExecutionOk: true
+                    contractInputs:
+                    - hint: 23412
+                      key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                    generatedOutputs:
+                    - type: AssetOutput
+                      hint: 1
+                      key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                      attoAlphAmount: "2000000000000000000"
+                      address: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                      tokens:
+                      - id: 2d11fd6c12435ffb07aaed4d190a505b621b927a5f6e51b61ce0ebe186397bdd
+                        amount: "42000000000000000000"
+                      - id: bd165d20bd063c7a023d22232a1e75bf46e904067f92b49323fe89fa0fd586bf
+                        amount: "1000000000000000000000"
+                      lockTime: 1611041396892
+                      message: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                    - type: ContractOutput
+                      hint: 1
+                      key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                      attoAlphAmount: "2000000000000000000"
+                      address: uomjgUz6D4tLejTkQtbNJMY8apAjTm1bgQf7em1wDV7S
+                      tokens:
+                      - id: 2d11fd6c12435ffb07aaed4d190a505b621b927a5f6e51b61ce0ebe186397bdd
+                        amount: "42000000000000000000"
+                      - id: bd165d20bd063c7a023d22232a1e75bf46e904067f92b49323fe89fa0fd586bf
+                        amount: "1000000000000000000000"
+                    inputSignatures:
+                    - 9e1a35b2931bd04e6780d01c36e3e5337941aa80f173cfe4f4e249c44ab135272b834c1a639db9c89d673a8a30524042b0469672ca845458a5a0cf2cad53221b
+                    scriptSignatures:
+                    - 9e1a35b2931bd04e6780d01c36e3e5337941aa80f173cfe4f4e249c44ab135272b834c1a639db9c89d673a8a30524042b0469672ca845458a5a0cf2cad53221b
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        "400":
+          content:
+            application/json:
+              example:
+                detail: Something bad in the request
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              example:
+                detail: You shall not pass
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              example:
+                resource: wallet-name
+                detail: wallet-name not found
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: NotFound
+        "500":
+          content:
+            application/json:
+              example:
+                detail: Ouch
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: InternalServerError
+        "503":
+          content:
+            application/json:
+              example:
+                detail: Self clique unsynced
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+          description: ServiceUnavailable
+      summary: Get transaction details
+      tags:
+      - Transactions
   /transactions/status:
     get:
       operationId: getTransactionsStatus
@@ -3788,8 +3931,10 @@ paths:
           content:
             application/json:
               example:
+                version: v0.0.1
                 name: Main
                 bytecodeTemplate: 35d1b2a520a0da34c5eb8d712aa9cc
+                bytecodeDebugPatch: =1-1+ef
                 fields:
                   names:
                   - aa
@@ -3977,8 +4122,11 @@ paths:
         content:
           application/json:
             example:
-              code: "Contract Foo(bar: ByteVec) {\n pub fn baz(amount: U256) -> ()\
-                \ {\nissueToken!(amount)\n}}"
+              code: |-
+                Contract Foo(bar: ByteVec) {
+                 pub fn baz(amount: U256) -> () {
+                issueToken!(amount)
+                }}
               compilerOptions:
                 ignoreUnusedConstantsWarnings: true
             schema:
@@ -3989,9 +4137,12 @@ paths:
           content:
             application/json:
               example:
+                version: v0.0.1
                 name: Foo
                 bytecode: 35d1b2a520a0da34c5eb8d712aa9cc
+                bytecodeDebugPatch: =1-1+ef
                 codeHash: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                codeHashDebug: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
                 fields:
                   names:
                   - aa
@@ -4119,9 +4270,12 @@ paths:
             application/json:
               example:
                 contracts:
-                - name: Foo
+                - version: v0.0.1
+                  name: Foo
                   bytecode: 35d1b2a520a0da34c5eb8d712aa9cc
+                  bytecodeDebugPatch: =1-1+ef
                   codeHash: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                  codeHashDebug: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
                   fields:
                     names:
                     - aa
@@ -4184,8 +4338,10 @@ paths:
                   warnings:
                   - "Found unused fields in Foo: a"
                 scripts:
-                - name: Main
+                - version: v0.0.1
+                  name: Main
                   bytecodeTemplate: 35d1b2a520a0da34c5eb8d712aa9cc
+                  bytecodeDebugPatch: =1-1+ef
                   fields:
                     names:
                     - aa
@@ -4541,6 +4697,9 @@ paths:
                     value: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
                   - type: U256
                     value: "10"
+                debugMessages:
+                - contractAddress: uomjgUz6D4tLejTkQtbNJMY8apAjTm1bgQf7em1wDV7S
+                  message: Debugging!
               schema:
                 $ref: '#/components/schemas/TestContractResult'
         "400":
@@ -4717,8 +4876,10 @@ paths:
               mrequired: 1
             schema:
               $ref: '#/components/schemas/BuildMultisigAddress'
-        description: "Format 1: `1000000000000000000`\n\nFormat 2: `x.y ALPH`, where\
-          \ `1 ALPH = 1000000000000000000`"
+        description: |-
+          Format 1: `1000000000000000000`
+
+          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
         required: true
       responses:
         "200":
@@ -7966,6 +8127,7 @@ components:
         - warnings
         - warnings
         name: name
+        bytecodeDebugPatch: bytecodeDebugPatch
         fields:
           types:
           - types
@@ -7976,6 +8138,8 @@ components:
           isMutable:
           - true
           - true
+        version: version
+        codeHashDebug: codeHashDebug
         events:
         - fieldTypes:
           - fieldTypes
@@ -7992,11 +8156,18 @@ components:
           - fieldNames
           name: name
       properties:
+        version:
+          type: string
         name:
           type: string
         bytecode:
           type: string
+        bytecodeDebugPatch:
+          type: string
         codeHash:
+          format: 32-byte-hash
+          type: string
+        codeHashDebug:
           format: 32-byte-hash
           type: string
         fields:
@@ -8015,11 +8186,14 @@ components:
           type: array
       required:
       - bytecode
+      - bytecodeDebugPatch
       - codeHash
+      - codeHashDebug
       - events
       - fields
       - functions
       - name
+      - version
       - warnings
       type: object
     CompileProjectResult:
@@ -8064,6 +8238,7 @@ components:
           - warnings
           - warnings
           name: name
+          bytecodeDebugPatch: bytecodeDebugPatch
           fields:
             types:
             - types
@@ -8074,6 +8249,8 @@ components:
             isMutable:
             - true
             - true
+          version: version
+          codeHashDebug: codeHashDebug
           events:
           - fieldTypes:
             - fieldTypes
@@ -8128,6 +8305,7 @@ components:
           - warnings
           - warnings
           name: name
+          bytecodeDebugPatch: bytecodeDebugPatch
           fields:
             types:
             - types
@@ -8138,6 +8316,8 @@ components:
             isMutable:
             - true
             - true
+          version: version
+          codeHashDebug: codeHashDebug
           events:
           - fieldTypes:
             - fieldTypes
@@ -8192,6 +8372,7 @@ components:
           - warnings
           - warnings
           name: name
+          bytecodeDebugPatch: bytecodeDebugPatch
           fields:
             types:
             - types
@@ -8202,6 +8383,7 @@ components:
             isMutable:
             - true
             - true
+          version: version
         - bytecodeTemplate: bytecodeTemplate
           functions:
           - paramNames:
@@ -8240,6 +8422,7 @@ components:
           - warnings
           - warnings
           name: name
+          bytecodeDebugPatch: bytecodeDebugPatch
           fields:
             types:
             - types
@@ -8250,6 +8433,7 @@ components:
             isMutable:
             - true
             - true
+          version: version
       properties:
         contracts:
           items:
@@ -8303,6 +8487,7 @@ components:
         - warnings
         - warnings
         name: name
+        bytecodeDebugPatch: bytecodeDebugPatch
         fields:
           types:
           - types
@@ -8313,10 +8498,15 @@ components:
           isMutable:
           - true
           - true
+        version: version
       properties:
+        version:
+          type: string
         name:
           type: string
         bytecodeTemplate:
+          type: string
+        bytecodeDebugPatch:
           type: string
         fields:
           $ref: '#/components/schemas/FieldsSig'
@@ -8329,20 +8519,22 @@ components:
             type: string
           type: array
       required:
+      - bytecodeDebugPatch
       - bytecodeTemplate
       - fields
       - functions
       - name
+      - version
       - warnings
       type: object
     CompilerOptions:
       example:
         ignoreUnusedPrivateFunctionsWarnings: true
+        ignoreUpdateFieldsCheckWarnings: true
         ignoreUnusedVariablesWarnings: true
-        ignoreExternalCallCheckWarnings: true
         ignoreUnusedConstantsWarnings: true
         ignoreUnusedFieldsWarnings: true
-        ignoreReadonlyCheckWarnings: true
+        ignoreCheckExternalCallerWarnings: true
       properties:
         ignoreUnusedConstantsWarnings:
           type: boolean
@@ -8352,9 +8544,9 @@ components:
           type: boolean
         ignoreUnusedPrivateFunctionsWarnings:
           type: boolean
-        ignoreReadonlyCheckWarnings:
+        ignoreUpdateFieldsCheckWarnings:
           type: boolean
-        ignoreExternalCallCheckWarnings:
+        ignoreCheckExternalCallerWarnings:
           type: boolean
       type: object
     Confirmed:
@@ -8389,11 +8581,11 @@ components:
         code: code
         compilerOptions:
           ignoreUnusedPrivateFunctionsWarnings: true
+          ignoreUpdateFieldsCheckWarnings: true
           ignoreUnusedVariablesWarnings: true
-          ignoreExternalCallCheckWarnings: true
           ignoreUnusedConstantsWarnings: true
           ignoreUnusedFieldsWarnings: true
-          ignoreReadonlyCheckWarnings: true
+          ignoreCheckExternalCallerWarnings: true
       properties:
         code:
           type: string
@@ -8629,6 +8821,20 @@ components:
       - bytecode
       - codeHash
       - fields
+      type: object
+    DebugMessage:
+      example:
+        contractAddress: contractAddress
+        message: message
+      properties:
+        contractAddress:
+          format: address
+          type: string
+        message:
+          type: string
+      required:
+      - contractAddress
+      - message
       type: object
     DecodeUnsignedTx:
       example:
@@ -9133,11 +9339,11 @@ components:
         code: code
         compilerOptions:
           ignoreUnusedPrivateFunctionsWarnings: true
+          ignoreUpdateFieldsCheckWarnings: true
           ignoreUnusedVariablesWarnings: true
-          ignoreExternalCallCheckWarnings: true
           ignoreUnusedConstantsWarnings: true
           ignoreUnusedFieldsWarnings: true
-          ignoreReadonlyCheckWarnings: true
+          ignoreCheckExternalCallerWarnings: true
       properties:
         code:
           type: string
@@ -9202,11 +9408,11 @@ components:
         code: code
         compilerOptions:
           ignoreUnusedPrivateFunctionsWarnings: true
+          ignoreUpdateFieldsCheckWarnings: true
           ignoreUnusedVariablesWarnings: true
-          ignoreExternalCallCheckWarnings: true
           ignoreUnusedConstantsWarnings: true
           ignoreUnusedFieldsWarnings: true
-          ignoreReadonlyCheckWarnings: true
+          ignoreCheckExternalCallerWarnings: true
       properties:
         code:
           type: string
@@ -9494,6 +9700,11 @@ components:
         txInputs:
         - txInputs
         - txInputs
+        debugMessages:
+        - contractAddress: contractAddress
+          message: message
+        - contractAddress: contractAddress
+          message: message
         txOutputs:
         - null
         - null
@@ -9573,10 +9784,15 @@ components:
           items:
             $ref: '#/components/schemas/ContractEventByTxId'
           type: array
+        debugMessages:
+          items:
+            $ref: '#/components/schemas/DebugMessage'
+          type: array
       required:
       - address
       - codeHash
       - contracts
+      - debugMessages
       - events
       - gasUsed
       - returns
@@ -9896,11 +10112,8 @@ components:
           format: hex-string
           type: string
       required:
-      - additionalData
       - amount
-      - lockTime
       - ref
-      - tokens
       type: object
     UTXOs:
       example:

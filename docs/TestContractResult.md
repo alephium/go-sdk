@@ -12,12 +12,13 @@ Name | Type | Description | Notes
 **TxInputs** | **[]string** |  | 
 **TxOutputs** | [**[]Output**](Output.md) |  | 
 **Events** | [**[]ContractEventByTxId**](ContractEventByTxId.md) |  | 
+**DebugMessages** | [**[]DebugMessage**](DebugMessage.md) |  | 
 
 ## Methods
 
 ### NewTestContractResult
 
-`func NewTestContractResult(address string, codeHash string, returns []Val, gasUsed int32, contracts []ContractState, txInputs []string, txOutputs []Output, events []ContractEventByTxId, ) *TestContractResult`
+`func NewTestContractResult(address string, codeHash string, returns []Val, gasUsed int32, contracts []ContractState, txInputs []string, txOutputs []Output, events []ContractEventByTxId, debugMessages []DebugMessage, ) *TestContractResult`
 
 NewTestContractResult instantiates a new TestContractResult object
 This constructor will assign default values to properties that have it defined,
@@ -190,6 +191,26 @@ and a boolean to check if the value has been set.
 `func (o *TestContractResult) SetEvents(v []ContractEventByTxId)`
 
 SetEvents sets Events field to given value.
+
+
+### GetDebugMessages
+
+`func (o *TestContractResult) GetDebugMessages() []DebugMessage`
+
+GetDebugMessages returns the DebugMessages field if non-nil, zero value otherwise.
+
+### GetDebugMessagesOk
+
+`func (o *TestContractResult) GetDebugMessagesOk() (*[]DebugMessage, bool)`
+
+GetDebugMessagesOk returns a tuple with the DebugMessages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDebugMessages
+
+`func (o *TestContractResult) SetDebugMessages(v []DebugMessage)`
+
+SetDebugMessages sets DebugMessages field to given value.
 
 
 

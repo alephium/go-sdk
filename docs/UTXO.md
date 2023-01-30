@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ref** | [**OutputRef**](OutputRef.md) |  | 
 **Amount** | **string** |  | 
-**Tokens** | [**[]Token**](Token.md) |  | 
-**LockTime** | **int64** |  | 
-**AdditionalData** | **string** |  | 
+**Tokens** | Pointer to [**[]Token**](Token.md) |  | [optional] 
+**LockTime** | Pointer to **int64** |  | [optional] 
+**AdditionalData** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewUTXO
 
-`func NewUTXO(ref OutputRef, amount string, tokens []Token, lockTime int64, additionalData string, ) *UTXO`
+`func NewUTXO(ref OutputRef, amount string, ) *UTXO`
 
 NewUTXO instantiates a new UTXO object
 This constructor will assign default values to properties that have it defined,
@@ -88,6 +88,11 @@ and a boolean to check if the value has been set.
 
 SetTokens sets Tokens field to given value.
 
+### HasTokens
+
+`func (o *UTXO) HasTokens() bool`
+
+HasTokens returns a boolean if a field has been set.
 
 ### GetLockTime
 
@@ -108,6 +113,11 @@ and a boolean to check if the value has been set.
 
 SetLockTime sets LockTime field to given value.
 
+### HasLockTime
+
+`func (o *UTXO) HasLockTime() bool`
+
+HasLockTime returns a boolean if a field has been set.
 
 ### GetAdditionalData
 
@@ -128,6 +138,11 @@ and a boolean to check if the value has been set.
 
 SetAdditionalData sets AdditionalData field to given value.
 
+### HasAdditionalData
+
+`func (o *UTXO) HasAdditionalData() bool`
+
+HasAdditionalData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
