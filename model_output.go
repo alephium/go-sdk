@@ -43,8 +43,7 @@ func (dst *Output) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into AssetOutput
 	err = newStrictDecoder(data).Decode(&dst.AssetOutput)
 	if err == nil {
-		jsonAssetOutput, _ := json.Marshal(dst.AssetOutput)
-		if string(jsonAssetOutput) == "{}" { // empty struct
+		if dst.AssetOutput == nil || dst.AssetOutput.Type != "AssetOutput" { // not the right type
 			dst.AssetOutput = nil
 		} else {
 			match++
@@ -56,8 +55,7 @@ func (dst *Output) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ContractOutput
 	err = newStrictDecoder(data).Decode(&dst.ContractOutput)
 	if err == nil {
-		jsonContractOutput, _ := json.Marshal(dst.ContractOutput)
-		if string(jsonContractOutput) == "{}" { // empty struct
+		if dst.ContractOutput == nil || dst.ContractOutput.Type != "ContractOutput" { // not the right type
 			dst.ContractOutput = nil
 		} else {
 			match++
