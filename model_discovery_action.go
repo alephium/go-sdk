@@ -43,8 +43,7 @@ func (dst *DiscoveryAction) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Reachable
 	err = newStrictDecoder(data).Decode(&dst.Reachable)
 	if err == nil {
-		jsonReachable, _ := json.Marshal(dst.Reachable)
-		if string(jsonReachable) == "{}" { // empty struct
+		if dst.Reachable == nil || dst.Reachable.Type != "Reachable" { // not the right type
 			dst.Reachable = nil
 		} else {
 			match++
@@ -56,8 +55,7 @@ func (dst *DiscoveryAction) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Unreachable
 	err = newStrictDecoder(data).Decode(&dst.Unreachable)
 	if err == nil {
-		jsonUnreachable, _ := json.Marshal(dst.Unreachable)
-		if string(jsonUnreachable) == "{}" { // empty struct
+		if dst.Unreachable == nil || dst.Unreachable.Type != "Unreachable" { // not the right type
 			dst.Unreachable = nil
 		} else {
 			match++
