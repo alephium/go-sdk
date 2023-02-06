@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestUnmarshalModel(t *testing.T) {
+func TestUnmarshalOutput(t *testing.T) {
 
 	// Tx https://explorer-v112.testnet.alephium.org/transactions/d78e6b405f1e7239f660e11f08e9b20775dab396f617673e341ef1c41596167f
 	// is causing some unmarshalling error: "data matches more than one schema in oneOf(Output)"
