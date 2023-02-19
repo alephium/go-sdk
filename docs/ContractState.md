@@ -8,14 +8,15 @@ Name | Type | Description | Notes
 **Bytecode** | **string** |  | 
 **CodeHash** | **string** |  | 
 **InitialStateHash** | Pointer to **string** |  | [optional] 
-**Fields** | [**[]Val**](Val.md) |  | 
+**ImmFields** | [**[]Val**](Val.md) |  | 
+**MutFields** | [**[]Val**](Val.md) |  | 
 **Asset** | [**AssetState**](AssetState.md) |  | 
 
 ## Methods
 
 ### NewContractState
 
-`func NewContractState(address string, bytecode string, codeHash string, fields []Val, asset AssetState, ) *ContractState`
+`func NewContractState(address string, bytecode string, codeHash string, immFields []Val, mutFields []Val, asset AssetState, ) *ContractState`
 
 NewContractState instantiates a new ContractState object
 This constructor will assign default values to properties that have it defined,
@@ -115,24 +116,44 @@ SetInitialStateHash sets InitialStateHash field to given value.
 
 HasInitialStateHash returns a boolean if a field has been set.
 
-### GetFields
+### GetImmFields
 
-`func (o *ContractState) GetFields() []Val`
+`func (o *ContractState) GetImmFields() []Val`
 
-GetFields returns the Fields field if non-nil, zero value otherwise.
+GetImmFields returns the ImmFields field if non-nil, zero value otherwise.
 
-### GetFieldsOk
+### GetImmFieldsOk
 
-`func (o *ContractState) GetFieldsOk() (*[]Val, bool)`
+`func (o *ContractState) GetImmFieldsOk() (*[]Val, bool)`
 
-GetFieldsOk returns a tuple with the Fields field if it's non-nil, zero value otherwise
+GetImmFieldsOk returns a tuple with the ImmFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFields
+### SetImmFields
 
-`func (o *ContractState) SetFields(v []Val)`
+`func (o *ContractState) SetImmFields(v []Val)`
 
-SetFields sets Fields field to given value.
+SetImmFields sets ImmFields field to given value.
+
+
+### GetMutFields
+
+`func (o *ContractState) GetMutFields() []Val`
+
+GetMutFields returns the MutFields field if non-nil, zero value otherwise.
+
+### GetMutFieldsOk
+
+`func (o *ContractState) GetMutFieldsOk() (*[]Val, bool)`
+
+GetMutFieldsOk returns a tuple with the MutFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMutFields
+
+`func (o *ContractState) SetMutFields(v []Val)`
+
+SetMutFields sets MutFields field to given value.
 
 
 ### GetAsset

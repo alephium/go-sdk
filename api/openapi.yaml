@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Alephium API
-  version: 1.6.2
+  version: 1.7.1
 servers:
 - url: ../
 - url: "{protocol}://{host}:{port}"
@@ -533,10 +533,13 @@ paths:
                   lockedBalanceHint: 0 ALPH
               schema:
                 $ref: '#/components/schemas/Balances'
-          description: |-
+          description: |2
+
             Format 1: `1000000000000000000`
 
             Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+
+            Field fromPublicKeyType can be `default` or `bip340-schnorr`
         "400":
           content:
             application/json:
@@ -692,10 +695,13 @@ paths:
                   utxosLimit: 512
             schema:
               $ref: '#/components/schemas/Transfer'
-        description: |-
+        description: |2
+
           Format 1: `1000000000000000000`
 
           Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+
+          Field fromPublicKeyType can be `default` or `bip340-schnorr`
         required: true
       responses:
         "200":
@@ -2837,10 +2843,13 @@ paths:
                     warning: Result might not include all utxos and is maybe unprecise
               schema:
                 $ref: '#/components/schemas/Balance'
-          description: |-
+          description: |2
+
             Format 1: `1000000000000000000`
 
             Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+
+            Field fromPublicKeyType can be `default` or `bip340-schnorr`
         "400":
           content:
             application/json:
@@ -3266,92 +3275,6 @@ paths:
       summary: Get block header
       tags:
       - Blockflow
-  /transactions/unconfirmed:
-    get:
-      operationId: getTransactionsUnconfirmed
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-              - fromGroup: 0
-                toGroup: 1
-                unconfirmedTransactions:
-                - unsigned:
-                    txId: 503bfb16230888af4924aa8f8250d7d348b862e267d75d3147f1998050b6da69
-                    version: 1
-                    networkId: 1
-                    gasAmount: 20000
-                    gasPrice: "100000000000"
-                    inputs:
-                    - outputRef:
-                        hint: 23412
-                        key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
-                      unlockScript: 00d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
-                    fixedOutputs:
-                    - hint: 1
-                      key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
-                      attoAlphAmount: "2000000000000000000"
-                      address: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
-                      tokens:
-                      - id: 2d11fd6c12435ffb07aaed4d190a505b621b927a5f6e51b61ce0ebe186397bdd
-                        amount: "42000000000000000000"
-                      - id: bd165d20bd063c7a023d22232a1e75bf46e904067f92b49323fe89fa0fd586bf
-                        amount: "1000000000000000000000"
-                      lockTime: 1611041396892
-                      message: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
-                  inputSignatures:
-                  - 9e1a35b2931bd04e6780d01c36e3e5337941aa80f173cfe4f4e249c44ab135272b834c1a639db9c89d673a8a30524042b0469672ca845458a5a0cf2cad53221b
-                  scriptSignatures:
-                  - 9e1a35b2931bd04e6780d01c36e3e5337941aa80f173cfe4f4e249c44ab135272b834c1a639db9c89d673a8a30524042b0469672ca845458a5a0cf2cad53221b
-              schema:
-                items:
-                  $ref: '#/components/schemas/UnconfirmedTransactions'
-                type: array
-        "400":
-          content:
-            application/json:
-              example:
-                detail: Something bad in the request
-              schema:
-                $ref: '#/components/schemas/BadRequest'
-          description: BadRequest
-        "401":
-          content:
-            application/json:
-              example:
-                detail: You shall not pass
-              schema:
-                $ref: '#/components/schemas/Unauthorized'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              example:
-                resource: wallet-name
-                detail: wallet-name not found
-              schema:
-                $ref: '#/components/schemas/NotFound'
-          description: NotFound
-        "500":
-          content:
-            application/json:
-              example:
-                detail: Ouch
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
-          description: InternalServerError
-        "503":
-          content:
-            application/json:
-              example:
-                detail: Self clique unsynced
-              schema:
-                $ref: '#/components/schemas/ServiceUnavailable'
-          description: ServiceUnavailable
-      summary: List unconfirmed transactions
-      tags:
-      - Transactions
   /transactions/build:
     post:
       operationId: postTransactionsBuild
@@ -3370,6 +3293,7 @@ paths:
                 summary: More settings
                 value:
                   fromPublicKey: d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
+                  fromPublicKeyType: bip340-schnorr
                   destinations:
                   - address: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
                     attoAlphAmount: "2000000000000000000"
@@ -3386,10 +3310,13 @@ paths:
                   gasPrice: "100000000000"
             schema:
               $ref: '#/components/schemas/BuildTransaction'
-        description: |-
+        description: |2
+
           Format 1: `1000000000000000000`
 
           Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+
+          Field fromPublicKeyType can be `default` or `bip340-schnorr`
         required: true
       responses:
         "200":
@@ -3912,6 +3839,246 @@ paths:
       summary: Get tx status
       tags:
       - Transactions
+  /mempool/transactions:
+    delete:
+      operationId: deleteMempoolTransactions
+      responses:
+        "200": {}
+        "400":
+          content:
+            application/json:
+              example:
+                detail: Something bad in the request
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              example:
+                detail: You shall not pass
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              example:
+                resource: wallet-name
+                detail: wallet-name not found
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: NotFound
+        "500":
+          content:
+            application/json:
+              example:
+                detail: Ouch
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: InternalServerError
+        "503":
+          content:
+            application/json:
+              example:
+                detail: Self clique unsynced
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+          description: ServiceUnavailable
+      summary: Remove all transactions from mempool
+      tags:
+      - Mempool
+    get:
+      operationId: getMempoolTransactions
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+              - fromGroup: 0
+                toGroup: 1
+                transactions:
+                - unsigned:
+                    txId: 503bfb16230888af4924aa8f8250d7d348b862e267d75d3147f1998050b6da69
+                    version: 1
+                    networkId: 1
+                    gasAmount: 20000
+                    gasPrice: "100000000000"
+                    inputs:
+                    - outputRef:
+                        hint: 23412
+                        key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                      unlockScript: 00d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
+                    fixedOutputs:
+                    - hint: 1
+                      key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                      attoAlphAmount: "2000000000000000000"
+                      address: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                      tokens:
+                      - id: 2d11fd6c12435ffb07aaed4d190a505b621b927a5f6e51b61ce0ebe186397bdd
+                        amount: "42000000000000000000"
+                      - id: bd165d20bd063c7a023d22232a1e75bf46e904067f92b49323fe89fa0fd586bf
+                        amount: "1000000000000000000000"
+                      lockTime: 1611041396892
+                      message: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                  inputSignatures:
+                  - 9e1a35b2931bd04e6780d01c36e3e5337941aa80f173cfe4f4e249c44ab135272b834c1a639db9c89d673a8a30524042b0469672ca845458a5a0cf2cad53221b
+                  scriptSignatures:
+                  - 9e1a35b2931bd04e6780d01c36e3e5337941aa80f173cfe4f4e249c44ab135272b834c1a639db9c89d673a8a30524042b0469672ca845458a5a0cf2cad53221b
+              schema:
+                items:
+                  $ref: '#/components/schemas/MempoolTransactions'
+                type: array
+        "400":
+          content:
+            application/json:
+              example:
+                detail: Something bad in the request
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              example:
+                detail: You shall not pass
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              example:
+                resource: wallet-name
+                detail: wallet-name not found
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: NotFound
+        "500":
+          content:
+            application/json:
+              example:
+                detail: Ouch
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: InternalServerError
+        "503":
+          content:
+            application/json:
+              example:
+                detail: Self clique unsynced
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+          description: ServiceUnavailable
+      summary: List mempool transactions
+      tags:
+      - Mempool
+  /mempool/transactions/rebroadcast:
+    put:
+      operationId: putMempoolTransactionsRebroadcast
+      parameters:
+      - explode: true
+        in: query
+        name: txId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200": {}
+        "400":
+          content:
+            application/json:
+              example:
+                detail: Something bad in the request
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              example:
+                detail: You shall not pass
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              example:
+                resource: wallet-name
+                detail: wallet-name not found
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: NotFound
+        "500":
+          content:
+            application/json:
+              example:
+                detail: Ouch
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: InternalServerError
+        "503":
+          content:
+            application/json:
+              example:
+                detail: Self clique unsynced
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+          description: ServiceUnavailable
+      summary: Rebroadcase a mempool transaction to the network
+      tags:
+      - Mempool
+  /mempool/transactions/validate:
+    put:
+      operationId: putMempoolTransactionsValidate
+      responses:
+        "200": {}
+        "400":
+          content:
+            application/json:
+              example:
+                detail: Something bad in the request
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              example:
+                detail: You shall not pass
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              example:
+                resource: wallet-name
+                detail: wallet-name not found
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: NotFound
+        "500":
+          content:
+            application/json:
+              example:
+                detail: Ouch
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: InternalServerError
+        "503":
+          content:
+            application/json:
+              example:
+                detail: Self clique unsynced
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+          description: ServiceUnavailable
+      summary: Validate all mempool transactions and remove invalid ones
+      tags:
+      - Mempool
   /contracts/compile-script:
     post:
       operationId: postContractsCompile-script
@@ -4046,6 +4213,7 @@ paths:
                 summary: More settings
                 value:
                   fromPublicKey: d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
+                  fromPublicKeyType: default
                   bytecode: 35d1b2a520a0da34c5eb8d712aa9cc
                   attoAlphAmount: "1000000000000000"
                   tokens:
@@ -4453,6 +4621,7 @@ paths:
                 summary: More settings
                 value:
                   fromPublicKey: d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
+                  fromPublicKeyType: bip340-schnorr
                   bytecode: 35d1b2a520a0da34c5eb8d712aa9cc
                   initialAttoAlphAmount: "2000000000000000000"
                   initialTokenAmounts:
@@ -4552,7 +4721,10 @@ paths:
                 bytecode: "00010700000000000118"
                 codeHash: c49d951065f85d0c673d33930e8476240c010a52313f99889ae06d9f0d92d2f9
                 initialStateHash: e195a4e597e62a6802a456224008b896566b7c961023954fab808a0f83d8ad63
-                fields:
+                immFields:
+                - type: U256
+                  value: "1000000000000000000"
+                mutFields:
                 - type: U256
                   value: "2000000000000000000"
                 asset:
@@ -4616,9 +4788,12 @@ paths:
               group: 0
               address: tgx7VNFoP9DJiFMFgXXtafQZkUvyEdDHT9ryamHJYrjq
               bytecode: "00010700000000000118"
-              initialFields:
+              initialImmFields:
               - type: U256
                 value: "1000000000000000000"
+              initialMutFields:
+              - type: U256
+                value: "2000000000000000000"
               initialAsset:
                 attoAlphAmount: "1000000000000000000"
                 tokens:
@@ -4633,7 +4808,10 @@ paths:
                 bytecode: "00010700000000000118"
                 codeHash: c49d951065f85d0c673d33930e8476240c010a52313f99889ae06d9f0d92d2f9
                 initialStateHash: e195a4e597e62a6802a456224008b896566b7c961023954fab808a0f83d8ad63
-                fields:
+                immFields:
+                - type: U256
+                  value: "1000000000000000000"
+                mutFields:
                 - type: U256
                   value: "2000000000000000000"
                 asset:
@@ -4667,7 +4845,10 @@ paths:
                   bytecode: "00010700000000000118"
                   codeHash: c49d951065f85d0c673d33930e8476240c010a52313f99889ae06d9f0d92d2f9
                   initialStateHash: e195a4e597e62a6802a456224008b896566b7c961023954fab808a0f83d8ad63
-                  fields:
+                  immFields:
+                  - type: U256
+                    value: "1000000000000000000"
+                  mutFields:
                   - type: U256
                     value: "2000000000000000000"
                   asset:
@@ -4787,7 +4968,10 @@ paths:
                   bytecode: "00010700000000000118"
                   codeHash: c49d951065f85d0c673d33930e8476240c010a52313f99889ae06d9f0d92d2f9
                   initialStateHash: e195a4e597e62a6802a456224008b896566b7c961023954fab808a0f83d8ad63
-                  fields:
+                  immFields:
+                  - type: U256
+                    value: "1000000000000000000"
+                  mutFields:
                   - type: U256
                     value: "2000000000000000000"
                   asset:
@@ -4876,10 +5060,13 @@ paths:
               mrequired: 1
             schema:
               $ref: '#/components/schemas/BuildMultisigAddress'
-        description: |-
+        description: |2
+
           Format 1: `1000000000000000000`
 
           Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+
+          Field fromPublicKeyType can be `default` or `bip340-schnorr`
         required: true
       responses:
         "200":
@@ -7502,13 +7689,17 @@ components:
           id: id
         - amount: amount
           id: id
+        fromPublicKeyType: fromPublicKeyType
         issueTokenAmount: issueTokenAmount
         gasAmount: 0
         targetBlockHash: targetBlockHash
         gasPrice: gasPrice
       properties:
         fromPublicKey:
-          format: public-key
+          format: hex-string
+          type: string
+        fromPublicKeyType:
+          format: hex-string
           type: string
         bytecode:
           format: hex-string
@@ -7579,6 +7770,7 @@ components:
       example:
         bytecode: bytecode
         fromPublicKey: fromPublicKey
+        fromPublicKeyType: fromPublicKeyType
         gasAmount: 0
         attoAlphAmount: attoAlphAmount
         tokens:
@@ -7590,7 +7782,10 @@ components:
         gasPrice: gasPrice
       properties:
         fromPublicKey:
-          format: public-key
+          format: hex-string
+          type: string
+        fromPublicKeyType:
+          format: hex-string
           type: string
         bytecode:
           format: hex-string
@@ -7805,6 +8000,7 @@ components:
     BuildTransaction:
       example:
         fromPublicKey: fromPublicKey
+        fromPublicKeyType: fromPublicKeyType
         destinations:
         - address: address
           lockTime: 0
@@ -7834,7 +8030,10 @@ components:
         gasPrice: gasPrice
       properties:
         fromPublicKey:
-          format: public-key
+          format: hex-string
+          type: string
+        fromPublicKeyType:
+          format: hex-string
           type: string
         destinations:
           items:
@@ -7970,11 +8169,11 @@ components:
         contracts:
         - bytecode: bytecode
           initialStateHash: initialStateHash
+          immFields:
+          - null
+          - null
           address: address
           codeHash: codeHash
-          fields:
-          - null
-          - null
           asset:
             attoAlphAmount: attoAlphAmount
             tokens:
@@ -7982,13 +8181,16 @@ components:
               id: id
             - amount: amount
               id: id
+          mutFields:
+          - null
+          - null
         - bytecode: bytecode
           initialStateHash: initialStateHash
+          immFields:
+          - null
+          - null
           address: address
           codeHash: codeHash
-          fields:
-          - null
-          - null
           asset:
             attoAlphAmount: attoAlphAmount
             tokens:
@@ -7996,6 +8198,9 @@ components:
               id: id
             - amount: amount
               id: id
+          mutFields:
+          - null
+          - null
         events:
         - blockHash: blockHash
           contractAddress: contractAddress
@@ -8784,11 +8989,11 @@ components:
       example:
         bytecode: bytecode
         initialStateHash: initialStateHash
+        immFields:
+        - null
+        - null
         address: address
         codeHash: codeHash
-        fields:
-        - null
-        - null
         asset:
           attoAlphAmount: attoAlphAmount
           tokens:
@@ -8796,6 +9001,9 @@ components:
             id: id
           - amount: amount
             id: id
+        mutFields:
+        - null
+        - null
       properties:
         address:
           format: address
@@ -8809,7 +9017,11 @@ components:
         initialStateHash:
           format: 32-byte-hash
           type: string
-        fields:
+        immFields:
+          items:
+            $ref: '#/components/schemas/Val'
+          type: array
+        mutFields:
           items:
             $ref: '#/components/schemas/Val'
           type: array
@@ -8820,7 +9032,8 @@ components:
       - asset
       - bytecode
       - codeHash
-      - fields
+      - immFields
+      - mutFields
       type: object
     DebugMessage:
       example:
@@ -9166,6 +9379,117 @@ components:
           type: string
       required:
       - type
+      type: object
+    MempoolTransactions:
+      example:
+        fromGroup: 0
+        transactions:
+        - inputSignatures:
+          - inputSignatures
+          - inputSignatures
+          scriptSignatures:
+          - scriptSignatures
+          - scriptSignatures
+          unsigned:
+            inputs:
+            - unlockScript: unlockScript
+              outputRef:
+                hint: 9
+                key: key
+            - unlockScript: unlockScript
+              outputRef:
+                hint: 9
+                key: key
+            gasAmount: 7
+            txId: txId
+            networkId: 2
+            fixedOutputs:
+            - address: address
+              lockTime: 2
+              hint: 3
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+              message: message
+              key: key
+            - address: address
+              lockTime: 2
+              hint: 3
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+              message: message
+              key: key
+            version: 5
+            scriptOpt: scriptOpt
+            gasPrice: gasPrice
+        - inputSignatures:
+          - inputSignatures
+          - inputSignatures
+          scriptSignatures:
+          - scriptSignatures
+          - scriptSignatures
+          unsigned:
+            inputs:
+            - unlockScript: unlockScript
+              outputRef:
+                hint: 9
+                key: key
+            - unlockScript: unlockScript
+              outputRef:
+                hint: 9
+                key: key
+            gasAmount: 7
+            txId: txId
+            networkId: 2
+            fixedOutputs:
+            - address: address
+              lockTime: 2
+              hint: 3
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+              message: message
+              key: key
+            - address: address
+              lockTime: 2
+              hint: 3
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+              message: message
+              key: key
+            version: 5
+            scriptOpt: scriptOpt
+            gasPrice: gasPrice
+        toGroup: 6
+      properties:
+        fromGroup:
+          format: int32
+          type: integer
+        toGroup:
+          format: int32
+          type: integer
+        transactions:
+          items:
+            $ref: '#/components/schemas/TransactionTemplate'
+          type: array
+      required:
+      - fromGroup
+      - toGroup
+      - transactions
       type: object
     MinerAddresses:
       example:
@@ -9614,11 +9938,11 @@ components:
         existingContracts:
         - bytecode: bytecode
           initialStateHash: initialStateHash
+          immFields:
+          - null
+          - null
           address: address
           codeHash: codeHash
-          fields:
-          - null
-          - null
           asset:
             attoAlphAmount: attoAlphAmount
             tokens:
@@ -9626,13 +9950,16 @@ components:
               id: id
             - amount: amount
               id: id
+          mutFields:
+          - null
+          - null
         - bytecode: bytecode
           initialStateHash: initialStateHash
+          immFields:
+          - null
+          - null
           address: address
           codeHash: codeHash
-          fields:
-          - null
-          - null
           asset:
             attoAlphAmount: attoAlphAmount
             tokens:
@@ -9640,8 +9967,11 @@ components:
               id: id
             - amount: amount
               id: id
+          mutFields:
+          - null
+          - null
         txId: txId
-        initialFields:
+        initialImmFields:
         - null
         - null
         initialAsset:
@@ -9652,6 +9982,9 @@ components:
           - amount: amount
             id: id
         group: 0
+        initialMutFields:
+        - null
+        - null
       properties:
         group:
           format: int32
@@ -9668,7 +10001,11 @@ components:
         bytecode:
           format: contract
           type: string
-        initialFields:
+        initialImmFields:
+          items:
+            $ref: '#/components/schemas/Val'
+          type: array
+        initialMutFields:
           items:
             $ref: '#/components/schemas/Val'
           type: array
@@ -9714,11 +10051,11 @@ components:
         contracts:
         - bytecode: bytecode
           initialStateHash: initialStateHash
+          immFields:
+          - null
+          - null
           address: address
           codeHash: codeHash
-          fields:
-          - null
-          - null
           asset:
             attoAlphAmount: attoAlphAmount
             tokens:
@@ -9726,13 +10063,16 @@ components:
               id: id
             - amount: amount
               id: id
+          mutFields:
+          - null
+          - null
         - bytecode: bytecode
           initialStateHash: initialStateHash
+          immFields:
+          - null
+          - null
           address: address
           codeHash: codeHash
-          fields:
-          - null
-          - null
           asset:
             attoAlphAmount: attoAlphAmount
             tokens:
@@ -9740,6 +10080,9 @@ components:
               id: id
             - amount: amount
               id: id
+          mutFields:
+          - null
+          - null
         events:
         - blockHash: blockHash
           contractAddress: contractAddress
@@ -10170,117 +10513,6 @@ components:
       required:
       - peers
       - type
-      type: object
-    UnconfirmedTransactions:
-      example:
-        unconfirmedTransactions:
-        - inputSignatures:
-          - inputSignatures
-          - inputSignatures
-          scriptSignatures:
-          - scriptSignatures
-          - scriptSignatures
-          unsigned:
-            inputs:
-            - unlockScript: unlockScript
-              outputRef:
-                hint: 9
-                key: key
-            - unlockScript: unlockScript
-              outputRef:
-                hint: 9
-                key: key
-            gasAmount: 7
-            txId: txId
-            networkId: 2
-            fixedOutputs:
-            - address: address
-              lockTime: 2
-              hint: 3
-              attoAlphAmount: attoAlphAmount
-              tokens:
-              - amount: amount
-                id: id
-              - amount: amount
-                id: id
-              message: message
-              key: key
-            - address: address
-              lockTime: 2
-              hint: 3
-              attoAlphAmount: attoAlphAmount
-              tokens:
-              - amount: amount
-                id: id
-              - amount: amount
-                id: id
-              message: message
-              key: key
-            version: 5
-            scriptOpt: scriptOpt
-            gasPrice: gasPrice
-        - inputSignatures:
-          - inputSignatures
-          - inputSignatures
-          scriptSignatures:
-          - scriptSignatures
-          - scriptSignatures
-          unsigned:
-            inputs:
-            - unlockScript: unlockScript
-              outputRef:
-                hint: 9
-                key: key
-            - unlockScript: unlockScript
-              outputRef:
-                hint: 9
-                key: key
-            gasAmount: 7
-            txId: txId
-            networkId: 2
-            fixedOutputs:
-            - address: address
-              lockTime: 2
-              hint: 3
-              attoAlphAmount: attoAlphAmount
-              tokens:
-              - amount: amount
-                id: id
-              - amount: amount
-                id: id
-              message: message
-              key: key
-            - address: address
-              lockTime: 2
-              hint: 3
-              attoAlphAmount: attoAlphAmount
-              tokens:
-              - amount: amount
-                id: id
-              - amount: amount
-                id: id
-              message: message
-              key: key
-            version: 5
-            scriptOpt: scriptOpt
-            gasPrice: gasPrice
-        fromGroup: 0
-        toGroup: 6
-      properties:
-        fromGroup:
-          format: int32
-          type: integer
-        toGroup:
-          format: int32
-          type: integer
-        unconfirmedTransactions:
-          items:
-            $ref: '#/components/schemas/TransactionTemplate'
-          type: array
-      required:
-      - fromGroup
-      - toGroup
-      - unconfirmedTransactions
       type: object
     Unreachable:
       properties:

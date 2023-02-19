@@ -7,6 +7,7 @@ api_blockflow.go
 api_contracts.go
 api_events.go
 api_infos.go
+api_mempool.go
 api_miners.go
 api_multi_signature.go
 api_transactions.go
@@ -82,6 +83,8 @@ docs/InfosApi.md
 docs/InterCliquePeerInfo.md
 docs/InternalServerError.md
 docs/MemPooled.md
+docs/MempoolApi.md
+docs/MempoolTransactions.md
 docs/MinerAddresses.md
 docs/MinerAddressesInfo.md
 docs/MinersApi.md
@@ -127,7 +130,6 @@ docs/UTXO.md
 docs/UTXOs.md
 docs/Unauthorized.md
 docs/Unban.md
-docs/UnconfirmedTransactions.md
 docs/Unreachable.md
 docs/UnsignedTx.md
 docs/UtilsApi.md
@@ -213,6 +215,7 @@ model_hashes_at_height.go
 model_inter_clique_peer_info.go
 model_internal_server_error.go
 model_mem_pooled.go
+model_mempool_transactions.go
 model_miner_addresses.go
 model_miner_addresses_info.go
 model_misbehavior_action.go
@@ -253,7 +256,6 @@ model_tx_not_found.go
 model_tx_status.go
 model_unauthorized.go
 model_unban.go
-model_unconfirmed_transactions.go
 model_unreachable.go
 model_unsigned_tx.go
 model_utxo.go
@@ -279,6 +281,7 @@ test/api_blockflow_test.go
 test/api_contracts_test.go
 test/api_events_test.go
 test/api_infos_test.go
+test/api_mempool_test.go
 test/api_miners_test.go
 test/api_multi_signature_test.go
 test/api_transactions_test.go
