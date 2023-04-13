@@ -998,7 +998,7 @@ import (
 
 func main() {
     walletName := "walletName_example" // string | 
-    transfer := *openapiclient.NewTransfer([]openapiclient.Destination{*openapiclient.NewDestination("Address_example", "AttoAlphAmount_example")}) // Transfer |  Format 1: `1000000000000000000`  Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`  Field fromPublicKeyType can be `default` or `bip340-schnorr` 
+    transfer := *openapiclient.NewTransfer([]openapiclient.Destination{*openapiclient.NewDestination("Address_example", "AttoAlphAmount_example")}) // Transfer | Format 1: `1000000000000000000`  Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000  Field fromPublicKeyType can be  `default` or `bip340-schnorr`
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1028,7 +1028,7 @@ Other parameters are passed through a pointer to a apiPostWalletsWalletNameTrans
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **transfer** | [**Transfer**](Transfer.md) |  Format 1: &#x60;1000000000000000000&#x60;  Format 2: &#x60;x.y ALPH&#x60;, where &#x60;1 ALPH &#x3D; 1000000000000000000&#x60;  Field fromPublicKeyType can be &#x60;default&#x60; or &#x60;bip340-schnorr&#x60;  | 
+ **transfer** | [**Transfer**](Transfer.md) | Format 1: &#x60;1000000000000000000&#x60;  Format 2: &#x60;x.y ALPH&#x60;, where &#x60;1 ALPH &#x3D; 1000000000000000000  Field fromPublicKeyType can be  &#x60;default&#x60; or &#x60;bip340-schnorr&#x60; | 
 
 ### Return type
 

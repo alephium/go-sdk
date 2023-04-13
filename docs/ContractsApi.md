@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**PostContractsCompileContract**](ContractsApi.md#PostContractsCompileContract) | **Post** /contracts/compile-contract | Compile a smart contract
 [**PostContractsCompileProject**](ContractsApi.md#PostContractsCompileProject) | **Post** /contracts/compile-project | Compile a project
 [**PostContractsCompileScript**](ContractsApi.md#PostContractsCompileScript) | **Post** /contracts/compile-script | Compile a script
+[**PostContractsMulticallContract**](ContractsApi.md#PostContractsMulticallContract) | **Post** /contracts/multicall-contract | Multiple call contract
 [**PostContractsTestContract**](ContractsApi.md#PostContractsTestContract) | **Post** /contracts/test-contract | Test contract
 [**PostContractsUnsignedTxDeployContract**](ContractsApi.md#PostContractsUnsignedTxDeployContract) | **Post** /contracts/unsigned-tx/deploy-contract | Build an unsigned contract
 [**PostContractsUnsignedTxExecuteScript**](ContractsApi.md#PostContractsUnsignedTxExecuteScript) | **Post** /contracts/unsigned-tx/execute-script | Build an unsigned script
@@ -326,6 +327,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CompileScriptResult**](CompileScriptResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostContractsMulticallContract
+
+> MultipleCallContractResult PostContractsMulticallContract(ctx).MultipleCallContract(multipleCallContract).Execute()
+
+Multiple call contract
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    multipleCallContract := *openapiclient.NewMultipleCallContract([]openapiclient.CallContract{*openapiclient.NewCallContract(int32(123), "Address_example", int32(123))}) // MultipleCallContract | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContractsApi.PostContractsMulticallContract(context.Background()).MultipleCallContract(multipleCallContract).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ContractsApi.PostContractsMulticallContract``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostContractsMulticallContract`: MultipleCallContractResult
+    fmt.Fprintf(os.Stdout, "Response from `ContractsApi.PostContractsMulticallContract`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostContractsMulticallContractRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **multipleCallContract** | [**MultipleCallContract**](MultipleCallContract.md) |  | 
+
+### Return type
+
+[**MultipleCallContractResult**](MultipleCallContractResult.md)
 
 ### Authorization
 

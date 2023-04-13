@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Group** | Pointer to **int32** |  | [optional] 
 **BlockHash** | Pointer to **string** |  | [optional] 
+**BlockTimeStamp** | Pointer to **int64** |  | [optional] 
 **TxId** | Pointer to **string** |  | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
 **Bytecode** | **string** |  | 
@@ -85,6 +86,31 @@ SetBlockHash sets BlockHash field to given value.
 `func (o *TestContract) HasBlockHash() bool`
 
 HasBlockHash returns a boolean if a field has been set.
+
+### GetBlockTimeStamp
+
+`func (o *TestContract) GetBlockTimeStamp() int64`
+
+GetBlockTimeStamp returns the BlockTimeStamp field if non-nil, zero value otherwise.
+
+### GetBlockTimeStampOk
+
+`func (o *TestContract) GetBlockTimeStampOk() (*int64, bool)`
+
+GetBlockTimeStampOk returns a tuple with the BlockTimeStamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBlockTimeStamp
+
+`func (o *TestContract) SetBlockTimeStamp(v int64)`
+
+SetBlockTimeStamp sets BlockTimeStamp field to given value.
+
+### HasBlockTimeStamp
+
+`func (o *TestContract) HasBlockTimeStamp() bool`
+
+HasBlockTimeStamp returns a boolean if a field has been set.
 
 ### GetTxId
 

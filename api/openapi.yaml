@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Alephium API
-  version: 1.7.1
+  version: 2.1.2
 servers:
 - url: ../
 - url: "{protocol}://{host}:{port}"
@@ -533,13 +533,12 @@ paths:
                   lockedBalanceHint: 0 ALPH
               schema:
                 $ref: '#/components/schemas/Balances'
-          description: |2
-
+          description: |-
             Format 1: `1000000000000000000`
 
-            Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+            Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000
 
-            Field fromPublicKeyType can be `default` or `bip340-schnorr`
+            Field fromPublicKeyType can be  `default` or `bip340-schnorr`
         "400":
           content:
             application/json:
@@ -695,13 +694,12 @@ paths:
                   utxosLimit: 512
             schema:
               $ref: '#/components/schemas/Transfer'
-        description: |2
-
+        description: |-
           Format 1: `1000000000000000000`
 
-          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000
 
-          Field fromPublicKeyType can be `default` or `bip340-schnorr`
+          Field fromPublicKeyType can be  `default` or `bip340-schnorr`
         required: true
       responses:
         "200":
@@ -2843,13 +2841,12 @@ paths:
                     warning: Result might not include all utxos and is maybe unprecise
               schema:
                 $ref: '#/components/schemas/Balance'
-          description: |2
-
+          description: |-
             Format 1: `1000000000000000000`
 
-            Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+            Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000
 
-            Field fromPublicKeyType can be `default` or `bip340-schnorr`
+            Field fromPublicKeyType can be  `default` or `bip340-schnorr`
         "400":
           content:
             application/json:
@@ -3310,13 +3307,12 @@ paths:
                   gasPrice: "100000000000"
             schema:
               $ref: '#/components/schemas/BuildTransaction'
-        description: |2
-
+        description: |-
           Format 1: `1000000000000000000`
 
-          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000
 
-          Field fromPublicKeyType can be `default` or `bip340-schnorr`
+          Field fromPublicKeyType can be  `default` or `bip340-schnorr`
         required: true
       responses:
         "200":
@@ -3453,8 +3449,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServiceUnavailable'
           description: ServiceUnavailable
-      summary: Build unsigned transactions to send all unlocked balanced of one address
-        to another address
+      summary: Build unsigned transactions to send all unlocked ALPH and token balances
+        of one address to another address
       tags:
       - Transactions
   /transactions/submit:
@@ -4372,6 +4368,7 @@ paths:
                   - Address
                 warnings:
                 - "Found unused fields in Foo: a"
+                stdInterfaceId: "0001"
               schema:
                 $ref: '#/components/schemas/CompileContractResult'
         "400":
@@ -4505,6 +4502,7 @@ paths:
                     - Address
                   warnings:
                   - "Found unused fields in Foo: a"
+                  stdInterfaceId: "0001"
                 scripts:
                 - version: v0.0.1
                   name: Main
@@ -5047,6 +5045,128 @@ paths:
       summary: Call contract
       tags:
       - Contracts
+  /contracts/multicall-contract:
+    post:
+      operationId: postContractsMulticall-contract
+      requestBody:
+        content:
+          application/json:
+            example:
+              calls:
+              - group: 0
+                worldStateBlockHash: bdaf9dc514ce7d34b6474b8ca10a3dfb93ba997cb9d5ff1ea724ebe2af48abe5
+                txId: 503bfb16230888af4924aa8f8250d7d348b862e267d75d3147f1998050b6da69
+                address: tgx7VNFoP9DJiFMFgXXtafQZkUvyEdDHT9ryamHJYrjq
+                methodIndex: 0
+                args:
+                - type: U256
+                  value: "0"
+                existingContracts:
+                - uomjgUz6D4tLejTkQtbNJMY8apAjTm1bgQf7em1wDV7S
+                inputAssets:
+                - address: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                  asset:
+                    attoAlphAmount: "3000000000000000000"
+                    tokens:
+                    - id: 20aa1fcc865087d7788302d087e4bc76691218ce5d5013dd1cedaabfac19cca4
+                      amount: "3000000000"
+            schema:
+              $ref: '#/components/schemas/MultipleCallContract'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                results:
+                - returns:
+                  - type: U256
+                    value: "0"
+                  gasUsed: 20000
+                  contracts:
+                  - address: vYZdgzNHHp7Qh9U5Rrv5H65eSJCGQTXEC4yuQCZ7mosA
+                    bytecode: "00010700000000000118"
+                    codeHash: c49d951065f85d0c673d33930e8476240c010a52313f99889ae06d9f0d92d2f9
+                    initialStateHash: e195a4e597e62a6802a456224008b896566b7c961023954fab808a0f83d8ad63
+                    immFields:
+                    - type: U256
+                      value: "1000000000000000000"
+                    mutFields:
+                    - type: U256
+                      value: "2000000000000000000"
+                    asset:
+                      attoAlphAmount: "2000000000000000000"
+                      tokens:
+                      - id: bd165d20bd063c7a023d22232a1e75bf46e904067f92b49323fe89fa0fd586bf
+                        amount: "2000000000"
+                  txInputs:
+                  - uomjgUz6D4tLejTkQtbNJMY8apAjTm1bgQf7em1wDV7S
+                  txOutputs:
+                  - type: ContractOutput
+                    hint: 1
+                    key: 798e9e137aec7c2d59d9655b4ffa640f301f628bf7c365083bb255f6aa5f89ef
+                    attoAlphAmount: "1000000000000000000"
+                    address: uomjgUz6D4tLejTkQtbNJMY8apAjTm1bgQf7em1wDV7S
+                    tokens:
+                    - id: 2d11fd6c12435ffb07aaed4d190a505b621b927a5f6e51b61ce0ebe186397bdd
+                      amount: "42000000000000000000"
+                    - id: bd165d20bd063c7a023d22232a1e75bf46e904067f92b49323fe89fa0fd586bf
+                      amount: "1000000000000000000000"
+                  events:
+                  - blockHash: bdaf9dc514ce7d34b6474b8ca10a3dfb93ba997cb9d5ff1ea724ebe2af48abe5
+                    contractAddress: vSxdLL2kE3o6vJBdKkdgmS3W39G3ZEmFHpo2y1jnbzBq
+                    eventIndex: 1
+                    fields:
+                    - type: Address
+                      value: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                    - type: U256
+                      value: "10"
+              schema:
+                $ref: '#/components/schemas/MultipleCallContractResult'
+        "400":
+          content:
+            application/json:
+              example:
+                detail: Something bad in the request
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              example:
+                detail: You shall not pass
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              example:
+                resource: wallet-name
+                detail: wallet-name not found
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: NotFound
+        "500":
+          content:
+            application/json:
+              example:
+                detail: Ouch
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: InternalServerError
+        "503":
+          content:
+            application/json:
+              example:
+                detail: Self clique unsynced
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+          description: ServiceUnavailable
+      summary: Multiple call contract
+      tags:
+      - Contracts
   /multisig/address:
     post:
       operationId: postMultisigAddress
@@ -5060,13 +5180,12 @@ paths:
               mrequired: 1
             schema:
               $ref: '#/components/schemas/BuildMultisigAddress'
-        description: |2
-
+        description: |-
           Format 1: `1000000000000000000`
 
-          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+          Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000
 
-          Field fromPublicKeyType can be `default` or `bip340-schnorr`
+          Field fromPublicKeyType can be  `default` or `bip340-schnorr`
         required: true
       responses:
         "200":
@@ -8343,6 +8462,7 @@ components:
           isMutable:
           - true
           - true
+        stdInterfaceId: stdInterfaceId
         version: version
         codeHashDebug: codeHashDebug
         events:
@@ -8389,6 +8509,8 @@ components:
           items:
             type: string
           type: array
+        stdInterfaceId:
+          type: string
       required:
       - bytecode
       - bytecodeDebugPatch
@@ -8454,6 +8576,7 @@ components:
             isMutable:
             - true
             - true
+          stdInterfaceId: stdInterfaceId
           version: version
           codeHashDebug: codeHashDebug
           events:
@@ -8521,6 +8644,7 @@ components:
             isMutable:
             - true
             - true
+          stdInterfaceId: stdInterfaceId
           version: version
           codeHashDebug: codeHashDebug
           events:
@@ -9533,6 +9657,200 @@ components:
       oneOf:
       - $ref: '#/components/schemas/Ban'
       - $ref: '#/components/schemas/Unban'
+    MultipleCallContract:
+      example:
+        calls:
+        - args:
+          - null
+          - null
+          address: address
+          inputAssets:
+          - address: address
+            asset:
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+          - address: address
+            asset:
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+          methodIndex: 6
+          existingContracts:
+          - existingContracts
+          - existingContracts
+          txId: txId
+          worldStateBlockHash: worldStateBlockHash
+          group: 0
+        - args:
+          - null
+          - null
+          address: address
+          inputAssets:
+          - address: address
+            asset:
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+          - address: address
+            asset:
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+          methodIndex: 6
+          existingContracts:
+          - existingContracts
+          - existingContracts
+          txId: txId
+          worldStateBlockHash: worldStateBlockHash
+          group: 0
+      properties:
+        calls:
+          items:
+            $ref: '#/components/schemas/CallContract'
+          type: array
+      required:
+      - calls
+      type: object
+    MultipleCallContractResult:
+      example:
+        results:
+        - gasUsed: 0
+          txInputs:
+          - txInputs
+          - txInputs
+          txOutputs:
+          - null
+          - null
+          returns:
+          - null
+          - null
+          contracts:
+          - bytecode: bytecode
+            initialStateHash: initialStateHash
+            immFields:
+            - null
+            - null
+            address: address
+            codeHash: codeHash
+            asset:
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+            mutFields:
+            - null
+            - null
+          - bytecode: bytecode
+            initialStateHash: initialStateHash
+            immFields:
+            - null
+            - null
+            address: address
+            codeHash: codeHash
+            asset:
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+            mutFields:
+            - null
+            - null
+          events:
+          - blockHash: blockHash
+            contractAddress: contractAddress
+            eventIndex: 6
+            fields:
+            - null
+            - null
+          - blockHash: blockHash
+            contractAddress: contractAddress
+            eventIndex: 6
+            fields:
+            - null
+            - null
+        - gasUsed: 0
+          txInputs:
+          - txInputs
+          - txInputs
+          txOutputs:
+          - null
+          - null
+          returns:
+          - null
+          - null
+          contracts:
+          - bytecode: bytecode
+            initialStateHash: initialStateHash
+            immFields:
+            - null
+            - null
+            address: address
+            codeHash: codeHash
+            asset:
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+            mutFields:
+            - null
+            - null
+          - bytecode: bytecode
+            initialStateHash: initialStateHash
+            immFields:
+            - null
+            - null
+            address: address
+            codeHash: codeHash
+            asset:
+              attoAlphAmount: attoAlphAmount
+              tokens:
+              - amount: amount
+                id: id
+              - amount: amount
+                id: id
+            mutFields:
+            - null
+            - null
+          events:
+          - blockHash: blockHash
+            contractAddress: contractAddress
+            eventIndex: 6
+            fields:
+            - null
+            - null
+          - blockHash: blockHash
+            contractAddress: contractAddress
+            eventIndex: 6
+            fields:
+            - null
+            - null
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/CallContractResult'
+          type: array
+      required:
+      - results
+      type: object
     NodeInfo:
       example:
         buildInfo:
@@ -9912,29 +10230,8 @@ components:
     TestContract:
       example:
         bytecode: bytecode
-        args:
-        - null
-        - null
         blockHash: blockHash
         address: address
-        inputAssets:
-        - address: address
-          asset:
-            attoAlphAmount: attoAlphAmount
-            tokens:
-            - amount: amount
-              id: id
-            - amount: amount
-              id: id
-        - address: address
-          asset:
-            attoAlphAmount: attoAlphAmount
-            tokens:
-            - amount: amount
-              id: id
-            - amount: amount
-              id: id
-        methodIndex: 6
         existingContracts:
         - bytecode: bytecode
           initialStateHash: initialStateHash
@@ -9971,6 +10268,31 @@ components:
           - null
           - null
         txId: txId
+        initialMutFields:
+        - null
+        - null
+        args:
+        - null
+        - null
+        inputAssets:
+        - address: address
+          asset:
+            attoAlphAmount: attoAlphAmount
+            tokens:
+            - amount: amount
+              id: id
+            - amount: amount
+              id: id
+        - address: address
+          asset:
+            attoAlphAmount: attoAlphAmount
+            tokens:
+            - amount: amount
+              id: id
+            - amount: amount
+              id: id
+        methodIndex: 1
+        blockTimeStamp: 6
         initialImmFields:
         - null
         - null
@@ -9982,9 +10304,6 @@ components:
           - amount: amount
             id: id
         group: 0
-        initialMutFields:
-        - null
-        - null
       properties:
         group:
           format: int32
@@ -9992,6 +10311,9 @@ components:
         blockHash:
           format: block-hash
           type: string
+        blockTimeStamp:
+          format: int64
+          type: integer
         txId:
           format: 32-byte-hash
           type: string

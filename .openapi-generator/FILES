@@ -90,6 +90,8 @@ docs/MinerAddressesInfo.md
 docs/MinersApi.md
 docs/MisbehaviorAction.md
 docs/MultiSignatureApi.md
+docs/MultipleCallContract.md
+docs/MultipleCallContractResult.md
 docs/NodeInfo.md
 docs/NodeVersion.md
 docs/NotFound.md
@@ -219,6 +221,8 @@ model_mempool_transactions.go
 model_miner_addresses.go
 model_miner_addresses_info.go
 model_misbehavior_action.go
+model_multiple_call_contract.go
+model_multiple_call_contract_result.go
 model_node_info.go
 model_node_version.go
 model_not_found.go
@@ -276,15 +280,4 @@ model_wallet_restore_result.go
 model_wallet_status.go
 model_wallet_unlock.go
 response.go
-test/api_addresses_test.go
-test/api_blockflow_test.go
-test/api_contracts_test.go
-test/api_events_test.go
-test/api_infos_test.go
-test/api_mempool_test.go
-test/api_miners_test.go
-test/api_multi_signature_test.go
-test/api_transactions_test.go
-test/api_utils_test.go
-test/api_wallets_test.go
 utils.go
