@@ -6,11 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetTransactionsDetailsTxid**](TransactionsApi.md#GetTransactionsDetailsTxid) | **Get** /transactions/details/{txId} | Get transaction details
 [**GetTransactionsStatus**](TransactionsApi.md#GetTransactionsStatus) | **Get** /transactions/status | Get tx status
-[**GetTransactionsUnconfirmed**](TransactionsApi.md#GetTransactionsUnconfirmed) | **Get** /transactions/unconfirmed | List unconfirmed transactions
 [**PostTransactionsBuild**](TransactionsApi.md#PostTransactionsBuild) | **Post** /transactions/build | Build an unsigned transaction to a number of recipients
 [**PostTransactionsDecodeUnsignedTx**](TransactionsApi.md#PostTransactionsDecodeUnsignedTx) | **Post** /transactions/decode-unsigned-tx | Decode an unsigned transaction
 [**PostTransactionsSubmit**](TransactionsApi.md#PostTransactionsSubmit) | **Post** /transactions/submit | Submit a signed transaction
-[**PostTransactionsSweepAddressBuild**](TransactionsApi.md#PostTransactionsSweepAddressBuild) | **Post** /transactions/sweep-address/build | Build unsigned transactions to send all unlocked balanced of one address to another address
+[**PostTransactionsSweepAddressBuild**](TransactionsApi.md#PostTransactionsSweepAddressBuild) | **Post** /transactions/sweep-address/build | Build unsigned transactions to send all unlocked ALPH and token balances of one address to another address
 
 
 
@@ -154,65 +153,6 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetTransactionsUnconfirmed
-
-> []UnconfirmedTransactions GetTransactionsUnconfirmed(ctx).Execute()
-
-List unconfirmed transactions
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransactionsApi.GetTransactionsUnconfirmed(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.GetTransactionsUnconfirmed``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTransactionsUnconfirmed`: []UnconfirmedTransactions
-    fmt.Fprintf(os.Stdout, "Response from `TransactionsApi.GetTransactionsUnconfirmed`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetTransactionsUnconfirmedRequest struct via the builder pattern
-
-
-### Return type
-
-[**[]UnconfirmedTransactions**](UnconfirmedTransactions.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## PostTransactionsBuild
 
 > BuildTransactionResult PostTransactionsBuild(ctx).BuildTransaction(buildTransaction).Execute()
@@ -232,7 +172,7 @@ import (
 )
 
 func main() {
-    buildTransaction := *openapiclient.NewBuildTransaction("FromPublicKey_example", []openapiclient.Destination{*openapiclient.NewDestination("Address_example", "AttoAlphAmount_example")}) // BuildTransaction | Format 1: `1000000000000000000`  Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000`
+    buildTransaction := *openapiclient.NewBuildTransaction("FromPublicKey_example", []openapiclient.Destination{*openapiclient.NewDestination("Address_example", "AttoAlphAmount_example")}) // BuildTransaction | Format 1: `1000000000000000000`  Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000  Field fromPublicKeyType can be  `default` or `bip340-schnorr`
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -257,7 +197,7 @@ Other parameters are passed through a pointer to a apiPostTransactionsBuildReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **buildTransaction** | [**BuildTransaction**](BuildTransaction.md) | Format 1: &#x60;1000000000000000000&#x60;  Format 2: &#x60;x.y ALPH&#x60;, where &#x60;1 ALPH &#x3D; 1000000000000000000&#x60; | 
+ **buildTransaction** | [**BuildTransaction**](BuildTransaction.md) | Format 1: &#x60;1000000000000000000&#x60;  Format 2: &#x60;x.y ALPH&#x60;, where &#x60;1 ALPH &#x3D; 1000000000000000000  Field fromPublicKeyType can be  &#x60;default&#x60; or &#x60;bip340-schnorr&#x60; | 
 
 ### Return type
 
@@ -409,7 +349,7 @@ No authorization required
 
 > BuildSweepAddressTransactionsResult PostTransactionsSweepAddressBuild(ctx).BuildSweepAddressTransactions(buildSweepAddressTransactions).Execute()
 
-Build unsigned transactions to send all unlocked balanced of one address to another address
+Build unsigned transactions to send all unlocked ALPH and token balances of one address to another address
 
 ### Example
 

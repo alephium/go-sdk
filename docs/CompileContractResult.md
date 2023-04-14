@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Functions** | [**[]FunctionSig**](FunctionSig.md) |  | 
 **Events** | [**[]EventSig**](EventSig.md) |  | 
 **Warnings** | **[]string** |  | 
+**StdInterfaceId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -233,6 +234,31 @@ and a boolean to check if the value has been set.
 
 SetWarnings sets Warnings field to given value.
 
+
+### GetStdInterfaceId
+
+`func (o *CompileContractResult) GetStdInterfaceId() string`
+
+GetStdInterfaceId returns the StdInterfaceId field if non-nil, zero value otherwise.
+
+### GetStdInterfaceIdOk
+
+`func (o *CompileContractResult) GetStdInterfaceIdOk() (*string, bool)`
+
+GetStdInterfaceIdOk returns a tuple with the StdInterfaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStdInterfaceId
+
+`func (o *CompileContractResult) SetStdInterfaceId(v string)`
+
+SetStdInterfaceId sets StdInterfaceId field to given value.
+
+### HasStdInterfaceId
+
+`func (o *CompileContractResult) HasStdInterfaceId() bool`
+
+HasStdInterfaceId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

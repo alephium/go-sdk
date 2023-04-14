@@ -6,10 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Group** | Pointer to **int32** |  | [optional] 
 **BlockHash** | Pointer to **string** |  | [optional] 
+**BlockTimeStamp** | Pointer to **int64** |  | [optional] 
 **TxId** | Pointer to **string** |  | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
 **Bytecode** | **string** |  | 
-**InitialFields** | Pointer to [**[]Val**](Val.md) |  | [optional] 
+**InitialImmFields** | Pointer to [**[]Val**](Val.md) |  | [optional] 
+**InitialMutFields** | Pointer to [**[]Val**](Val.md) |  | [optional] 
 **InitialAsset** | Pointer to [**AssetState**](AssetState.md) |  | [optional] 
 **MethodIndex** | Pointer to **int32** |  | [optional] 
 **Args** | Pointer to [**[]Val**](Val.md) |  | [optional] 
@@ -85,6 +87,31 @@ SetBlockHash sets BlockHash field to given value.
 
 HasBlockHash returns a boolean if a field has been set.
 
+### GetBlockTimeStamp
+
+`func (o *TestContract) GetBlockTimeStamp() int64`
+
+GetBlockTimeStamp returns the BlockTimeStamp field if non-nil, zero value otherwise.
+
+### GetBlockTimeStampOk
+
+`func (o *TestContract) GetBlockTimeStampOk() (*int64, bool)`
+
+GetBlockTimeStampOk returns a tuple with the BlockTimeStamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBlockTimeStamp
+
+`func (o *TestContract) SetBlockTimeStamp(v int64)`
+
+SetBlockTimeStamp sets BlockTimeStamp field to given value.
+
+### HasBlockTimeStamp
+
+`func (o *TestContract) HasBlockTimeStamp() bool`
+
+HasBlockTimeStamp returns a boolean if a field has been set.
+
 ### GetTxId
 
 `func (o *TestContract) GetTxId() string`
@@ -155,30 +182,55 @@ and a boolean to check if the value has been set.
 SetBytecode sets Bytecode field to given value.
 
 
-### GetInitialFields
+### GetInitialImmFields
 
-`func (o *TestContract) GetInitialFields() []Val`
+`func (o *TestContract) GetInitialImmFields() []Val`
 
-GetInitialFields returns the InitialFields field if non-nil, zero value otherwise.
+GetInitialImmFields returns the InitialImmFields field if non-nil, zero value otherwise.
 
-### GetInitialFieldsOk
+### GetInitialImmFieldsOk
 
-`func (o *TestContract) GetInitialFieldsOk() (*[]Val, bool)`
+`func (o *TestContract) GetInitialImmFieldsOk() (*[]Val, bool)`
 
-GetInitialFieldsOk returns a tuple with the InitialFields field if it's non-nil, zero value otherwise
+GetInitialImmFieldsOk returns a tuple with the InitialImmFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInitialFields
+### SetInitialImmFields
 
-`func (o *TestContract) SetInitialFields(v []Val)`
+`func (o *TestContract) SetInitialImmFields(v []Val)`
 
-SetInitialFields sets InitialFields field to given value.
+SetInitialImmFields sets InitialImmFields field to given value.
 
-### HasInitialFields
+### HasInitialImmFields
 
-`func (o *TestContract) HasInitialFields() bool`
+`func (o *TestContract) HasInitialImmFields() bool`
 
-HasInitialFields returns a boolean if a field has been set.
+HasInitialImmFields returns a boolean if a field has been set.
+
+### GetInitialMutFields
+
+`func (o *TestContract) GetInitialMutFields() []Val`
+
+GetInitialMutFields returns the InitialMutFields field if non-nil, zero value otherwise.
+
+### GetInitialMutFieldsOk
+
+`func (o *TestContract) GetInitialMutFieldsOk() (*[]Val, bool)`
+
+GetInitialMutFieldsOk returns a tuple with the InitialMutFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInitialMutFields
+
+`func (o *TestContract) SetInitialMutFields(v []Val)`
+
+SetInitialMutFields sets InitialMutFields field to given value.
+
+### HasInitialMutFields
+
+`func (o *TestContract) HasInitialMutFields() bool`
+
+HasInitialMutFields returns a boolean if a field has been set.
 
 ### GetInitialAsset
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromPublicKey** | **string** |  | 
+**FromPublicKeyType** | Pointer to **string** |  | [optional] 
 **Bytecode** | **string** |  | 
 **AttoAlphAmount** | Pointer to **string** |  | [optional] 
 **Tokens** | Pointer to [**[]Token**](Token.md) |  | [optional] 
@@ -50,6 +51,31 @@ and a boolean to check if the value has been set.
 
 SetFromPublicKey sets FromPublicKey field to given value.
 
+
+### GetFromPublicKeyType
+
+`func (o *BuildExecuteScriptTx) GetFromPublicKeyType() string`
+
+GetFromPublicKeyType returns the FromPublicKeyType field if non-nil, zero value otherwise.
+
+### GetFromPublicKeyTypeOk
+
+`func (o *BuildExecuteScriptTx) GetFromPublicKeyTypeOk() (*string, bool)`
+
+GetFromPublicKeyTypeOk returns a tuple with the FromPublicKeyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFromPublicKeyType
+
+`func (o *BuildExecuteScriptTx) SetFromPublicKeyType(v string)`
+
+SetFromPublicKeyType sets FromPublicKeyType field to given value.
+
+### HasFromPublicKeyType
+
+`func (o *BuildExecuteScriptTx) HasFromPublicKeyType() bool`
+
+HasFromPublicKeyType returns a boolean if a field has been set.
 
 ### GetBytecode
 

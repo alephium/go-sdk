@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromPublicKey** | **string** |  | 
+**FromPublicKeyType** | Pointer to **string** |  | [optional] 
 **Destinations** | [**[]Destination**](Destination.md) |  | 
 **Utxos** | Pointer to [**[]OutputRef**](OutputRef.md) |  | [optional] 
 **GasAmount** | Pointer to **int32** |  | [optional] 
@@ -49,6 +50,31 @@ and a boolean to check if the value has been set.
 
 SetFromPublicKey sets FromPublicKey field to given value.
 
+
+### GetFromPublicKeyType
+
+`func (o *BuildTransaction) GetFromPublicKeyType() string`
+
+GetFromPublicKeyType returns the FromPublicKeyType field if non-nil, zero value otherwise.
+
+### GetFromPublicKeyTypeOk
+
+`func (o *BuildTransaction) GetFromPublicKeyTypeOk() (*string, bool)`
+
+GetFromPublicKeyTypeOk returns a tuple with the FromPublicKeyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFromPublicKeyType
+
+`func (o *BuildTransaction) SetFromPublicKeyType(v string)`
+
+SetFromPublicKeyType sets FromPublicKeyType field to given value.
+
+### HasFromPublicKeyType
+
+`func (o *BuildTransaction) HasFromPublicKeyType() bool`
+
+HasFromPublicKeyType returns a boolean if a field has been set.
 
 ### GetDestinations
 
