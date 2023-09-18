@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Alephium API
-  version: 2.1.2
+  version: 2.5.6
 servers:
 - url: ../
 - url: "{protocol}://{host}:{port}"
@@ -1081,6 +1081,7 @@ paths:
         name: address
         required: true
         schema:
+          format: address
           type: string
         style: simple
       responses:
@@ -2168,6 +2169,61 @@ paths:
       summary: Get average hashrate from `now - timespan(millis)` to `now`
       tags:
       - Infos
+  /infos/current-difficulty:
+    get:
+      operationId: getInfosCurrent-difficulty
+      responses:
+        "200":
+          content:
+            application/json:
+              example: "{\"difficulty\":\"224000000000000\"}"
+              schema:
+                format: bigint
+                type: string
+        "400":
+          content:
+            application/json:
+              example:
+                detail: Something bad in the request
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              example:
+                detail: You shall not pass
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              example:
+                resource: wallet-name
+                detail: wallet-name not found
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: NotFound
+        "500":
+          content:
+            application/json:
+              example:
+                detail: Ouch
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: InternalServerError
+        "503":
+          content:
+            application/json:
+              example:
+                detail: Self clique unsynced
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+          description: ServiceUnavailable
+      summary: Get the average difficulty of the latest blocks from all shards
+      tags:
+      - Infos
   /blockflow/blocks:
     get:
       operationId: getBlockflowBlocks
@@ -2467,6 +2523,7 @@ paths:
         name: block_hash
         required: true
         schema:
+          format: block-hash
           type: string
         style: simple
       responses:
@@ -2597,6 +2654,7 @@ paths:
         name: block_hash
         required: true
         schema:
+          format: block-hash
           type: string
         style: simple
       responses:
@@ -2737,6 +2795,7 @@ paths:
         name: blockHash
         required: true
         schema:
+          format: block-hash
           type: string
         style: form
       responses:
@@ -2799,8 +2858,16 @@ paths:
         name: address
         required: true
         schema:
+          format: address
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: mempool
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -2900,6 +2967,7 @@ paths:
         name: address
         required: true
         schema:
+          format: address
           type: string
         style: simple
       responses:
@@ -2993,6 +3061,7 @@ paths:
         name: address
         required: true
         schema:
+          format: address
           type: string
         style: simple
       responses:
@@ -3211,6 +3280,7 @@ paths:
         name: block_hash
         required: true
         schema:
+          format: block-hash
           type: string
         style: simple
       responses:
@@ -3388,6 +3458,7 @@ paths:
                 value:
                   fromPublicKey: d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
                   toAddress: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                  maxAttoAlphPerUTXO: "1000000000000000000"
                   lockTime: 1611041396892
                   gasAmount: 20000
                   gasPrice: "100000000000"
@@ -3615,6 +3686,7 @@ paths:
         name: txId
         required: true
         schema:
+          format: 32-byte-hash
           type: string
         style: simple
       - explode: true
@@ -3750,6 +3822,7 @@ paths:
         name: txId
         required: true
         schema:
+          format: 32-byte-hash
           type: string
         style: form
       - explode: true
@@ -3978,6 +4051,7 @@ paths:
         name: txId
         required: true
         schema:
+          format: 32-byte-hash
           type: string
         style: form
       responses:
@@ -4354,6 +4428,22 @@ paths:
                   - I256
                   - ByteVec
                   - Address
+                constants:
+                - name: A
+                  value:
+                    type: Bool
+                    value: true
+                enums:
+                - name: Color
+                  fields:
+                  - name: Red
+                    value:
+                      type: U256
+                      value: "0"
+                  - name: Blue
+                    value:
+                      type: U256
+                      value: "1"
                 events:
                 - name: Bar
                   fieldNames:
@@ -4488,6 +4578,22 @@ paths:
                     - I256
                     - ByteVec
                     - Address
+                  constants:
+                  - name: A
+                    value:
+                      type: Bool
+                      value: true
+                  enums:
+                  - name: Color
+                    fields:
+                    - name: Red
+                      value:
+                        type: U256
+                        value: "0"
+                    - name: Blue
+                      value:
+                        type: U256
+                        value: "1"
                   events:
                   - name: Bar
                     fieldNames:
@@ -4700,6 +4806,7 @@ paths:
         name: address
         required: true
         schema:
+          format: address
           type: string
         style: simple
       - explode: true
@@ -4957,6 +5064,7 @@ paths:
           content:
             application/json:
               example:
+                type: CallContractSucceeded
                 returns:
                 - type: U256
                   value: "0"
@@ -5079,7 +5187,8 @@ paths:
             application/json:
               example:
                 results:
-                - returns:
+                - type: CallContractSucceeded
+                  returns:
                   - type: U256
                     value: "0"
                   gasUsed: 20000
@@ -5330,6 +5439,95 @@ paths:
                 $ref: '#/components/schemas/ServiceUnavailable'
           description: ServiceUnavailable
       summary: Build a multisig unsigned transaction
+      tags:
+      - Multi-signature
+  /multisig/sweep:
+    post:
+      operationId: postMultisigSweep
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Example0:
+                summary: Default
+                value:
+                  fromAddress: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                  fromPublicKeys:
+                  - d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
+                  toAddress: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+              Example1:
+                summary: More settings
+                value:
+                  fromAddress: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                  fromPublicKeys:
+                  - d1b70d2226308b46da297486adb6b4f1a8c1842cb159ac5ec04f384fe2d6f5da28
+                  toAddress: 1AujpupFP4KWeZvqA7itsHY9cLJmx4qTzojVZrg8W9y
+                  maxAttoAlphPerUTXO: "1000000000000000000"
+                  lockTime: 1611041396892
+                  gasAmount: 20000
+                  gasPrice: "100000000000"
+                  utxosLimit: 10
+                  targetBlockHash: bdaf9dc514ce7d34b6474b8ca10a3dfb93ba997cb9d5ff1ea724ebe2af48abe5
+            schema:
+              $ref: '#/components/schemas/BuildSweepMultisig'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                unsignedTxs:
+                - txId: 503bfb16230888af4924aa8f8250d7d348b862e267d75d3147f1998050b6da69
+                  unsignedTx: 35d1b2a520a0da34c5eb8d712aa9cc
+                  gasAmount: 20000
+                  gasPrice: "100000000000"
+                fromGroup: 2
+                toGroup: 1
+              schema:
+                $ref: '#/components/schemas/BuildSweepAddressTransactionsResult'
+        "400":
+          content:
+            application/json:
+              example:
+                detail: Something bad in the request
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: BadRequest
+        "401":
+          content:
+            application/json:
+              example:
+                detail: You shall not pass
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              example:
+                resource: wallet-name
+                detail: wallet-name not found
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: NotFound
+        "500":
+          content:
+            application/json:
+              example:
+                detail: Ouch
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: InternalServerError
+        "503":
+          content:
+            application/json:
+              example:
+                detail: Self clique unsynced
+              schema:
+                $ref: '#/components/schemas/ServiceUnavailable'
+          description: ServiceUnavailable
+      summary: Sweep all unlocked ALPH and token balances of a multisig address to
+        another address
       tags:
       - Multi-signature
   /multisig/submit:
@@ -5772,6 +5970,7 @@ paths:
         name: contractAddress
         required: true
         schema:
+          format: address
           type: string
         style: simple
       - explode: true
@@ -5868,6 +6067,7 @@ paths:
         name: contractAddress
         required: true
         schema:
+          format: address
           type: string
         style: simple
       responses:
@@ -5931,6 +6131,7 @@ paths:
         name: txId
         required: true
         schema:
+          format: 32-byte-hash
           type: string
         style: simple
       - explode: true
@@ -6010,6 +6211,7 @@ paths:
         name: blockHash
         required: true
         schema:
+          format: block-hash
           type: string
         style: simple
       - explode: true
@@ -8061,6 +8263,7 @@ components:
         fromPublicKey: fromPublicKey
         lockTime: 0
         gasAmount: 6
+        maxAttoAlphPerUTXO: maxAttoAlphPerUTXO
         targetBlockHash: targetBlockHash
         toAddress: toAddress
         gasPrice: gasPrice
@@ -8070,6 +8273,9 @@ components:
           type: string
         toAddress:
           format: address
+          type: string
+        maxAttoAlphPerUTXO:
+          format: uint256
           type: string
         lockTime:
           format: int64
@@ -8115,6 +8321,54 @@ components:
       - fromGroup
       - toGroup
       - unsignedTxs
+      type: object
+    BuildSweepMultisig:
+      example:
+        lockTime: 0
+        gasAmount: 6
+        fromPublicKeys:
+        - fromPublicKeys
+        - fromPublicKeys
+        maxAttoAlphPerUTXO: maxAttoAlphPerUTXO
+        fromAddress: fromAddress
+        targetBlockHash: targetBlockHash
+        toAddress: toAddress
+        gasPrice: gasPrice
+        utxosLimit: 1
+      properties:
+        fromAddress:
+          format: address
+          type: string
+        fromPublicKeys:
+          items:
+            format: public-key
+            type: string
+          type: array
+        toAddress:
+          format: address
+          type: string
+        maxAttoAlphPerUTXO:
+          format: uint256
+          type: string
+        lockTime:
+          format: int64
+          type: integer
+        gasAmount:
+          format: gas
+          type: integer
+        gasPrice:
+          format: uint256
+          type: string
+        utxosLimit:
+          format: int32
+          type: integer
+        targetBlockHash:
+          format: block-hash
+          type: string
+      required:
+      - fromAddress
+      - fromPublicKeys
+      - toAddress
       type: object
     BuildTransaction:
       example:
@@ -8273,66 +8527,26 @@ components:
       - group
       - methodIndex
       type: object
+    CallContractFailed:
+      properties:
+        error:
+          type: string
+        type:
+          type: string
+      required:
+      - error
+      - type
+      type: object
     CallContractResult:
-      example:
-        gasUsed: 0
-        txInputs:
-        - txInputs
-        - txInputs
-        txOutputs:
-        - null
-        - null
-        returns:
-        - null
-        - null
-        contracts:
-        - bytecode: bytecode
-          initialStateHash: initialStateHash
-          immFields:
-          - null
-          - null
-          address: address
-          codeHash: codeHash
-          asset:
-            attoAlphAmount: attoAlphAmount
-            tokens:
-            - amount: amount
-              id: id
-            - amount: amount
-              id: id
-          mutFields:
-          - null
-          - null
-        - bytecode: bytecode
-          initialStateHash: initialStateHash
-          immFields:
-          - null
-          - null
-          address: address
-          codeHash: codeHash
-          asset:
-            attoAlphAmount: attoAlphAmount
-            tokens:
-            - amount: amount
-              id: id
-            - amount: amount
-              id: id
-          mutFields:
-          - null
-          - null
-        events:
-        - blockHash: blockHash
-          contractAddress: contractAddress
-          eventIndex: 6
-          fields:
-          - null
-          - null
-        - blockHash: blockHash
-          contractAddress: contractAddress
-          eventIndex: 6
-          fields:
-          - null
-          - null
+      discriminator:
+        mapping:
+          CallContractFailed: '#/components/schemas/CallContractFailed'
+          CallContractSucceeded: '#/components/schemas/CallContractSucceeded'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/CallContractFailed'
+      - $ref: '#/components/schemas/CallContractSucceeded'
+    CallContractSucceeded:
       properties:
         returns:
           items:
@@ -8358,6 +8572,8 @@ components:
           items:
             $ref: '#/components/schemas/ContractEventByTxId'
           type: array
+        type:
+          type: string
       required:
       - contracts
       - events
@@ -8365,6 +8581,7 @@ components:
       - returns
       - txInputs
       - txOutputs
+      - type
       type: object
     ChainInfo:
       example:
@@ -8450,8 +8667,28 @@ components:
         warnings:
         - warnings
         - warnings
-        name: name
         bytecodeDebugPatch: bytecodeDebugPatch
+        stdInterfaceId: stdInterfaceId
+        version: version
+        enums:
+        - name: name
+          fields:
+          - name: name
+            value: null
+          - name: name
+            value: null
+        - name: name
+          fields:
+          - name: name
+            value: null
+          - name: name
+            value: null
+        name: name
+        constants:
+        - name: name
+          value: null
+        - name: name
+          value: null
         fields:
           types:
           - types
@@ -8462,8 +8699,6 @@ components:
           isMutable:
           - true
           - true
-        stdInterfaceId: stdInterfaceId
-        version: version
         codeHashDebug: codeHashDebug
         events:
         - fieldTypes:
@@ -8501,6 +8736,14 @@ components:
           items:
             $ref: '#/components/schemas/FunctionSig'
           type: array
+        constants:
+          items:
+            $ref: '#/components/schemas/Constant'
+          type: array
+        enums:
+          items:
+            $ref: '#/components/schemas/Enum'
+          type: array
         events:
           items:
             $ref: '#/components/schemas/EventSig'
@@ -8516,6 +8759,8 @@ components:
       - bytecodeDebugPatch
       - codeHash
       - codeHashDebug
+      - constants
+      - enums
       - events
       - fields
       - functions
@@ -8564,8 +8809,28 @@ components:
           warnings:
           - warnings
           - warnings
-          name: name
           bytecodeDebugPatch: bytecodeDebugPatch
+          stdInterfaceId: stdInterfaceId
+          version: version
+          enums:
+          - name: name
+            fields:
+            - name: name
+              value: null
+            - name: name
+              value: null
+          - name: name
+            fields:
+            - name: name
+              value: null
+            - name: name
+              value: null
+          name: name
+          constants:
+          - name: name
+            value: null
+          - name: name
+            value: null
           fields:
             types:
             - types
@@ -8576,8 +8841,6 @@ components:
             isMutable:
             - true
             - true
-          stdInterfaceId: stdInterfaceId
-          version: version
           codeHashDebug: codeHashDebug
           events:
           - fieldTypes:
@@ -8632,8 +8895,28 @@ components:
           warnings:
           - warnings
           - warnings
-          name: name
           bytecodeDebugPatch: bytecodeDebugPatch
+          stdInterfaceId: stdInterfaceId
+          version: version
+          enums:
+          - name: name
+            fields:
+            - name: name
+              value: null
+            - name: name
+              value: null
+          - name: name
+            fields:
+            - name: name
+              value: null
+            - name: name
+              value: null
+          name: name
+          constants:
+          - name: name
+            value: null
+          - name: name
+            value: null
           fields:
             types:
             - types
@@ -8644,8 +8927,6 @@ components:
             isMutable:
             - true
             - true
-          stdInterfaceId: stdInterfaceId
-          version: version
           codeHashDebug: codeHashDebug
           events:
           - fieldTypes:
@@ -8904,6 +9185,19 @@ components:
       - toGroupConfirmations
       - txIndex
       - type
+      type: object
+    Constant:
+      example:
+        name: name
+        value: null
+      properties:
+        name:
+          type: string
+        value:
+          $ref: '#/components/schemas/Val'
+      required:
+      - name
+      - value
       type: object
     Contract:
       example:
@@ -9280,6 +9574,38 @@ components:
       oneOf:
       - $ref: '#/components/schemas/Reachable'
       - $ref: '#/components/schemas/Unreachable'
+    Enum:
+      example:
+        name: name
+        fields:
+        - name: name
+          value: null
+        - name: name
+          value: null
+      properties:
+        name:
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/EnumField'
+          type: array
+      required:
+      - fields
+      - name
+      type: object
+    EnumField:
+      example:
+        name: name
+        value: null
+      properties:
+        name:
+          type: string
+        value:
+          $ref: '#/components/schemas/Val'
+      required:
+      - name
+      - value
+      type: object
     EventSig:
       example:
         fieldTypes:
@@ -9727,122 +10053,8 @@ components:
     MultipleCallContractResult:
       example:
         results:
-        - gasUsed: 0
-          txInputs:
-          - txInputs
-          - txInputs
-          txOutputs:
-          - null
-          - null
-          returns:
-          - null
-          - null
-          contracts:
-          - bytecode: bytecode
-            initialStateHash: initialStateHash
-            immFields:
-            - null
-            - null
-            address: address
-            codeHash: codeHash
-            asset:
-              attoAlphAmount: attoAlphAmount
-              tokens:
-              - amount: amount
-                id: id
-              - amount: amount
-                id: id
-            mutFields:
-            - null
-            - null
-          - bytecode: bytecode
-            initialStateHash: initialStateHash
-            immFields:
-            - null
-            - null
-            address: address
-            codeHash: codeHash
-            asset:
-              attoAlphAmount: attoAlphAmount
-              tokens:
-              - amount: amount
-                id: id
-              - amount: amount
-                id: id
-            mutFields:
-            - null
-            - null
-          events:
-          - blockHash: blockHash
-            contractAddress: contractAddress
-            eventIndex: 6
-            fields:
-            - null
-            - null
-          - blockHash: blockHash
-            contractAddress: contractAddress
-            eventIndex: 6
-            fields:
-            - null
-            - null
-        - gasUsed: 0
-          txInputs:
-          - txInputs
-          - txInputs
-          txOutputs:
-          - null
-          - null
-          returns:
-          - null
-          - null
-          contracts:
-          - bytecode: bytecode
-            initialStateHash: initialStateHash
-            immFields:
-            - null
-            - null
-            address: address
-            codeHash: codeHash
-            asset:
-              attoAlphAmount: attoAlphAmount
-              tokens:
-              - amount: amount
-                id: id
-              - amount: amount
-                id: id
-            mutFields:
-            - null
-            - null
-          - bytecode: bytecode
-            initialStateHash: initialStateHash
-            immFields:
-            - null
-            - null
-            address: address
-            codeHash: codeHash
-            asset:
-              attoAlphAmount: attoAlphAmount
-              tokens:
-              - amount: amount
-                id: id
-              - amount: amount
-                id: id
-            mutFields:
-            - null
-            - null
-          events:
-          - blockHash: blockHash
-            contractAddress: contractAddress
-            eventIndex: 6
-            fields:
-            - null
-            - null
-          - blockHash: blockHash
-            contractAddress: contractAddress
-            eventIndex: 6
-            fields:
-            - null
-            - null
+        - null
+        - null
       properties:
         results:
           items:
@@ -9873,13 +10085,11 @@ components:
       type: object
     NodeVersion:
       example:
-        version:
-          patch: 1
-          major: 0
-          minor: 6
+        version: version
       properties:
         version:
-          $ref: '#/components/schemas/ReleaseVersion'
+          format: semver
+          type: string
       required:
       - version
       type: object
@@ -10006,26 +10216,6 @@ components:
       required:
       - peers
       - type
-      type: object
-    ReleaseVersion:
-      example:
-        patch: 1
-        major: 0
-        minor: 6
-      properties:
-        major:
-          format: int32
-          type: integer
-        minor:
-          format: int32
-          type: integer
-        patch:
-          format: int32
-          type: integer
-      required:
-      - major
-      - minor
-      - patch
       type: object
     RevealMnemonic:
       example:

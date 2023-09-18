@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**PostMultisigAddress**](MultiSignatureApi.md#PostMultisigAddress) | **Post** /multisig/address | Create the multisig address and unlock script
 [**PostMultisigBuild**](MultiSignatureApi.md#PostMultisigBuild) | **Post** /multisig/build | Build a multisig unsigned transaction
 [**PostMultisigSubmit**](MultiSignatureApi.md#PostMultisigSubmit) | **Post** /multisig/submit | Submit a multi-signed transaction
+[**PostMultisigSweep**](MultiSignatureApi.md#PostMultisigSweep) | **Post** /multisig/sweep | Sweep all unlocked ALPH and token balances of a multisig address to another address
 
 
 
@@ -187,6 +188,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SubmitTxResult**](SubmitTxResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostMultisigSweep
+
+> BuildSweepAddressTransactionsResult PostMultisigSweep(ctx).BuildSweepMultisig(buildSweepMultisig).Execute()
+
+Sweep all unlocked ALPH and token balances of a multisig address to another address
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    buildSweepMultisig := *openapiclient.NewBuildSweepMultisig("FromAddress_example", []string{"FromPublicKeys_example"}, "ToAddress_example") // BuildSweepMultisig | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MultiSignatureApi.PostMultisigSweep(context.Background()).BuildSweepMultisig(buildSweepMultisig).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureApi.PostMultisigSweep``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostMultisigSweep`: BuildSweepAddressTransactionsResult
+    fmt.Fprintf(os.Stdout, "Response from `MultiSignatureApi.PostMultisigSweep`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostMultisigSweepRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **buildSweepMultisig** | [**BuildSweepMultisig**](BuildSweepMultisig.md) |  | 
+
+### Return type
+
+[**BuildSweepAddressTransactionsResult**](BuildSweepAddressTransactionsResult.md)
 
 ### Authorization
 

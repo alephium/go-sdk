@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | [**ReleaseVersion**](ReleaseVersion.md) |  | 
+**Version** | **string** |  | 
 
 ## Methods
 
 ### NewNodeVersion
 
-`func NewNodeVersion(version ReleaseVersion, ) *NodeVersion`
+`func NewNodeVersion(version string, ) *NodeVersion`
 
 NewNodeVersion instantiates a new NodeVersion object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVersion
 
-`func (o *NodeVersion) GetVersion() ReleaseVersion`
+`func (o *NodeVersion) GetVersion() string`
 
 GetVersion returns the Version field if non-nil, zero value otherwise.
 
 ### GetVersionOk
 
-`func (o *NodeVersion) GetVersionOk() (*ReleaseVersion, bool)`
+`func (o *NodeVersion) GetVersionOk() (*string, bool)`
 
 GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVersion
 
-`func (o *NodeVersion) SetVersion(v ReleaseVersion)`
+`func (o *NodeVersion) SetVersion(v string)`
 
 SetVersion sets Version field to given value.
 

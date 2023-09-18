@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## GetAddressesAddressBalance
 
-> Balance GetAddressesAddressBalance(ctx, address).Execute()
+> Balance GetAddressesAddressBalance(ctx, address).Mempool(mempool).Execute()
 
 Get the balance of an address
 
@@ -30,10 +30,11 @@ import (
 
 func main() {
     address := "address_example" // string | 
+    mempool := true // bool |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AddressesApi.GetAddressesAddressBalance(context.Background(), address).Execute()
+    resp, r, err := apiClient.AddressesApi.GetAddressesAddressBalance(context.Background(), address).Mempool(mempool).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.GetAddressesAddressBalance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,6 +60,7 @@ Other parameters are passed through a pointer to a apiGetAddressesAddressBalance
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **mempool** | **bool** |  | 
 
 ### Return type
 

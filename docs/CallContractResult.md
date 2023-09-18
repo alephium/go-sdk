@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Error** | **string** |  | 
+**Type** | **string** |  | 
 **Returns** | [**[]Val**](Val.md) |  | 
 **GasUsed** | **int32** |  | 
 **Contracts** | [**[]ContractState**](ContractState.md) |  | 
@@ -15,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewCallContractResult
 
-`func NewCallContractResult(returns []Val, gasUsed int32, contracts []ContractState, txInputs []string, txOutputs []Output, events []ContractEventByTxId, ) *CallContractResult`
+`func NewCallContractResult(error_ string, type_ string, returns []Val, gasUsed int32, contracts []ContractState, txInputs []string, txOutputs []Output, events []ContractEventByTxId, ) *CallContractResult`
 
 NewCallContractResult instantiates a new CallContractResult object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +31,46 @@ will change when the set of required properties is changed
 NewCallContractResultWithDefaults instantiates a new CallContractResult object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetError
+
+`func (o *CallContractResult) GetError() string`
+
+GetError returns the Error field if non-nil, zero value otherwise.
+
+### GetErrorOk
+
+`func (o *CallContractResult) GetErrorOk() (*string, bool)`
+
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *CallContractResult) SetError(v string)`
+
+SetError sets Error field to given value.
+
+
+### GetType
+
+`func (o *CallContractResult) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *CallContractResult) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *CallContractResult) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetReturns
 
