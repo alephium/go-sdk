@@ -45,10 +45,13 @@ docs/BuildMultisigAddress.md
 docs/BuildMultisigAddressResult.md
 docs/BuildSweepAddressTransactions.md
 docs/BuildSweepAddressTransactionsResult.md
+docs/BuildSweepMultisig.md
 docs/BuildTransaction.md
 docs/BuildTransactionResult.md
 docs/CallContract.md
+docs/CallContractFailed.md
 docs/CallContractResult.md
+docs/CallContractSucceeded.md
 docs/ChainInfo.md
 docs/ChainParams.md
 docs/ChangeActiveAddress.md
@@ -57,6 +60,7 @@ docs/CompileProjectResult.md
 docs/CompileScriptResult.md
 docs/CompilerOptions.md
 docs/Confirmed.md
+docs/Constant.md
 docs/Contract.md
 docs/ContractEvent.md
 docs/ContractEventByBlockHash.md
@@ -72,6 +76,8 @@ docs/DecodeUnsignedTx.md
 docs/DecodeUnsignedTxResult.md
 docs/Destination.md
 docs/DiscoveryAction.md
+docs/Enum.md
+docs/EnumField.md
 docs/EventSig.md
 docs/EventsApi.md
 docs/FieldsSig.md
@@ -103,7 +109,6 @@ docs/PeerStatus.md
 docs/Penalty.md
 docs/Project.md
 docs/Reachable.md
-docs/ReleaseVersion.md
 docs/RevealMnemonic.md
 docs/RevealMnemonicResult.md
 docs/Script.md
@@ -182,10 +187,13 @@ model_build_multisig_address.go
 model_build_multisig_address_result.go
 model_build_sweep_address_transactions.go
 model_build_sweep_address_transactions_result.go
+model_build_sweep_multisig.go
 model_build_transaction.go
 model_build_transaction_result.go
 model_call_contract.go
+model_call_contract_failed.go
 model_call_contract_result.go
+model_call_contract_succeeded.go
 model_chain_info.go
 model_chain_params.go
 model_change_active_address.go
@@ -194,6 +202,7 @@ model_compile_project_result.go
 model_compile_script_result.go
 model_compiler_options.go
 model_confirmed.go
+model_constant.go
 model_contract.go
 model_contract_event.go
 model_contract_event_by_block_hash.go
@@ -208,6 +217,8 @@ model_decode_unsigned_tx.go
 model_decode_unsigned_tx_result.go
 model_destination.go
 model_discovery_action.go
+model_enum.go
+model_enum_field.go
 model_event_sig.go
 model_fields_sig.go
 model_fixed_asset_output.go
@@ -234,7 +245,6 @@ model_peer_status.go
 model_penalty.go
 model_project.go
 model_reachable.go
-model_release_version.go
 model_reveal_mnemonic.go
 model_reveal_mnemonic_result.go
 model_script.go

@@ -5,6 +5,7 @@ All URIs are relative to *http://..*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetInfosChainParams**](InfosApi.md#GetInfosChainParams) | **Get** /infos/chain-params | Get key params about your blockchain
+[**GetInfosCurrentDifficulty**](InfosApi.md#GetInfosCurrentDifficulty) | **Get** /infos/current-difficulty | Get the average difficulty of the latest blocks from all shards
 [**GetInfosCurrentHashrate**](InfosApi.md#GetInfosCurrentHashrate) | **Get** /infos/current-hashrate | Get average hashrate from &#x60;now - timespan(millis)&#x60; to &#x60;now&#x60;
 [**GetInfosDiscoveredNeighbors**](InfosApi.md#GetInfosDiscoveredNeighbors) | **Get** /infos/discovered-neighbors | Get discovered neighbors
 [**GetInfosHistoryHashrate**](InfosApi.md#GetInfosHistoryHashrate) | **Get** /infos/history-hashrate | Get history average hashrate on the given time interval
@@ -63,6 +64,65 @@ Other parameters are passed through a pointer to a apiGetInfosChainParamsRequest
 ### Return type
 
 [**ChainParams**](ChainParams.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInfosCurrentDifficulty
+
+> string GetInfosCurrentDifficulty(ctx).Execute()
+
+Get the average difficulty of the latest blocks from all shards
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InfosApi.GetInfosCurrentDifficulty(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosCurrentDifficulty``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetInfosCurrentDifficulty`: string
+    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosCurrentDifficulty`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetInfosCurrentDifficultyRequest struct via the builder pattern
+
+
+### Return type
+
+**string**
 
 ### Authorization
 

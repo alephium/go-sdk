@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **CodeHashDebug** | **string** |  | 
 **Fields** | [**FieldsSig**](FieldsSig.md) |  | 
 **Functions** | [**[]FunctionSig**](FunctionSig.md) |  | 
+**Constants** | [**[]Constant**](Constant.md) |  | 
+**Enums** | [**[]Enum**](Enum.md) |  | 
 **Events** | [**[]EventSig**](EventSig.md) |  | 
 **Warnings** | **[]string** |  | 
 **StdInterfaceId** | Pointer to **string** |  | [optional] 
@@ -20,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewCompileContractResult
 
-`func NewCompileContractResult(version string, name string, bytecode string, bytecodeDebugPatch string, codeHash string, codeHashDebug string, fields FieldsSig, functions []FunctionSig, events []EventSig, warnings []string, ) *CompileContractResult`
+`func NewCompileContractResult(version string, name string, bytecode string, bytecodeDebugPatch string, codeHash string, codeHashDebug string, fields FieldsSig, functions []FunctionSig, constants []Constant, enums []Enum, events []EventSig, warnings []string, ) *CompileContractResult`
 
 NewCompileContractResult instantiates a new CompileContractResult object
 This constructor will assign default values to properties that have it defined,
@@ -193,6 +195,46 @@ and a boolean to check if the value has been set.
 `func (o *CompileContractResult) SetFunctions(v []FunctionSig)`
 
 SetFunctions sets Functions field to given value.
+
+
+### GetConstants
+
+`func (o *CompileContractResult) GetConstants() []Constant`
+
+GetConstants returns the Constants field if non-nil, zero value otherwise.
+
+### GetConstantsOk
+
+`func (o *CompileContractResult) GetConstantsOk() (*[]Constant, bool)`
+
+GetConstantsOk returns a tuple with the Constants field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConstants
+
+`func (o *CompileContractResult) SetConstants(v []Constant)`
+
+SetConstants sets Constants field to given value.
+
+
+### GetEnums
+
+`func (o *CompileContractResult) GetEnums() []Enum`
+
+GetEnums returns the Enums field if non-nil, zero value otherwise.
+
+### GetEnumsOk
+
+`func (o *CompileContractResult) GetEnumsOk() (*[]Enum, bool)`
+
+GetEnumsOk returns a tuple with the Enums field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnums
+
+`func (o *CompileContractResult) SetEnums(v []Enum)`
+
+SetEnums sets Enums field to given value.
 
 
 ### GetEvents

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromPublicKey** | **string** |  | 
 **ToAddress** | **string** |  | 
+**MaxAttoAlphPerUTXO** | Pointer to **string** |  | [optional] 
 **LockTime** | Pointer to **int64** |  | [optional] 
 **GasAmount** | Pointer to **int32** |  | [optional] 
 **GasPrice** | Pointer to **string** |  | [optional] 
@@ -69,6 +70,31 @@ and a boolean to check if the value has been set.
 
 SetToAddress sets ToAddress field to given value.
 
+
+### GetMaxAttoAlphPerUTXO
+
+`func (o *BuildSweepAddressTransactions) GetMaxAttoAlphPerUTXO() string`
+
+GetMaxAttoAlphPerUTXO returns the MaxAttoAlphPerUTXO field if non-nil, zero value otherwise.
+
+### GetMaxAttoAlphPerUTXOOk
+
+`func (o *BuildSweepAddressTransactions) GetMaxAttoAlphPerUTXOOk() (*string, bool)`
+
+GetMaxAttoAlphPerUTXOOk returns a tuple with the MaxAttoAlphPerUTXO field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxAttoAlphPerUTXO
+
+`func (o *BuildSweepAddressTransactions) SetMaxAttoAlphPerUTXO(v string)`
+
+SetMaxAttoAlphPerUTXO sets MaxAttoAlphPerUTXO field to given value.
+
+### HasMaxAttoAlphPerUTXO
+
+`func (o *BuildSweepAddressTransactions) HasMaxAttoAlphPerUTXO() bool`
+
+HasMaxAttoAlphPerUTXO returns a boolean if a field has been set.
 
 ### GetLockTime
 
