@@ -38,6 +38,24 @@ func TestUnmarshalTxStatus(t *testing.T) {
 				ToGroupConfirmations:   2,
 			}},
 		},
+		{
+			data: []byte(`{
+				"type":"Conflicted",
+				"blockHash":"00",
+				"txIndex":0,
+				"chainConfirmations":0,
+				"fromGroupConfirmations":1,
+				"toGroupConfirmations":2
+			}`),
+			result: TxStatus{Conflicted: &Conflicted{
+				Type:                   "Conflicted",
+				BlockHash:              "00",
+				TxIndex:                0,
+				ChainConfirmations:     0,
+				FromGroupConfirmations: 1,
+				ToGroupConfirmations:   2,
+			}},
+		},
 	}
 
 	for _, c := range tests {

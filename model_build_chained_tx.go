@@ -19,8 +19,8 @@ import (
 // BuildChainedTx - struct for BuildChainedTx
 type BuildChainedTx struct {
 	BuildChainedDeployContractTx *BuildChainedDeployContractTx
-	BuildChainedExecuteScriptTx *BuildChainedExecuteScriptTx
-	BuildChainedTransferTx *BuildChainedTransferTx
+	BuildChainedExecuteScriptTx  *BuildChainedExecuteScriptTx
+	BuildChainedTransferTx       *BuildChainedTransferTx
 }
 
 // BuildChainedDeployContractTxAsBuildChainedTx is a convenience function that returns BuildChainedDeployContractTx wrapped in BuildChainedTx
@@ -44,7 +44,6 @@ func BuildChainedTransferTxAsBuildChainedTx(v *BuildChainedTransferTx) BuildChai
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *BuildChainedTx) UnmarshalJSON(data []byte) error {
 	var err error
@@ -52,8 +51,7 @@ func (dst *BuildChainedTx) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into BuildChainedDeployContractTx
 	err = newStrictDecoder(data).Decode(&dst.BuildChainedDeployContractTx)
 	if err == nil {
-		jsonBuildChainedDeployContractTx, _ := json.Marshal(dst.BuildChainedDeployContractTx)
-		if string(jsonBuildChainedDeployContractTx) == "{}" { // empty struct
+		if dst.BuildChainedDeployContractTx == nil || dst.BuildChainedDeployContractTx.Type != "DeployContract" { // not the right type
 			dst.BuildChainedDeployContractTx = nil
 		} else {
 			if err = validator.Validate(dst.BuildChainedDeployContractTx); err != nil {
@@ -69,8 +67,7 @@ func (dst *BuildChainedTx) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into BuildChainedExecuteScriptTx
 	err = newStrictDecoder(data).Decode(&dst.BuildChainedExecuteScriptTx)
 	if err == nil {
-		jsonBuildChainedExecuteScriptTx, _ := json.Marshal(dst.BuildChainedExecuteScriptTx)
-		if string(jsonBuildChainedExecuteScriptTx) == "{}" { // empty struct
+		if dst.BuildChainedExecuteScriptTx == nil || dst.BuildChainedExecuteScriptTx.Type != "ExecuteScript" { // not the right type
 			dst.BuildChainedExecuteScriptTx = nil
 		} else {
 			if err = validator.Validate(dst.BuildChainedExecuteScriptTx); err != nil {
@@ -86,8 +83,7 @@ func (dst *BuildChainedTx) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into BuildChainedTransferTx
 	err = newStrictDecoder(data).Decode(&dst.BuildChainedTransferTx)
 	if err == nil {
-		jsonBuildChainedTransferTx, _ := json.Marshal(dst.BuildChainedTransferTx)
-		if string(jsonBuildChainedTransferTx) == "{}" { // empty struct
+		if dst.BuildChainedTransferTx == nil || dst.BuildChainedTransferTx.Type != "Transfer" { // not the right type
 			dst.BuildChainedTransferTx = nil
 		} else {
 			if err = validator.Validate(dst.BuildChainedTransferTx); err != nil {
@@ -132,7 +128,7 @@ func (src BuildChainedTx) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *BuildChainedTx) GetActualInstance() (interface{}) {
+func (obj *BuildChainedTx) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -153,7 +149,7 @@ func (obj *BuildChainedTx) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj BuildChainedTx) GetActualInstanceValue() (interface{}) {
+func (obj BuildChainedTx) GetActualInstanceValue() interface{} {
 	if obj.BuildChainedDeployContractTx != nil {
 		return *obj.BuildChainedDeployContractTx
 	}
@@ -205,5 +201,3 @@ func (v *NullableBuildChainedTx) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

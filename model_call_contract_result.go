@@ -18,7 +18,7 @@ import (
 
 // CallContractResult - struct for CallContractResult
 type CallContractResult struct {
-	CallContractFailed *CallContractFailed
+	CallContractFailed    *CallContractFailed
 	CallContractSucceeded *CallContractSucceeded
 }
 
@@ -36,7 +36,6 @@ func CallContractSucceededAsCallContractResult(v *CallContractSucceeded) CallCon
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CallContractResult) UnmarshalJSON(data []byte) error {
 	var err error
@@ -44,8 +43,7 @@ func (dst *CallContractResult) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into CallContractFailed
 	err = newStrictDecoder(data).Decode(&dst.CallContractFailed)
 	if err == nil {
-		jsonCallContractFailed, _ := json.Marshal(dst.CallContractFailed)
-		if string(jsonCallContractFailed) == "{}" { // empty struct
+		if dst.CallContractFailed == nil || dst.CallContractFailed.Type != "CallContractFailed" { // not the right type
 			dst.CallContractFailed = nil
 		} else {
 			if err = validator.Validate(dst.CallContractFailed); err != nil {
@@ -61,8 +59,7 @@ func (dst *CallContractResult) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into CallContractSucceeded
 	err = newStrictDecoder(data).Decode(&dst.CallContractSucceeded)
 	if err == nil {
-		jsonCallContractSucceeded, _ := json.Marshal(dst.CallContractSucceeded)
-		if string(jsonCallContractSucceeded) == "{}" { // empty struct
+		if dst.CallContractSucceeded == nil || dst.CallContractSucceeded.Type != "CallContractSucceeded" { // not the right type
 			dst.CallContractSucceeded = nil
 		} else {
 			if err = validator.Validate(dst.CallContractSucceeded); err != nil {
@@ -102,7 +99,7 @@ func (src CallContractResult) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *CallContractResult) GetActualInstance() (interface{}) {
+func (obj *CallContractResult) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +116,7 @@ func (obj *CallContractResult) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj CallContractResult) GetActualInstanceValue() (interface{}) {
+func (obj CallContractResult) GetActualInstanceValue() interface{} {
 	if obj.CallContractFailed != nil {
 		return *obj.CallContractFailed
 	}
@@ -167,5 +164,3 @@ func (v *NullableCallContractResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

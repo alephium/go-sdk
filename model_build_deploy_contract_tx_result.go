@@ -12,14 +12,13 @@ package alephium
 
 import (
 	"encoding/json"
-	"fmt"
 	"gopkg.in/validator.v2"
 )
 
 // BuildDeployContractTxResult - struct for BuildDeployContractTxResult
 type BuildDeployContractTxResult struct {
 	BuildGrouplessDeployContractTxResult *BuildGrouplessDeployContractTxResult
-	BuildSimpleDeployContractTxResult *BuildSimpleDeployContractTxResult
+	BuildSimpleDeployContractTxResult    *BuildSimpleDeployContractTxResult
 }
 
 // BuildGrouplessDeployContractTxResultAsBuildDeployContractTxResult is a convenience function that returns BuildGrouplessDeployContractTxResult wrapped in BuildDeployContractTxResult
@@ -36,56 +35,35 @@ func BuildSimpleDeployContractTxResultAsBuildDeployContractTxResult(v *BuildSimp
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *BuildDeployContractTxResult) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into BuildGrouplessDeployContractTxResult
-	err = newStrictDecoder(data).Decode(&dst.BuildGrouplessDeployContractTxResult)
-	if err == nil {
-		jsonBuildGrouplessDeployContractTxResult, _ := json.Marshal(dst.BuildGrouplessDeployContractTxResult)
-		if string(jsonBuildGrouplessDeployContractTxResult) == "{}" { // empty struct
-			dst.BuildGrouplessDeployContractTxResult = nil
-		} else {
-			if err = validator.Validate(dst.BuildGrouplessDeployContractTxResult); err != nil {
-				dst.BuildGrouplessDeployContractTxResult = nil
-			} else {
-				match++
-			}
+	var fields map[string]interface{}
+	if err := json.Unmarshal(data, &fields); err != nil {
+		return err
+	}
+	if _, ok := fields["fundingTxs"]; ok {
+		var result BuildGrouplessDeployContractTxResult
+		if err := newStrictDecoder(data).Decode(&result); err != nil {
+			return err
 		}
-	} else {
-		dst.BuildGrouplessDeployContractTxResult = nil
-	}
-
-	// try to unmarshal data into BuildSimpleDeployContractTxResult
-	err = newStrictDecoder(data).Decode(&dst.BuildSimpleDeployContractTxResult)
-	if err == nil {
-		jsonBuildSimpleDeployContractTxResult, _ := json.Marshal(dst.BuildSimpleDeployContractTxResult)
-		if string(jsonBuildSimpleDeployContractTxResult) == "{}" { // empty struct
-			dst.BuildSimpleDeployContractTxResult = nil
-		} else {
-			if err = validator.Validate(dst.BuildSimpleDeployContractTxResult); err != nil {
-				dst.BuildSimpleDeployContractTxResult = nil
-			} else {
-				match++
-			}
+		if err := validator.Validate(&result); err != nil {
+			return err
 		}
-	} else {
+		dst.BuildGrouplessDeployContractTxResult = &result
 		dst.BuildSimpleDeployContractTxResult = nil
+		return nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.BuildGrouplessDeployContractTxResult = nil
-		dst.BuildSimpleDeployContractTxResult = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(BuildDeployContractTxResult)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(BuildDeployContractTxResult)")
+	var result BuildSimpleDeployContractTxResult
+	if err := newStrictDecoder(data).Decode(&result); err != nil {
+		return err
 	}
+	if err := validator.Validate(&result); err != nil {
+		return err
+	}
+	dst.BuildGrouplessDeployContractTxResult = nil
+	dst.BuildSimpleDeployContractTxResult = &result
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
@@ -102,7 +80,7 @@ func (src BuildDeployContractTxResult) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *BuildDeployContractTxResult) GetActualInstance() (interface{}) {
+func (obj *BuildDeployContractTxResult) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +97,7 @@ func (obj *BuildDeployContractTxResult) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj BuildDeployContractTxResult) GetActualInstanceValue() (interface{}) {
+func (obj BuildDeployContractTxResult) GetActualInstanceValue() interface{} {
 	if obj.BuildGrouplessDeployContractTxResult != nil {
 		return *obj.BuildGrouplessDeployContractTxResult
 	}
@@ -167,5 +145,3 @@ func (v *NullableBuildDeployContractTxResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -29,7 +29,8 @@ func TestUnmarshalCallContractResult(t *testing.T) {
 				],
 				"txInputs": [],
 				"txOutputs": [],
-				"events": []
+				"events": [],
+				"debugMessages": []
 			}`),
 			result: CallContractResult{CallContractSucceeded: &CallContractSucceeded{
 				Returns: []Val{{ValU256: &ValU256{Value: "1", Type: "U256"}}},
@@ -42,14 +43,15 @@ func TestUnmarshalCallContractResult(t *testing.T) {
 					MutFields: []Val{},
 					Asset:     AssetState{"1000000000000000000", []Token{}},
 				}},
-				TxInputs:  []string{},
-				TxOutputs: []Output{},
-				Events:    []ContractEventByTxId{},
-				Type:      "CallContractSucceeded",
+				TxInputs:      []string{},
+				TxOutputs:     []Output{},
+				Events:        []ContractEventByTxId{},
+				DebugMessages: []DebugMessage{},
+				Type:          "CallContractSucceeded",
 			}},
 		},
 		{
-			data: []byte(`{"type":"CallContractFailed","Error":"invalid contract id"}`),
+			data: []byte(`{"type":"CallContractFailed","error":"invalid contract id"}`),
 			result: CallContractResult{CallContractFailed: &CallContractFailed{
 				Error: "invalid contract id",
 				Type:  "CallContractFailed",

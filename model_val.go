@@ -19,11 +19,11 @@ import (
 // Val - struct for Val
 type Val struct {
 	ValAddress *ValAddress
-	ValArray *ValArray
-	ValBool *ValBool
+	ValArray   *ValArray
+	ValBool    *ValBool
 	ValByteVec *ValByteVec
-	ValI256 *ValI256
-	ValU256 *ValU256
+	ValI256    *ValI256
+	ValU256    *ValU256
 }
 
 // ValAddressAsVal is a convenience function that returns ValAddress wrapped in Val
@@ -68,7 +68,6 @@ func ValU256AsVal(v *ValU256) Val {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Val) UnmarshalJSON(data []byte) error {
 	var err error
@@ -76,8 +75,7 @@ func (dst *Val) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ValAddress
 	err = newStrictDecoder(data).Decode(&dst.ValAddress)
 	if err == nil {
-		jsonValAddress, _ := json.Marshal(dst.ValAddress)
-		if string(jsonValAddress) == "{}" { // empty struct
+		if dst.ValAddress == nil || dst.ValAddress.Type != "Address" { // not the right type
 			dst.ValAddress = nil
 		} else {
 			if err = validator.Validate(dst.ValAddress); err != nil {
@@ -93,8 +91,7 @@ func (dst *Val) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ValArray
 	err = newStrictDecoder(data).Decode(&dst.ValArray)
 	if err == nil {
-		jsonValArray, _ := json.Marshal(dst.ValArray)
-		if string(jsonValArray) == "{}" { // empty struct
+		if dst.ValArray == nil || dst.ValArray.Type != "Array" { // not the right type
 			dst.ValArray = nil
 		} else {
 			if err = validator.Validate(dst.ValArray); err != nil {
@@ -110,8 +107,7 @@ func (dst *Val) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ValBool
 	err = newStrictDecoder(data).Decode(&dst.ValBool)
 	if err == nil {
-		jsonValBool, _ := json.Marshal(dst.ValBool)
-		if string(jsonValBool) == "{}" { // empty struct
+		if dst.ValBool == nil || dst.ValBool.Type != "Bool" { // not the right type
 			dst.ValBool = nil
 		} else {
 			if err = validator.Validate(dst.ValBool); err != nil {
@@ -127,8 +123,7 @@ func (dst *Val) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ValByteVec
 	err = newStrictDecoder(data).Decode(&dst.ValByteVec)
 	if err == nil {
-		jsonValByteVec, _ := json.Marshal(dst.ValByteVec)
-		if string(jsonValByteVec) == "{}" { // empty struct
+		if dst.ValByteVec == nil || dst.ValByteVec.Type != "ByteVec" { // not the right type
 			dst.ValByteVec = nil
 		} else {
 			if err = validator.Validate(dst.ValByteVec); err != nil {
@@ -144,8 +139,7 @@ func (dst *Val) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ValI256
 	err = newStrictDecoder(data).Decode(&dst.ValI256)
 	if err == nil {
-		jsonValI256, _ := json.Marshal(dst.ValI256)
-		if string(jsonValI256) == "{}" { // empty struct
+		if dst.ValI256 == nil || dst.ValI256.Type != "I256" { // not the right type
 			dst.ValI256 = nil
 		} else {
 			if err = validator.Validate(dst.ValI256); err != nil {
@@ -161,8 +155,7 @@ func (dst *Val) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ValU256
 	err = newStrictDecoder(data).Decode(&dst.ValU256)
 	if err == nil {
-		jsonValU256, _ := json.Marshal(dst.ValU256)
-		if string(jsonValU256) == "{}" { // empty struct
+		if dst.ValU256 == nil || dst.ValU256.Type != "U256" { // not the right type
 			dst.ValU256 = nil
 		} else {
 			if err = validator.Validate(dst.ValU256); err != nil {
@@ -222,7 +215,7 @@ func (src Val) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Val) GetActualInstance() (interface{}) {
+func (obj *Val) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -255,7 +248,7 @@ func (obj *Val) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Val) GetActualInstanceValue() (interface{}) {
+func (obj Val) GetActualInstanceValue() interface{} {
 	if obj.ValAddress != nil {
 		return *obj.ValAddress
 	}
@@ -319,5 +312,3 @@ func (v *NullableVal) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
