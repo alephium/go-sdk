@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **GasPrice** | **string** |  | 
 **TxId** | **string** |  | 
 **ContractAddress** | **string** |  | 
+**FundingTxs** | Pointer to [**[]BuildSimpleTransferTxResult**](BuildSimpleTransferTxResult.md) |  | [optional] 
 
 ## Methods
 
@@ -170,6 +171,31 @@ and a boolean to check if the value has been set.
 
 SetContractAddress sets ContractAddress field to given value.
 
+
+### GetFundingTxs
+
+`func (o *BuildDeployContractTxResult) GetFundingTxs() []BuildSimpleTransferTxResult`
+
+GetFundingTxs returns the FundingTxs field if non-nil, zero value otherwise.
+
+### GetFundingTxsOk
+
+`func (o *BuildDeployContractTxResult) GetFundingTxsOk() (*[]BuildSimpleTransferTxResult, bool)`
+
+GetFundingTxsOk returns a tuple with the FundingTxs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFundingTxs
+
+`func (o *BuildDeployContractTxResult) SetFundingTxs(v []BuildSimpleTransferTxResult)`
+
+SetFundingTxs sets FundingTxs field to given value.
+
+### HasFundingTxs
+
+`func (o *BuildDeployContractTxResult) HasFundingTxs() bool`
+
+HasFundingTxs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

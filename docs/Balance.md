@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **TokenBalances** | Pointer to [**[]Token**](Token.md) |  | [optional] 
 **LockedTokenBalances** | Pointer to [**[]Token**](Token.md) |  | [optional] 
 **UtxoNum** | **int32** |  | 
-**Warning** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -181,31 +180,6 @@ and a boolean to check if the value has been set.
 
 SetUtxoNum sets UtxoNum field to given value.
 
-
-### GetWarning
-
-`func (o *Balance) GetWarning() string`
-
-GetWarning returns the Warning field if non-nil, zero value otherwise.
-
-### GetWarningOk
-
-`func (o *Balance) GetWarningOk() (*string, bool)`
-
-GetWarningOk returns a tuple with the Warning field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWarning
-
-`func (o *Balance) SetWarning(v string)`
-
-SetWarning sets Warning field to given value.
-
-### HasWarning
-
-`func (o *Balance) HasWarning() bool`
-
-HasWarning returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

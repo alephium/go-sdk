@@ -1,22 +1,22 @@
-# \InfosApi
+# \InfosAPI
 
 All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetInfosChainParams**](InfosApi.md#GetInfosChainParams) | **Get** /infos/chain-params | Get key params about your blockchain
-[**GetInfosCurrentDifficulty**](InfosApi.md#GetInfosCurrentDifficulty) | **Get** /infos/current-difficulty | Get the average difficulty of the latest blocks from all shards
-[**GetInfosCurrentHashrate**](InfosApi.md#GetInfosCurrentHashrate) | **Get** /infos/current-hashrate | Get average hashrate from &#x60;now - timespan(millis)&#x60; to &#x60;now&#x60;
-[**GetInfosDiscoveredNeighbors**](InfosApi.md#GetInfosDiscoveredNeighbors) | **Get** /infos/discovered-neighbors | Get discovered neighbors
-[**GetInfosHistoryHashrate**](InfosApi.md#GetInfosHistoryHashrate) | **Get** /infos/history-hashrate | Get history average hashrate on the given time interval
-[**GetInfosInterCliquePeerInfo**](InfosApi.md#GetInfosInterCliquePeerInfo) | **Get** /infos/inter-clique-peer-info | Get infos about the inter cliques
-[**GetInfosMisbehaviors**](InfosApi.md#GetInfosMisbehaviors) | **Get** /infos/misbehaviors | Get the misbehaviors of peers
-[**GetInfosNode**](InfosApi.md#GetInfosNode) | **Get** /infos/node | Get info about that node
-[**GetInfosSelfClique**](InfosApi.md#GetInfosSelfClique) | **Get** /infos/self-clique | Get info about your own clique
-[**GetInfosUnreachable**](InfosApi.md#GetInfosUnreachable) | **Get** /infos/unreachable | Get the unreachable brokers
-[**GetInfosVersion**](InfosApi.md#GetInfosVersion) | **Get** /infos/version | Get version about that node
-[**PostInfosDiscovery**](InfosApi.md#PostInfosDiscovery) | **Post** /infos/discovery | Set brokers to be unreachable/reachable
-[**PostInfosMisbehaviors**](InfosApi.md#PostInfosMisbehaviors) | **Post** /infos/misbehaviors | Ban/Unban given peers
+[**GetInfosChainParams**](InfosAPI.md#GetInfosChainParams) | **Get** /infos/chain-params | Get key params about your blockchain
+[**GetInfosCurrentDifficulty**](InfosAPI.md#GetInfosCurrentDifficulty) | **Get** /infos/current-difficulty | Get the average difficulty of the latest blocks from all shards
+[**GetInfosCurrentHashrate**](InfosAPI.md#GetInfosCurrentHashrate) | **Get** /infos/current-hashrate | Get average hashrate from &#x60;now - timespan(millis)&#x60; to &#x60;now&#x60;
+[**GetInfosDiscoveredNeighbors**](InfosAPI.md#GetInfosDiscoveredNeighbors) | **Get** /infos/discovered-neighbors | Get discovered neighbors
+[**GetInfosHistoryHashrate**](InfosAPI.md#GetInfosHistoryHashrate) | **Get** /infos/history-hashrate | Get history average hashrate on the given time interval
+[**GetInfosInterCliquePeerInfo**](InfosAPI.md#GetInfosInterCliquePeerInfo) | **Get** /infos/inter-clique-peer-info | Get infos about the inter cliques
+[**GetInfosMisbehaviors**](InfosAPI.md#GetInfosMisbehaviors) | **Get** /infos/misbehaviors | Get the misbehaviors of peers
+[**GetInfosNode**](InfosAPI.md#GetInfosNode) | **Get** /infos/node | Get info about that node
+[**GetInfosSelfClique**](InfosAPI.md#GetInfosSelfClique) | **Get** /infos/self-clique | Get info about your own clique
+[**GetInfosUnreachable**](InfosAPI.md#GetInfosUnreachable) | **Get** /infos/unreachable | Get the unreachable brokers
+[**GetInfosVersion**](InfosAPI.md#GetInfosVersion) | **Get** /infos/version | Get version about that node
+[**PostInfosDiscovery**](InfosAPI.md#PostInfosDiscovery) | **Post** /infos/discovery | Set brokers to be unreachable/reachable
+[**PostInfosMisbehaviors**](InfosAPI.md#PostInfosMisbehaviors) | **Post** /infos/misbehaviors | Ban/Unban given peers
 
 
 
@@ -32,23 +32,23 @@ Get key params about your blockchain
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosChainParams(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosChainParams``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosChainParams`: ChainParams
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosChainParams`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosChainParams(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosChainParams``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosChainParams`: ChainParams
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosChainParams`: %v\n", resp)
 }
 ```
 
@@ -81,7 +81,7 @@ No authorization required
 
 ## GetInfosCurrentDifficulty
 
-> string GetInfosCurrentDifficulty(ctx).Execute()
+> CurrentDifficulty GetInfosCurrentDifficulty(ctx).Execute()
 
 Get the average difficulty of the latest blocks from all shards
 
@@ -91,23 +91,23 @@ Get the average difficulty of the latest blocks from all shards
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosCurrentDifficulty(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosCurrentDifficulty``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosCurrentDifficulty`: string
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosCurrentDifficulty`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosCurrentDifficulty(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosCurrentDifficulty``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosCurrentDifficulty`: CurrentDifficulty
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosCurrentDifficulty`: %v\n", resp)
 }
 ```
 
@@ -122,7 +122,7 @@ Other parameters are passed through a pointer to a apiGetInfosCurrentDifficultyR
 
 ### Return type
 
-**string**
+[**CurrentDifficulty**](CurrentDifficulty.md)
 
 ### Authorization
 
@@ -140,7 +140,7 @@ No authorization required
 
 ## GetInfosCurrentHashrate
 
-> string GetInfosCurrentHashrate(ctx).Timespan(timespan).Execute()
+> HashRateResponse GetInfosCurrentHashrate(ctx).Timespan(timespan).Execute()
 
 Get average hashrate from `now - timespan(millis)` to `now`
 
@@ -150,24 +150,24 @@ Get average hashrate from `now - timespan(millis)` to `now`
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    timespan := int64(789) // int64 |  (optional)
+	timespan := int64(789) // int64 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosCurrentHashrate(context.Background()).Timespan(timespan).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosCurrentHashrate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosCurrentHashrate`: string
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosCurrentHashrate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosCurrentHashrate(context.Background()).Timespan(timespan).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosCurrentHashrate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosCurrentHashrate`: HashRateResponse
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosCurrentHashrate`: %v\n", resp)
 }
 ```
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+[**HashRateResponse**](HashRateResponse.md)
 
 ### Authorization
 
@@ -214,23 +214,23 @@ Get discovered neighbors
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosDiscoveredNeighbors(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosDiscoveredNeighbors``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosDiscoveredNeighbors`: []BrokerInfo
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosDiscoveredNeighbors`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosDiscoveredNeighbors(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosDiscoveredNeighbors``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosDiscoveredNeighbors`: []BrokerInfo
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosDiscoveredNeighbors`: %v\n", resp)
 }
 ```
 
@@ -263,7 +263,7 @@ No authorization required
 
 ## GetInfosHistoryHashrate
 
-> string GetInfosHistoryHashrate(ctx).FromTs(fromTs).ToTs(toTs).Execute()
+> HashRateResponse GetInfosHistoryHashrate(ctx).FromTs(fromTs).ToTs(toTs).Execute()
 
 Get history average hashrate on the given time interval
 
@@ -273,25 +273,25 @@ Get history average hashrate on the given time interval
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    fromTs := int64(789) // int64 | 
-    toTs := int64(789) // int64 |  (optional)
+	fromTs := int64(789) // int64 | 
+	toTs := int64(789) // int64 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosHistoryHashrate(context.Background()).FromTs(fromTs).ToTs(toTs).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosHistoryHashrate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosHistoryHashrate`: string
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosHistoryHashrate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosHistoryHashrate(context.Background()).FromTs(fromTs).ToTs(toTs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosHistoryHashrate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosHistoryHashrate`: HashRateResponse
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosHistoryHashrate`: %v\n", resp)
 }
 ```
 
@@ -311,7 +311,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+[**HashRateResponse**](HashRateResponse.md)
 
 ### Authorization
 
@@ -339,23 +339,23 @@ Get infos about the inter cliques
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosInterCliquePeerInfo(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosInterCliquePeerInfo``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosInterCliquePeerInfo`: []InterCliquePeerInfo
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosInterCliquePeerInfo`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosInterCliquePeerInfo(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosInterCliquePeerInfo``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosInterCliquePeerInfo`: []InterCliquePeerInfo
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosInterCliquePeerInfo`: %v\n", resp)
 }
 ```
 
@@ -398,23 +398,23 @@ Get the misbehaviors of peers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosMisbehaviors(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosMisbehaviors``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosMisbehaviors`: []PeerMisbehavior
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosMisbehaviors`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosMisbehaviors(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosMisbehaviors``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosMisbehaviors`: []PeerMisbehavior
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosMisbehaviors`: %v\n", resp)
 }
 ```
 
@@ -457,23 +457,23 @@ Get info about that node
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosNode(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosNode``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosNode`: NodeInfo
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosNode`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosNode(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosNode``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosNode`: NodeInfo
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosNode`: %v\n", resp)
 }
 ```
 
@@ -516,23 +516,23 @@ Get info about your own clique
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosSelfClique(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosSelfClique``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosSelfClique`: SelfClique
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosSelfClique`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosSelfClique(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosSelfClique``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosSelfClique`: SelfClique
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosSelfClique`: %v\n", resp)
 }
 ```
 
@@ -575,23 +575,23 @@ Get the unreachable brokers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosUnreachable(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosUnreachable``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosUnreachable`: []string
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosUnreachable`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosUnreachable(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosUnreachable``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosUnreachable`: []string
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosUnreachable`: %v\n", resp)
 }
 ```
 
@@ -634,23 +634,23 @@ Get version about that node
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.GetInfosVersion(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.GetInfosVersion``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetInfosVersion`: NodeVersion
-    fmt.Fprintf(os.Stdout, "Response from `InfosApi.GetInfosVersion`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.InfosAPI.GetInfosVersion(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.GetInfosVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInfosVersion`: NodeVersion
+	fmt.Fprintf(os.Stdout, "Response from `InfosAPI.GetInfosVersion`: %v\n", resp)
 }
 ```
 
@@ -693,22 +693,22 @@ Set brokers to be unreachable/reachable
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    discoveryAction := openapiclient.DiscoveryAction{Reachable: openapiclient.NewReachable([]string{"Peers_example"}, "Type_example")} // DiscoveryAction | 
+	discoveryAction := openapiclient.DiscoveryAction{Reachable: openapiclient.NewReachable([]string{"Peers_example"}, "Type_example")} // DiscoveryAction | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.PostInfosDiscovery(context.Background()).DiscoveryAction(discoveryAction).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.PostInfosDiscovery``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.InfosAPI.PostInfosDiscovery(context.Background()).DiscoveryAction(discoveryAction).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.PostInfosDiscovery``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -755,22 +755,22 @@ Ban/Unban given peers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    misbehaviorAction := openapiclient.MisbehaviorAction{Ban: openapiclient.NewBan([]string{"Peers_example"}, "Type_example")} // MisbehaviorAction | 
+	misbehaviorAction := openapiclient.MisbehaviorAction{Ban: openapiclient.NewBan([]string{"Peers_example"}, "Type_example")} // MisbehaviorAction | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InfosApi.PostInfosMisbehaviors(context.Background()).MisbehaviorAction(misbehaviorAction).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InfosApi.PostInfosMisbehaviors``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.InfosAPI.PostInfosMisbehaviors(context.Background()).MisbehaviorAction(misbehaviorAction).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InfosAPI.PostInfosMisbehaviors``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

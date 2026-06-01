@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** |  | 
-**AttoAlphAmount** | **string** |  | 
+**AttoAlphAmount** | Pointer to **string** |  | [optional] 
 **Tokens** | Pointer to [**[]Token**](Token.md) |  | [optional] 
 **LockTime** | Pointer to **int64** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewDestination
 
-`func NewDestination(address string, attoAlphAmount string, ) *Destination`
+`func NewDestination(address string, ) *Destination`
 
 NewDestination instantiates a new Destination object
 This constructor will assign default values to properties that have it defined,
@@ -68,6 +68,11 @@ and a boolean to check if the value has been set.
 
 SetAttoAlphAmount sets AttoAlphAmount field to given value.
 
+### HasAttoAlphAmount
+
+`func (o *Destination) HasAttoAlphAmount() bool`
+
+HasAttoAlphAmount returns a boolean if a field has been set.
 
 ### GetTokens
 

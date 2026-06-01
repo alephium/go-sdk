@@ -10,8 +10,10 @@ Name | Type | Description | Notes
 **InitialAttoAlphAmount** | Pointer to **string** |  | [optional] 
 **InitialTokenAmounts** | Pointer to [**[]Token**](Token.md) |  | [optional] 
 **IssueTokenAmount** | Pointer to **string** |  | [optional] 
+**IssueTokenTo** | Pointer to **string** |  | [optional] 
 **GasAmount** | Pointer to **int32** |  | [optional] 
 **GasPrice** | Pointer to **string** |  | [optional] 
+**Group** | Pointer to **int32** |  | [optional] 
 **TargetBlockHash** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -173,6 +175,31 @@ SetIssueTokenAmount sets IssueTokenAmount field to given value.
 
 HasIssueTokenAmount returns a boolean if a field has been set.
 
+### GetIssueTokenTo
+
+`func (o *BuildDeployContractTx) GetIssueTokenTo() string`
+
+GetIssueTokenTo returns the IssueTokenTo field if non-nil, zero value otherwise.
+
+### GetIssueTokenToOk
+
+`func (o *BuildDeployContractTx) GetIssueTokenToOk() (*string, bool)`
+
+GetIssueTokenToOk returns a tuple with the IssueTokenTo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssueTokenTo
+
+`func (o *BuildDeployContractTx) SetIssueTokenTo(v string)`
+
+SetIssueTokenTo sets IssueTokenTo field to given value.
+
+### HasIssueTokenTo
+
+`func (o *BuildDeployContractTx) HasIssueTokenTo() bool`
+
+HasIssueTokenTo returns a boolean if a field has been set.
+
 ### GetGasAmount
 
 `func (o *BuildDeployContractTx) GetGasAmount() int32`
@@ -222,6 +249,31 @@ SetGasPrice sets GasPrice field to given value.
 `func (o *BuildDeployContractTx) HasGasPrice() bool`
 
 HasGasPrice returns a boolean if a field has been set.
+
+### GetGroup
+
+`func (o *BuildDeployContractTx) GetGroup() int32`
+
+GetGroup returns the Group field if non-nil, zero value otherwise.
+
+### GetGroupOk
+
+`func (o *BuildDeployContractTx) GetGroupOk() (*int32, bool)`
+
+GetGroupOk returns a tuple with the Group field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroup
+
+`func (o *BuildDeployContractTx) SetGroup(v int32)`
+
+SetGroup sets Group field to given value.
+
+### HasGroup
+
+`func (o *BuildDeployContractTx) HasGroup() bool`
+
+HasGroup returns a boolean if a field has been set.
 
 ### GetTargetBlockHash
 

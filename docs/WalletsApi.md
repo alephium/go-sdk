@@ -1,32 +1,32 @@
-# \WalletsApi
+# \WalletsAPI
 
 All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteWalletsWalletName**](WalletsApi.md#DeleteWalletsWalletName) | **Delete** /wallets/{wallet_name} | Delete your wallet file (can be recovered with your mnemonic)
-[**GetWallets**](WalletsApi.md#GetWallets) | **Get** /wallets | List available wallets
-[**GetWalletsWalletName**](WalletsApi.md#GetWalletsWalletName) | **Get** /wallets/{wallet_name} | Get wallet&#39;s status
-[**GetWalletsWalletNameAddresses**](WalletsApi.md#GetWalletsWalletNameAddresses) | **Get** /wallets/{wallet_name}/addresses | List all your wallet&#39;s addresses
-[**GetWalletsWalletNameAddressesAddress**](WalletsApi.md#GetWalletsWalletNameAddressesAddress) | **Get** /wallets/{wallet_name}/addresses/{address} | Get address&#39; info
-[**GetWalletsWalletNameBalances**](WalletsApi.md#GetWalletsWalletNameBalances) | **Get** /wallets/{wallet_name}/balances | Get your total balance
-[**PostWallets**](WalletsApi.md#PostWallets) | **Post** /wallets | Create a new wallet
-[**PostWalletsWalletNameChangeActiveAddress**](WalletsApi.md#PostWalletsWalletNameChangeActiveAddress) | **Post** /wallets/{wallet_name}/change-active-address | Choose the active address
-[**PostWalletsWalletNameDeriveNextAddress**](WalletsApi.md#PostWalletsWalletNameDeriveNextAddress) | **Post** /wallets/{wallet_name}/derive-next-address | Derive your next address
-[**PostWalletsWalletNameLock**](WalletsApi.md#PostWalletsWalletNameLock) | **Post** /wallets/{wallet_name}/lock | Lock your wallet
-[**PostWalletsWalletNameRevealMnemonic**](WalletsApi.md#PostWalletsWalletNameRevealMnemonic) | **Post** /wallets/{wallet_name}/reveal-mnemonic | Reveal your mnemonic. !!! use it with caution !!!
-[**PostWalletsWalletNameSign**](WalletsApi.md#PostWalletsWalletNameSign) | **Post** /wallets/{wallet_name}/sign | Sign the given data and return back the signature
-[**PostWalletsWalletNameSweepActiveAddress**](WalletsApi.md#PostWalletsWalletNameSweepActiveAddress) | **Post** /wallets/{wallet_name}/sweep-active-address | Transfer all unlocked ALPH from the active address to another address
-[**PostWalletsWalletNameSweepAllAddresses**](WalletsApi.md#PostWalletsWalletNameSweepAllAddresses) | **Post** /wallets/{wallet_name}/sweep-all-addresses | Transfer unlocked ALPH from all addresses (including all mining addresses if applicable) to another address
-[**PostWalletsWalletNameTransfer**](WalletsApi.md#PostWalletsWalletNameTransfer) | **Post** /wallets/{wallet_name}/transfer | Transfer ALPH from the active address
-[**PostWalletsWalletNameUnlock**](WalletsApi.md#PostWalletsWalletNameUnlock) | **Post** /wallets/{wallet_name}/unlock | Unlock your wallet
-[**PutWallets**](WalletsApi.md#PutWallets) | **Put** /wallets | Restore a wallet from your mnemonic
+[**DeleteWalletsWalletName**](WalletsAPI.md#DeleteWalletsWalletName) | **Delete** /wallets/{wallet_name} | Delete your wallet file (can be recovered with your mnemonic)
+[**GetWallets**](WalletsAPI.md#GetWallets) | **Get** /wallets | List available wallets
+[**GetWalletsWalletName**](WalletsAPI.md#GetWalletsWalletName) | **Get** /wallets/{wallet_name} | Get wallet&#39;s status
+[**GetWalletsWalletNameAddresses**](WalletsAPI.md#GetWalletsWalletNameAddresses) | **Get** /wallets/{wallet_name}/addresses | List all your wallet&#39;s addresses
+[**GetWalletsWalletNameAddressesAddress**](WalletsAPI.md#GetWalletsWalletNameAddressesAddress) | **Get** /wallets/{wallet_name}/addresses/{address} | Get address&#39; info
+[**GetWalletsWalletNameBalances**](WalletsAPI.md#GetWalletsWalletNameBalances) | **Get** /wallets/{wallet_name}/balances | Get your total balance
+[**PostWallets**](WalletsAPI.md#PostWallets) | **Post** /wallets | Create a new wallet
+[**PostWalletsWalletNameChangeActiveAddress**](WalletsAPI.md#PostWalletsWalletNameChangeActiveAddress) | **Post** /wallets/{wallet_name}/change-active-address | Choose the active address
+[**PostWalletsWalletNameDeriveNextAddress**](WalletsAPI.md#PostWalletsWalletNameDeriveNextAddress) | **Post** /wallets/{wallet_name}/derive-next-address | Derive your next address
+[**PostWalletsWalletNameLock**](WalletsAPI.md#PostWalletsWalletNameLock) | **Post** /wallets/{wallet_name}/lock | Lock your wallet
+[**PostWalletsWalletNameRevealMnemonic**](WalletsAPI.md#PostWalletsWalletNameRevealMnemonic) | **Post** /wallets/{wallet_name}/reveal-mnemonic | Reveal your mnemonic. !!! use it with caution !!!
+[**PostWalletsWalletNameSign**](WalletsAPI.md#PostWalletsWalletNameSign) | **Post** /wallets/{wallet_name}/sign | Sign the given data and return back the signature
+[**PostWalletsWalletNameSweepActiveAddress**](WalletsAPI.md#PostWalletsWalletNameSweepActiveAddress) | **Post** /wallets/{wallet_name}/sweep-active-address | Transfer all unlocked ALPH from the active address to another address
+[**PostWalletsWalletNameSweepAllAddresses**](WalletsAPI.md#PostWalletsWalletNameSweepAllAddresses) | **Post** /wallets/{wallet_name}/sweep-all-addresses | Transfer unlocked ALPH from all addresses (including all mining addresses if applicable) to another address
+[**PostWalletsWalletNameTransfer**](WalletsAPI.md#PostWalletsWalletNameTransfer) | **Post** /wallets/{wallet_name}/transfer | Transfer ALPH from the active address
+[**PostWalletsWalletNameUnlock**](WalletsAPI.md#PostWalletsWalletNameUnlock) | **Post** /wallets/{wallet_name}/unlock | Unlock your wallet
+[**PutWallets**](WalletsAPI.md#PutWallets) | **Put** /wallets | Restore a wallet from your mnemonic
 
 
 
 ## DeleteWalletsWalletName
 
-> DeleteWalletsWalletName(ctx, walletName).WalletDeletion(walletDeletion).Execute()
+> DeleteWalletsWalletName(ctx, walletName).Password(password).Execute()
 
 Delete your wallet file (can be recovered with your mnemonic)
 
@@ -36,23 +36,23 @@ Delete your wallet file (can be recovered with your mnemonic)
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    walletDeletion := *openapiclient.NewWalletDeletion("Password_example") // WalletDeletion | 
+	walletName := "walletName_example" // string | 
+	password := "password_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.DeleteWalletsWalletName(context.Background(), walletName).WalletDeletion(walletDeletion).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.DeleteWalletsWalletName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WalletsAPI.DeleteWalletsWalletName(context.Background(), walletName).Password(password).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.DeleteWalletsWalletName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiDeleteWalletsWalletNameReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **walletDeletion** | [**WalletDeletion**](WalletDeletion.md) |  | 
+ **password** | **string** |  | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -104,23 +104,23 @@ List available wallets
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.GetWallets(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.GetWallets``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWallets`: []WalletStatus
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.GetWallets`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.GetWallets(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.GetWallets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWallets`: []WalletStatus
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.GetWallets`: %v\n", resp)
 }
 ```
 
@@ -163,24 +163,24 @@ Get wallet's status
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
+	walletName := "walletName_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.GetWalletsWalletName(context.Background(), walletName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.GetWalletsWalletName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWalletsWalletName`: WalletStatus
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.GetWalletsWalletName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.GetWalletsWalletName(context.Background(), walletName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.GetWalletsWalletName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWalletsWalletName`: WalletStatus
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.GetWalletsWalletName`: %v\n", resp)
 }
 ```
 
@@ -231,24 +231,24 @@ List all your wallet's addresses
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
+	walletName := "walletName_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.GetWalletsWalletNameAddresses(context.Background(), walletName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.GetWalletsWalletNameAddresses``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWalletsWalletNameAddresses`: Addresses
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.GetWalletsWalletNameAddresses`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.GetWalletsWalletNameAddresses(context.Background(), walletName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.GetWalletsWalletNameAddresses``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWalletsWalletNameAddresses`: Addresses
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.GetWalletsWalletNameAddresses`: %v\n", resp)
 }
 ```
 
@@ -299,25 +299,25 @@ Get address' info
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    address := "address_example" // string | 
+	walletName := "walletName_example" // string | 
+	address := "address_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.GetWalletsWalletNameAddressesAddress(context.Background(), walletName, address).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.GetWalletsWalletNameAddressesAddress``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWalletsWalletNameAddressesAddress`: AddressInfo
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.GetWalletsWalletNameAddressesAddress`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.GetWalletsWalletNameAddressesAddress(context.Background(), walletName, address).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.GetWalletsWalletNameAddressesAddress``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWalletsWalletNameAddressesAddress`: AddressInfo
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.GetWalletsWalletNameAddressesAddress`: %v\n", resp)
 }
 ```
 
@@ -370,24 +370,24 @@ Get your total balance
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
+	walletName := "walletName_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.GetWalletsWalletNameBalances(context.Background(), walletName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.GetWalletsWalletNameBalances``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWalletsWalletNameBalances`: Balances
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.GetWalletsWalletNameBalances`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.GetWalletsWalletNameBalances(context.Background(), walletName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.GetWalletsWalletNameBalances``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWalletsWalletNameBalances`: Balances
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.GetWalletsWalletNameBalances`: %v\n", resp)
 }
 ```
 
@@ -440,24 +440,24 @@ Create a new wallet
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletCreation := *openapiclient.NewWalletCreation("Password_example", "WalletName_example") // WalletCreation | 
+	walletCreation := *openapiclient.NewWalletCreation("Password_example", "WalletName_example") // WalletCreation | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWallets(context.Background()).WalletCreation(walletCreation).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWallets``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWallets`: WalletCreationResult
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.PostWallets`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.PostWallets(context.Background()).WalletCreation(walletCreation).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWallets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWallets`: WalletCreationResult
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.PostWallets`: %v\n", resp)
 }
 ```
 
@@ -504,23 +504,23 @@ Choose the active address
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    changeActiveAddress := *openapiclient.NewChangeActiveAddress("Address_example") // ChangeActiveAddress | 
+	walletName := "walletName_example" // string | 
+	changeActiveAddress := *openapiclient.NewChangeActiveAddress("Address_example") // ChangeActiveAddress | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameChangeActiveAddress(context.Background(), walletName).ChangeActiveAddress(changeActiveAddress).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameChangeActiveAddress``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WalletsAPI.PostWalletsWalletNameChangeActiveAddress(context.Background(), walletName).ChangeActiveAddress(changeActiveAddress).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameChangeActiveAddress``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -574,25 +574,25 @@ Derive your next address
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    group := int32(56) // int32 |  (optional)
+	walletName := "walletName_example" // string | 
+	group := int32(56) // int32 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameDeriveNextAddress(context.Background(), walletName).Group(group).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameDeriveNextAddress``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWalletsWalletNameDeriveNextAddress`: AddressInfo
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.PostWalletsWalletNameDeriveNextAddress`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.PostWalletsWalletNameDeriveNextAddress(context.Background(), walletName).Group(group).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameDeriveNextAddress``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWalletsWalletNameDeriveNextAddress`: AddressInfo
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.PostWalletsWalletNameDeriveNextAddress`: %v\n", resp)
 }
 ```
 
@@ -644,22 +644,22 @@ Lock your wallet
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
+	walletName := "walletName_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameLock(context.Background(), walletName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameLock``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WalletsAPI.PostWalletsWalletNameLock(context.Background(), walletName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameLock``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -710,25 +710,25 @@ Reveal your mnemonic. !!! use it with caution !!!
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    revealMnemonic := *openapiclient.NewRevealMnemonic("Password_example") // RevealMnemonic | 
+	walletName := "walletName_example" // string | 
+	revealMnemonic := *openapiclient.NewRevealMnemonic("Password_example") // RevealMnemonic | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameRevealMnemonic(context.Background(), walletName).RevealMnemonic(revealMnemonic).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameRevealMnemonic``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWalletsWalletNameRevealMnemonic`: RevealMnemonicResult
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.PostWalletsWalletNameRevealMnemonic`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.PostWalletsWalletNameRevealMnemonic(context.Background(), walletName).RevealMnemonic(revealMnemonic).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameRevealMnemonic``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWalletsWalletNameRevealMnemonic`: RevealMnemonicResult
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.PostWalletsWalletNameRevealMnemonic`: %v\n", resp)
 }
 ```
 
@@ -780,25 +780,25 @@ Sign the given data and return back the signature
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    sign := *openapiclient.NewSign("Data_example") // Sign | 
+	walletName := "walletName_example" // string | 
+	sign := *openapiclient.NewSign("Data_example") // Sign | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameSign(context.Background(), walletName).Sign(sign).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameSign``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWalletsWalletNameSign`: SignResult
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.PostWalletsWalletNameSign`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.PostWalletsWalletNameSign(context.Background(), walletName).Sign(sign).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameSign``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWalletsWalletNameSign`: SignResult
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.PostWalletsWalletNameSign`: %v\n", resp)
 }
 ```
 
@@ -850,25 +850,25 @@ Transfer all unlocked ALPH from the active address to another address
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    sweep := *openapiclient.NewSweep("ToAddress_example") // Sweep | 
+	walletName := "walletName_example" // string | 
+	sweep := *openapiclient.NewSweep("ToAddress_example") // Sweep | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameSweepActiveAddress(context.Background(), walletName).Sweep(sweep).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameSweepActiveAddress``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWalletsWalletNameSweepActiveAddress`: TransferResults
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.PostWalletsWalletNameSweepActiveAddress`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.PostWalletsWalletNameSweepActiveAddress(context.Background(), walletName).Sweep(sweep).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameSweepActiveAddress``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWalletsWalletNameSweepActiveAddress`: TransferResults
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.PostWalletsWalletNameSweepActiveAddress`: %v\n", resp)
 }
 ```
 
@@ -920,25 +920,25 @@ Transfer unlocked ALPH from all addresses (including all mining addresses if app
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    sweep := *openapiclient.NewSweep("ToAddress_example") // Sweep | 
+	walletName := "walletName_example" // string | 
+	sweep := *openapiclient.NewSweep("ToAddress_example") // Sweep | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameSweepAllAddresses(context.Background(), walletName).Sweep(sweep).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameSweepAllAddresses``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWalletsWalletNameSweepAllAddresses`: TransferResults
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.PostWalletsWalletNameSweepAllAddresses`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.PostWalletsWalletNameSweepAllAddresses(context.Background(), walletName).Sweep(sweep).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameSweepAllAddresses``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWalletsWalletNameSweepAllAddresses`: TransferResults
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.PostWalletsWalletNameSweepAllAddresses`: %v\n", resp)
 }
 ```
 
@@ -990,25 +990,25 @@ Transfer ALPH from the active address
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    transfer := *openapiclient.NewTransfer([]openapiclient.Destination{*openapiclient.NewDestination("Address_example", "AttoAlphAmount_example")}) // Transfer | Format 1: `1000000000000000000`  Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000  Field fromPublicKeyType can be  `default` or `bip340-schnorr`
+	walletName := "walletName_example" // string | 
+	transfer := *openapiclient.NewTransfer([]openapiclient.Destination{*openapiclient.NewDestination("Address_example")}) // Transfer | Format 1: `1000000000000000000`  Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000  Field fromPublicKeyType can be  `default` or `bip340-schnorr`
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameTransfer(context.Background(), walletName).Transfer(transfer).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameTransfer``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWalletsWalletNameTransfer`: TransferResult
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.PostWalletsWalletNameTransfer`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.PostWalletsWalletNameTransfer(context.Background(), walletName).Transfer(transfer).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameTransfer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWalletsWalletNameTransfer`: TransferResult
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.PostWalletsWalletNameTransfer`: %v\n", resp)
 }
 ```
 
@@ -1060,23 +1060,23 @@ Unlock your wallet
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
-    walletUnlock := *openapiclient.NewWalletUnlock("Password_example") // WalletUnlock | 
+	walletName := "walletName_example" // string | 
+	walletUnlock := *openapiclient.NewWalletUnlock("Password_example") // WalletUnlock | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PostWalletsWalletNameUnlock(context.Background(), walletName).WalletUnlock(walletUnlock).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PostWalletsWalletNameUnlock``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WalletsAPI.PostWalletsWalletNameUnlock(context.Background(), walletName).WalletUnlock(walletUnlock).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PostWalletsWalletNameUnlock``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1128,24 +1128,24 @@ Restore a wallet from your mnemonic
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletRestore := *openapiclient.NewWalletRestore("Password_example", "Mnemonic_example", "WalletName_example") // WalletRestore | 
+	walletRestore := *openapiclient.NewWalletRestore("Password_example", "Mnemonic_example", "WalletName_example") // WalletRestore | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WalletsApi.PutWallets(context.Background()).WalletRestore(walletRestore).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.PutWallets``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutWallets`: WalletRestoreResult
-    fmt.Fprintf(os.Stdout, "Response from `WalletsApi.PutWallets`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WalletsAPI.PutWallets(context.Background()).WalletRestore(walletRestore).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.PutWallets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutWallets`: WalletRestoreResult
+	fmt.Fprintf(os.Stdout, "Response from `WalletsAPI.PutWallets`: %v\n", resp)
 }
 ```
 

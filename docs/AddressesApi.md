@@ -1,12 +1,12 @@
-# \AddressesApi
+# \AddressesAPI
 
 All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAddressesAddressBalance**](AddressesApi.md#GetAddressesAddressBalance) | **Get** /addresses/{address}/balance | Get the balance of an address
-[**GetAddressesAddressGroup**](AddressesApi.md#GetAddressesAddressGroup) | **Get** /addresses/{address}/group | Get the group of an address
-[**GetAddressesAddressUtxos**](AddressesApi.md#GetAddressesAddressUtxos) | **Get** /addresses/{address}/utxos | Get the UTXOs of an address
+[**GetAddressesAddressBalance**](AddressesAPI.md#GetAddressesAddressBalance) | **Get** /addresses/{address}/balance | Get the balance of an address
+[**GetAddressesAddressGroup**](AddressesAPI.md#GetAddressesAddressGroup) | **Get** /addresses/{address}/group | Get the group of an address
+[**GetAddressesAddressUtxos**](AddressesAPI.md#GetAddressesAddressUtxos) | **Get** /addresses/{address}/utxos | Get the UTXOs of an address
 
 
 
@@ -22,25 +22,25 @@ Get the balance of an address
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    address := "address_example" // string | 
-    mempool := true // bool |  (optional)
+	address := "address_example" // string | 
+	mempool := true // bool |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AddressesApi.GetAddressesAddressBalance(context.Background(), address).Mempool(mempool).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.GetAddressesAddressBalance``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAddressesAddressBalance`: Balance
-    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.GetAddressesAddressBalance`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AddressesAPI.GetAddressesAddressBalance(context.Background(), address).Mempool(mempool).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.GetAddressesAddressBalance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAddressesAddressBalance`: Balance
+	fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.GetAddressesAddressBalance`: %v\n", resp)
 }
 ```
 
@@ -92,24 +92,24 @@ Get the group of an address
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    address := "address_example" // string | 
+	address := "address_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AddressesApi.GetAddressesAddressGroup(context.Background(), address).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.GetAddressesAddressGroup``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAddressesAddressGroup`: Group
-    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.GetAddressesAddressGroup`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AddressesAPI.GetAddressesAddressGroup(context.Background(), address).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.GetAddressesAddressGroup``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAddressesAddressGroup`: Group
+	fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.GetAddressesAddressGroup`: %v\n", resp)
 }
 ```
 
@@ -150,7 +150,7 @@ No authorization required
 
 ## GetAddressesAddressUtxos
 
-> UTXOs GetAddressesAddressUtxos(ctx, address).Execute()
+> UTXOs GetAddressesAddressUtxos(ctx, address).ErrorIfExceedMaxUtxos(errorIfExceedMaxUtxos).Execute()
 
 Get the UTXOs of an address
 
@@ -160,24 +160,25 @@ Get the UTXOs of an address
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    address := "address_example" // string | 
+	address := "address_example" // string | 
+	errorIfExceedMaxUtxos := true // bool |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AddressesApi.GetAddressesAddressUtxos(context.Background(), address).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.GetAddressesAddressUtxos``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAddressesAddressUtxos`: UTXOs
-    fmt.Fprintf(os.Stdout, "Response from `AddressesApi.GetAddressesAddressUtxos`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AddressesAPI.GetAddressesAddressUtxos(context.Background(), address).ErrorIfExceedMaxUtxos(errorIfExceedMaxUtxos).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.GetAddressesAddressUtxos``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAddressesAddressUtxos`: UTXOs
+	fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.GetAddressesAddressUtxos`: %v\n", resp)
 }
 ```
 
@@ -197,6 +198,7 @@ Other parameters are passed through a pointer to a apiGetAddressesAddressUtxosRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **errorIfExceedMaxUtxos** | **bool** |  | 
 
 ### Return type
 

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Enums** | [**[]Enum**](Enum.md) |  | 
 **Events** | [**[]EventSig**](EventSig.md) |  | 
 **Warnings** | **[]string** |  | 
+**Maps** | Pointer to [**MapsSig**](MapsSig.md) |  | [optional] 
 **StdInterfaceId** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -276,6 +277,31 @@ and a boolean to check if the value has been set.
 
 SetWarnings sets Warnings field to given value.
 
+
+### GetMaps
+
+`func (o *CompileContractResult) GetMaps() MapsSig`
+
+GetMaps returns the Maps field if non-nil, zero value otherwise.
+
+### GetMapsOk
+
+`func (o *CompileContractResult) GetMapsOk() (*MapsSig, bool)`
+
+GetMapsOk returns a tuple with the Maps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaps
+
+`func (o *CompileContractResult) SetMaps(v MapsSig)`
+
+SetMaps sets Maps field to given value.
+
+### HasMaps
+
+`func (o *CompileContractResult) HasMaps() bool`
+
+HasMaps returns a boolean if a field has been set.
 
 ### GetStdInterfaceId
 

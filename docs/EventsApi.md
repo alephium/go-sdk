@@ -1,13 +1,13 @@
-# \EventsApi
+# \EventsAPI
 
 All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetEventsBlockHashBlockhash**](EventsApi.md#GetEventsBlockHashBlockhash) | **Get** /events/block-hash/{blockHash} | Get contract events for a block
-[**GetEventsContractContractaddress**](EventsApi.md#GetEventsContractContractaddress) | **Get** /events/contract/{contractAddress} | Get events for a contract within a counter range
-[**GetEventsContractContractaddressCurrentCount**](EventsApi.md#GetEventsContractContractaddressCurrentCount) | **Get** /events/contract/{contractAddress}/current-count | Get current value of the events counter for a contract
-[**GetEventsTxIdTxid**](EventsApi.md#GetEventsTxIdTxid) | **Get** /events/tx-id/{txId} | Get contract events for a transaction
+[**GetEventsBlockHashBlockhash**](EventsAPI.md#GetEventsBlockHashBlockhash) | **Get** /events/block-hash/{blockHash} | Get contract events for a block
+[**GetEventsContractContractaddress**](EventsAPI.md#GetEventsContractContractaddress) | **Get** /events/contract/{contractAddress} | Get events for a contract within a counter range
+[**GetEventsContractContractaddressCurrentCount**](EventsAPI.md#GetEventsContractContractaddressCurrentCount) | **Get** /events/contract/{contractAddress}/current-count | Get current value of the events counter for a contract
+[**GetEventsTxIdTxid**](EventsAPI.md#GetEventsTxIdTxid) | **Get** /events/tx-id/{txId} | Get contract events for a transaction
 
 
 
@@ -23,25 +23,25 @@ Get contract events for a block
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    blockHash := "blockHash_example" // string | 
-    group := int32(56) // int32 |  (optional)
+	blockHash := "blockHash_example" // string | 
+	group := int32(56) // int32 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.GetEventsBlockHashBlockhash(context.Background(), blockHash).Group(group).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEventsBlockHashBlockhash``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEventsBlockHashBlockhash`: ContractEventsByBlockHash
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.GetEventsBlockHashBlockhash`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.GetEventsBlockHashBlockhash(context.Background(), blockHash).Group(group).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEventsBlockHashBlockhash``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEventsBlockHashBlockhash`: ContractEventsByBlockHash
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEventsBlockHashBlockhash`: %v\n", resp)
 }
 ```
 
@@ -93,27 +93,27 @@ Get events for a contract within a counter range
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    contractAddress := "contractAddress_example" // string | 
-    start := int32(56) // int32 | 
-    limit := int32(56) // int32 |  (optional)
-    group := int32(56) // int32 |  (optional)
+	contractAddress := "contractAddress_example" // string | 
+	start := int32(56) // int32 | 
+	limit := int32(56) // int32 |  (optional)
+	group := int32(56) // int32 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.GetEventsContractContractaddress(context.Background(), contractAddress).Start(start).Limit(limit).Group(group).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEventsContractContractaddress``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEventsContractContractaddress`: ContractEvents
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.GetEventsContractContractaddress`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.GetEventsContractContractaddress(context.Background(), contractAddress).Start(start).Limit(limit).Group(group).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEventsContractContractaddress``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEventsContractContractaddress`: ContractEvents
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEventsContractContractaddress`: %v\n", resp)
 }
 ```
 
@@ -167,24 +167,24 @@ Get current value of the events counter for a contract
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    contractAddress := "contractAddress_example" // string | 
+	contractAddress := "contractAddress_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.GetEventsContractContractaddressCurrentCount(context.Background(), contractAddress).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEventsContractContractaddressCurrentCount``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEventsContractContractaddressCurrentCount`: int32
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.GetEventsContractContractaddressCurrentCount`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.GetEventsContractContractaddressCurrentCount(context.Background(), contractAddress).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEventsContractContractaddressCurrentCount``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEventsContractContractaddressCurrentCount`: int32
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEventsContractContractaddressCurrentCount`: %v\n", resp)
 }
 ```
 
@@ -235,25 +235,25 @@ Get contract events for a transaction
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    txId := "txId_example" // string | 
-    group := int32(56) // int32 |  (optional)
+	txId := "txId_example" // string | 
+	group := int32(56) // int32 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventsApi.GetEventsTxIdTxid(context.Background(), txId).Group(group).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEventsTxIdTxid``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEventsTxIdTxid`: ContractEventsByTxId
-    fmt.Fprintf(os.Stdout, "Response from `EventsApi.GetEventsTxIdTxid`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.GetEventsTxIdTxid(context.Background(), txId).Group(group).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEventsTxIdTxid``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEventsTxIdTxid`: ContractEventsByTxId
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.GetEventsTxIdTxid`: %v\n", resp)
 }
 ```
 

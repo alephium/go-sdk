@@ -8,9 +8,10 @@ Name | Type | Description | Notes
 **WorldStateBlockHash** | Pointer to **string** |  | [optional] 
 **TxId** | Pointer to **string** |  | [optional] 
 **Address** | **string** |  | 
+**CallerAddress** | Pointer to **string** |  | [optional] 
 **MethodIndex** | **int32** |  | 
 **Args** | Pointer to [**[]Val**](Val.md) |  | [optional] 
-**ExistingContracts** | Pointer to **[]string** |  | [optional] 
+**InterestedContracts** | Pointer to **[]string** |  | [optional] 
 **InputAssets** | Pointer to [**[]TestInputAsset**](TestInputAsset.md) |  | [optional] 
 
 ## Methods
@@ -122,6 +123,31 @@ and a boolean to check if the value has been set.
 SetAddress sets Address field to given value.
 
 
+### GetCallerAddress
+
+`func (o *CallContract) GetCallerAddress() string`
+
+GetCallerAddress returns the CallerAddress field if non-nil, zero value otherwise.
+
+### GetCallerAddressOk
+
+`func (o *CallContract) GetCallerAddressOk() (*string, bool)`
+
+GetCallerAddressOk returns a tuple with the CallerAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCallerAddress
+
+`func (o *CallContract) SetCallerAddress(v string)`
+
+SetCallerAddress sets CallerAddress field to given value.
+
+### HasCallerAddress
+
+`func (o *CallContract) HasCallerAddress() bool`
+
+HasCallerAddress returns a boolean if a field has been set.
+
 ### GetMethodIndex
 
 `func (o *CallContract) GetMethodIndex() int32`
@@ -167,30 +193,30 @@ SetArgs sets Args field to given value.
 
 HasArgs returns a boolean if a field has been set.
 
-### GetExistingContracts
+### GetInterestedContracts
 
-`func (o *CallContract) GetExistingContracts() []string`
+`func (o *CallContract) GetInterestedContracts() []string`
 
-GetExistingContracts returns the ExistingContracts field if non-nil, zero value otherwise.
+GetInterestedContracts returns the InterestedContracts field if non-nil, zero value otherwise.
 
-### GetExistingContractsOk
+### GetInterestedContractsOk
 
-`func (o *CallContract) GetExistingContractsOk() (*[]string, bool)`
+`func (o *CallContract) GetInterestedContractsOk() (*[]string, bool)`
 
-GetExistingContractsOk returns a tuple with the ExistingContracts field if it's non-nil, zero value otherwise
+GetInterestedContractsOk returns a tuple with the InterestedContracts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExistingContracts
+### SetInterestedContracts
 
-`func (o *CallContract) SetExistingContracts(v []string)`
+`func (o *CallContract) SetInterestedContracts(v []string)`
 
-SetExistingContracts sets ExistingContracts field to given value.
+SetInterestedContracts sets InterestedContracts field to given value.
 
-### HasExistingContracts
+### HasInterestedContracts
 
-`func (o *CallContract) HasExistingContracts() bool`
+`func (o *CallContract) HasInterestedContracts() bool`
 
-HasExistingContracts returns a boolean if a field has been set.
+HasInterestedContracts returns a boolean if a field has been set.
 
 ### GetInputAssets
 

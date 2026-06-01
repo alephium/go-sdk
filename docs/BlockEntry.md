@@ -16,12 +16,14 @@ Name | Type | Description | Notes
 **DepStateHash** | **string** |  | 
 **TxsHash** | **string** |  | 
 **Target** | **string** |  | 
+**GhostUncles** | [**[]GhostUncleBlockEntry**](GhostUncleBlockEntry.md) |  | 
+**ConflictedTxs** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewBlockEntry
 
-`func NewBlockEntry(hash string, timestamp int64, chainFrom int32, chainTo int32, height int32, deps []string, transactions []Transaction, nonce string, version int32, depStateHash string, txsHash string, target string, ) *BlockEntry`
+`func NewBlockEntry(hash string, timestamp int64, chainFrom int32, chainTo int32, height int32, deps []string, transactions []Transaction, nonce string, version int32, depStateHash string, txsHash string, target string, ghostUncles []GhostUncleBlockEntry, ) *BlockEntry`
 
 NewBlockEntry instantiates a new BlockEntry object
 This constructor will assign default values to properties that have it defined,
@@ -275,6 +277,51 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
+
+### GetGhostUncles
+
+`func (o *BlockEntry) GetGhostUncles() []GhostUncleBlockEntry`
+
+GetGhostUncles returns the GhostUncles field if non-nil, zero value otherwise.
+
+### GetGhostUnclesOk
+
+`func (o *BlockEntry) GetGhostUnclesOk() (*[]GhostUncleBlockEntry, bool)`
+
+GetGhostUnclesOk returns a tuple with the GhostUncles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGhostUncles
+
+`func (o *BlockEntry) SetGhostUncles(v []GhostUncleBlockEntry)`
+
+SetGhostUncles sets GhostUncles field to given value.
+
+
+### GetConflictedTxs
+
+`func (o *BlockEntry) GetConflictedTxs() []string`
+
+GetConflictedTxs returns the ConflictedTxs field if non-nil, zero value otherwise.
+
+### GetConflictedTxsOk
+
+`func (o *BlockEntry) GetConflictedTxsOk() (*[]string, bool)`
+
+GetConflictedTxsOk returns a tuple with the ConflictedTxs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConflictedTxs
+
+`func (o *BlockEntry) SetConflictedTxs(v []string)`
+
+SetConflictedTxs sets ConflictedTxs field to given value.
+
+### HasConflictedTxs
+
+`func (o *BlockEntry) HasConflictedTxs() bool`
+
+HasConflictedTxs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,12 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromPublicKey** | **string** |  | 
+**FromPublicKeyType** | Pointer to **string** |  | [optional] 
 **ToAddress** | **string** |  | 
 **MaxAttoAlphPerUTXO** | Pointer to **string** |  | [optional] 
 **LockTime** | Pointer to **int64** |  | [optional] 
 **GasAmount** | Pointer to **int32** |  | [optional] 
 **GasPrice** | Pointer to **string** |  | [optional] 
 **TargetBlockHash** | Pointer to **string** |  | [optional] 
+**UtxosLimit** | Pointer to **int32** |  | [optional] 
+**Group** | Pointer to **int32** |  | [optional] 
+**SweepAlphOnly** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -50,6 +54,31 @@ and a boolean to check if the value has been set.
 
 SetFromPublicKey sets FromPublicKey field to given value.
 
+
+### GetFromPublicKeyType
+
+`func (o *BuildSweepAddressTransactions) GetFromPublicKeyType() string`
+
+GetFromPublicKeyType returns the FromPublicKeyType field if non-nil, zero value otherwise.
+
+### GetFromPublicKeyTypeOk
+
+`func (o *BuildSweepAddressTransactions) GetFromPublicKeyTypeOk() (*string, bool)`
+
+GetFromPublicKeyTypeOk returns a tuple with the FromPublicKeyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFromPublicKeyType
+
+`func (o *BuildSweepAddressTransactions) SetFromPublicKeyType(v string)`
+
+SetFromPublicKeyType sets FromPublicKeyType field to given value.
+
+### HasFromPublicKeyType
+
+`func (o *BuildSweepAddressTransactions) HasFromPublicKeyType() bool`
+
+HasFromPublicKeyType returns a boolean if a field has been set.
 
 ### GetToAddress
 
@@ -195,6 +224,81 @@ SetTargetBlockHash sets TargetBlockHash field to given value.
 `func (o *BuildSweepAddressTransactions) HasTargetBlockHash() bool`
 
 HasTargetBlockHash returns a boolean if a field has been set.
+
+### GetUtxosLimit
+
+`func (o *BuildSweepAddressTransactions) GetUtxosLimit() int32`
+
+GetUtxosLimit returns the UtxosLimit field if non-nil, zero value otherwise.
+
+### GetUtxosLimitOk
+
+`func (o *BuildSweepAddressTransactions) GetUtxosLimitOk() (*int32, bool)`
+
+GetUtxosLimitOk returns a tuple with the UtxosLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUtxosLimit
+
+`func (o *BuildSweepAddressTransactions) SetUtxosLimit(v int32)`
+
+SetUtxosLimit sets UtxosLimit field to given value.
+
+### HasUtxosLimit
+
+`func (o *BuildSweepAddressTransactions) HasUtxosLimit() bool`
+
+HasUtxosLimit returns a boolean if a field has been set.
+
+### GetGroup
+
+`func (o *BuildSweepAddressTransactions) GetGroup() int32`
+
+GetGroup returns the Group field if non-nil, zero value otherwise.
+
+### GetGroupOk
+
+`func (o *BuildSweepAddressTransactions) GetGroupOk() (*int32, bool)`
+
+GetGroupOk returns a tuple with the Group field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroup
+
+`func (o *BuildSweepAddressTransactions) SetGroup(v int32)`
+
+SetGroup sets Group field to given value.
+
+### HasGroup
+
+`func (o *BuildSweepAddressTransactions) HasGroup() bool`
+
+HasGroup returns a boolean if a field has been set.
+
+### GetSweepAlphOnly
+
+`func (o *BuildSweepAddressTransactions) GetSweepAlphOnly() bool`
+
+GetSweepAlphOnly returns the SweepAlphOnly field if non-nil, zero value otherwise.
+
+### GetSweepAlphOnlyOk
+
+`func (o *BuildSweepAddressTransactions) GetSweepAlphOnlyOk() (*bool, bool)`
+
+GetSweepAlphOnlyOk returns a tuple with the SweepAlphOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSweepAlphOnly
+
+`func (o *BuildSweepAddressTransactions) SetSweepAlphOnly(v bool)`
+
+SetSweepAlphOnly sets SweepAlphOnly field to given value.
+
+### HasSweepAlphOnly
+
+`func (o *BuildSweepAddressTransactions) HasSweepAlphOnly() bool`
+
+HasSweepAlphOnly returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

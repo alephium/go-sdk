@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **GasAmount** | Pointer to **int32** |  | [optional] 
 **GasPrice** | Pointer to **string** |  | [optional] 
 **TargetBlockHash** | Pointer to **string** |  | [optional] 
+**Group** | Pointer to **int32** |  | [optional] 
+**GasEstimationMultiplier** | Pointer to **float64** |  | [optional] 
+**DustAmount** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -221,6 +224,81 @@ SetTargetBlockHash sets TargetBlockHash field to given value.
 `func (o *BuildExecuteScriptTx) HasTargetBlockHash() bool`
 
 HasTargetBlockHash returns a boolean if a field has been set.
+
+### GetGroup
+
+`func (o *BuildExecuteScriptTx) GetGroup() int32`
+
+GetGroup returns the Group field if non-nil, zero value otherwise.
+
+### GetGroupOk
+
+`func (o *BuildExecuteScriptTx) GetGroupOk() (*int32, bool)`
+
+GetGroupOk returns a tuple with the Group field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroup
+
+`func (o *BuildExecuteScriptTx) SetGroup(v int32)`
+
+SetGroup sets Group field to given value.
+
+### HasGroup
+
+`func (o *BuildExecuteScriptTx) HasGroup() bool`
+
+HasGroup returns a boolean if a field has been set.
+
+### GetGasEstimationMultiplier
+
+`func (o *BuildExecuteScriptTx) GetGasEstimationMultiplier() float64`
+
+GetGasEstimationMultiplier returns the GasEstimationMultiplier field if non-nil, zero value otherwise.
+
+### GetGasEstimationMultiplierOk
+
+`func (o *BuildExecuteScriptTx) GetGasEstimationMultiplierOk() (*float64, bool)`
+
+GetGasEstimationMultiplierOk returns a tuple with the GasEstimationMultiplier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGasEstimationMultiplier
+
+`func (o *BuildExecuteScriptTx) SetGasEstimationMultiplier(v float64)`
+
+SetGasEstimationMultiplier sets GasEstimationMultiplier field to given value.
+
+### HasGasEstimationMultiplier
+
+`func (o *BuildExecuteScriptTx) HasGasEstimationMultiplier() bool`
+
+HasGasEstimationMultiplier returns a boolean if a field has been set.
+
+### GetDustAmount
+
+`func (o *BuildExecuteScriptTx) GetDustAmount() string`
+
+GetDustAmount returns the DustAmount field if non-nil, zero value otherwise.
+
+### GetDustAmountOk
+
+`func (o *BuildExecuteScriptTx) GetDustAmountOk() (*string, bool)`
+
+GetDustAmountOk returns a tuple with the DustAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDustAmount
+
+`func (o *BuildExecuteScriptTx) SetDustAmount(v string)`
+
+SetDustAmount sets DustAmount field to given value.
+
+### HasDustAmount
+
+`func (o *BuildExecuteScriptTx) HasDustAmount() bool`
+
+HasDustAmount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

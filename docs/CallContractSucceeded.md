@@ -10,13 +10,14 @@ Name | Type | Description | Notes
 **TxInputs** | **[]string** |  | 
 **TxOutputs** | [**[]Output**](Output.md) |  | 
 **Events** | [**[]ContractEventByTxId**](ContractEventByTxId.md) |  | 
+**DebugMessages** | [**[]DebugMessage**](DebugMessage.md) |  | 
 **Type** | **string** |  | 
 
 ## Methods
 
 ### NewCallContractSucceeded
 
-`func NewCallContractSucceeded(returns []Val, gasUsed int32, contracts []ContractState, txInputs []string, txOutputs []Output, events []ContractEventByTxId, type_ string, ) *CallContractSucceeded`
+`func NewCallContractSucceeded(returns []Val, gasUsed int32, contracts []ContractState, txInputs []string, txOutputs []Output, events []ContractEventByTxId, debugMessages []DebugMessage, type_ string, ) *CallContractSucceeded`
 
 NewCallContractSucceeded instantiates a new CallContractSucceeded object
 This constructor will assign default values to properties that have it defined,
@@ -149,6 +150,26 @@ and a boolean to check if the value has been set.
 `func (o *CallContractSucceeded) SetEvents(v []ContractEventByTxId)`
 
 SetEvents sets Events field to given value.
+
+
+### GetDebugMessages
+
+`func (o *CallContractSucceeded) GetDebugMessages() []DebugMessage`
+
+GetDebugMessages returns the DebugMessages field if non-nil, zero value otherwise.
+
+### GetDebugMessagesOk
+
+`func (o *CallContractSucceeded) GetDebugMessagesOk() (*[]DebugMessage, bool)`
+
+GetDebugMessagesOk returns a tuple with the DebugMessages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDebugMessages
+
+`func (o *CallContractSucceeded) SetDebugMessages(v []DebugMessage)`
+
+SetDebugMessages sets DebugMessages field to given value.
 
 
 ### GetType

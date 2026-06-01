@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Unsigned** | [**UnsignedTx**](UnsignedTx.md) |  | 
 **InputSignatures** | **[]string** |  | 
 **ScriptSignatures** | **[]string** |  | 
+**SeenAt** | **int64** |  | 
 
 ## Methods
 
 ### NewTransactionTemplate
 
-`func NewTransactionTemplate(unsigned UnsignedTx, inputSignatures []string, scriptSignatures []string, ) *TransactionTemplate`
+`func NewTransactionTemplate(unsigned UnsignedTx, inputSignatures []string, scriptSignatures []string, seenAt int64, ) *TransactionTemplate`
 
 NewTransactionTemplate instantiates a new TransactionTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *TransactionTemplate) SetScriptSignatures(v []string)`
 
 SetScriptSignatures sets ScriptSignatures field to given value.
+
+
+### GetSeenAt
+
+`func (o *TransactionTemplate) GetSeenAt() int64`
+
+GetSeenAt returns the SeenAt field if non-nil, zero value otherwise.
+
+### GetSeenAtOk
+
+`func (o *TransactionTemplate) GetSeenAtOk() (*int64, bool)`
+
+GetSeenAtOk returns a tuple with the SeenAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSeenAt
+
+`func (o *TransactionTemplate) SetSeenAt(v int64)`
+
+SetSeenAt sets SeenAt field to given value.
 
 
 

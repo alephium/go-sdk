@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **BlockTimeStamp** | Pointer to **int64** |  | [optional] 
 **TxId** | Pointer to **string** |  | [optional] 
 **Address** | Pointer to **string** |  | [optional] 
+**CallerContractAddress** | Pointer to **string** |  | [optional] 
 **Bytecode** | **string** |  | 
 **InitialImmFields** | Pointer to [**[]Val**](Val.md) |  | [optional] 
 **InitialMutFields** | Pointer to [**[]Val**](Val.md) |  | [optional] 
@@ -17,6 +18,7 @@ Name | Type | Description | Notes
 **Args** | Pointer to [**[]Val**](Val.md) |  | [optional] 
 **ExistingContracts** | Pointer to [**[]ContractState**](ContractState.md) |  | [optional] 
 **InputAssets** | Pointer to [**[]TestInputAsset**](TestInputAsset.md) |  | [optional] 
+**DustAmount** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -161,6 +163,31 @@ SetAddress sets Address field to given value.
 `func (o *TestContract) HasAddress() bool`
 
 HasAddress returns a boolean if a field has been set.
+
+### GetCallerContractAddress
+
+`func (o *TestContract) GetCallerContractAddress() string`
+
+GetCallerContractAddress returns the CallerContractAddress field if non-nil, zero value otherwise.
+
+### GetCallerContractAddressOk
+
+`func (o *TestContract) GetCallerContractAddressOk() (*string, bool)`
+
+GetCallerContractAddressOk returns a tuple with the CallerContractAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCallerContractAddress
+
+`func (o *TestContract) SetCallerContractAddress(v string)`
+
+SetCallerContractAddress sets CallerContractAddress field to given value.
+
+### HasCallerContractAddress
+
+`func (o *TestContract) HasCallerContractAddress() bool`
+
+HasCallerContractAddress returns a boolean if a field has been set.
 
 ### GetBytecode
 
@@ -356,6 +383,31 @@ SetInputAssets sets InputAssets field to given value.
 `func (o *TestContract) HasInputAssets() bool`
 
 HasInputAssets returns a boolean if a field has been set.
+
+### GetDustAmount
+
+`func (o *TestContract) GetDustAmount() string`
+
+GetDustAmount returns the DustAmount field if non-nil, zero value otherwise.
+
+### GetDustAmountOk
+
+`func (o *TestContract) GetDustAmountOk() (*string, bool)`
+
+GetDustAmountOk returns a tuple with the DustAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDustAmount
+
+`func (o *TestContract) SetDustAmount(v string)`
+
+SetDustAmount sets DustAmount field to given value.
+
+### HasDustAmount
+
+`func (o *TestContract) HasDustAmount() bool`
+
+HasDustAmount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromAddress** | **string** |  | 
 **FromPublicKeys** | **[]string** |  | 
+**FromPublicKeyTypes** | Pointer to **[]string** |  | [optional] 
+**FromPublicKeyIndexes** | Pointer to **[]int32** |  | [optional] 
 **ToAddress** | **string** |  | 
 **MaxAttoAlphPerUTXO** | Pointer to **string** |  | [optional] 
 **LockTime** | Pointer to **int64** |  | [optional] 
@@ -13,6 +15,9 @@ Name | Type | Description | Notes
 **GasPrice** | Pointer to **string** |  | [optional] 
 **UtxosLimit** | Pointer to **int32** |  | [optional] 
 **TargetBlockHash** | Pointer to **string** |  | [optional] 
+**Group** | Pointer to **int32** |  | [optional] 
+**MultiSigType** | Pointer to **string** |  | [optional] 
+**SweepAlphOnly** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -72,6 +77,56 @@ and a boolean to check if the value has been set.
 
 SetFromPublicKeys sets FromPublicKeys field to given value.
 
+
+### GetFromPublicKeyTypes
+
+`func (o *BuildSweepMultisig) GetFromPublicKeyTypes() []string`
+
+GetFromPublicKeyTypes returns the FromPublicKeyTypes field if non-nil, zero value otherwise.
+
+### GetFromPublicKeyTypesOk
+
+`func (o *BuildSweepMultisig) GetFromPublicKeyTypesOk() (*[]string, bool)`
+
+GetFromPublicKeyTypesOk returns a tuple with the FromPublicKeyTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFromPublicKeyTypes
+
+`func (o *BuildSweepMultisig) SetFromPublicKeyTypes(v []string)`
+
+SetFromPublicKeyTypes sets FromPublicKeyTypes field to given value.
+
+### HasFromPublicKeyTypes
+
+`func (o *BuildSweepMultisig) HasFromPublicKeyTypes() bool`
+
+HasFromPublicKeyTypes returns a boolean if a field has been set.
+
+### GetFromPublicKeyIndexes
+
+`func (o *BuildSweepMultisig) GetFromPublicKeyIndexes() []int32`
+
+GetFromPublicKeyIndexes returns the FromPublicKeyIndexes field if non-nil, zero value otherwise.
+
+### GetFromPublicKeyIndexesOk
+
+`func (o *BuildSweepMultisig) GetFromPublicKeyIndexesOk() (*[]int32, bool)`
+
+GetFromPublicKeyIndexesOk returns a tuple with the FromPublicKeyIndexes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFromPublicKeyIndexes
+
+`func (o *BuildSweepMultisig) SetFromPublicKeyIndexes(v []int32)`
+
+SetFromPublicKeyIndexes sets FromPublicKeyIndexes field to given value.
+
+### HasFromPublicKeyIndexes
+
+`func (o *BuildSweepMultisig) HasFromPublicKeyIndexes() bool`
+
+HasFromPublicKeyIndexes returns a boolean if a field has been set.
 
 ### GetToAddress
 
@@ -242,6 +297,81 @@ SetTargetBlockHash sets TargetBlockHash field to given value.
 `func (o *BuildSweepMultisig) HasTargetBlockHash() bool`
 
 HasTargetBlockHash returns a boolean if a field has been set.
+
+### GetGroup
+
+`func (o *BuildSweepMultisig) GetGroup() int32`
+
+GetGroup returns the Group field if non-nil, zero value otherwise.
+
+### GetGroupOk
+
+`func (o *BuildSweepMultisig) GetGroupOk() (*int32, bool)`
+
+GetGroupOk returns a tuple with the Group field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroup
+
+`func (o *BuildSweepMultisig) SetGroup(v int32)`
+
+SetGroup sets Group field to given value.
+
+### HasGroup
+
+`func (o *BuildSweepMultisig) HasGroup() bool`
+
+HasGroup returns a boolean if a field has been set.
+
+### GetMultiSigType
+
+`func (o *BuildSweepMultisig) GetMultiSigType() string`
+
+GetMultiSigType returns the MultiSigType field if non-nil, zero value otherwise.
+
+### GetMultiSigTypeOk
+
+`func (o *BuildSweepMultisig) GetMultiSigTypeOk() (*string, bool)`
+
+GetMultiSigTypeOk returns a tuple with the MultiSigType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMultiSigType
+
+`func (o *BuildSweepMultisig) SetMultiSigType(v string)`
+
+SetMultiSigType sets MultiSigType field to given value.
+
+### HasMultiSigType
+
+`func (o *BuildSweepMultisig) HasMultiSigType() bool`
+
+HasMultiSigType returns a boolean if a field has been set.
+
+### GetSweepAlphOnly
+
+`func (o *BuildSweepMultisig) GetSweepAlphOnly() bool`
+
+GetSweepAlphOnly returns the SweepAlphOnly field if non-nil, zero value otherwise.
+
+### GetSweepAlphOnlyOk
+
+`func (o *BuildSweepMultisig) GetSweepAlphOnlyOk() (*bool, bool)`
+
+GetSweepAlphOnlyOk returns a tuple with the SweepAlphOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSweepAlphOnly
+
+`func (o *BuildSweepMultisig) SetSweepAlphOnly(v bool)`
+
+SetSweepAlphOnly sets SweepAlphOnly field to given value.
+
+### HasSweepAlphOnly
+
+`func (o *BuildSweepMultisig) HasSweepAlphOnly() bool`
+
+HasSweepAlphOnly returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

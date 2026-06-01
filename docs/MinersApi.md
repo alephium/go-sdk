@@ -1,15 +1,15 @@
-# \MinersApi
+# \MinersAPI
 
 All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetMinersAddresses**](MinersApi.md#GetMinersAddresses) | **Get** /miners/addresses | List miner&#39;s addresses
-[**GetWalletsWalletNameMinerAddresses**](MinersApi.md#GetWalletsWalletNameMinerAddresses) | **Get** /wallets/{wallet_name}/miner-addresses | List all miner addresses per group
-[**PostMinersCpuMining**](MinersApi.md#PostMinersCpuMining) | **Post** /miners/cpu-mining | Execute an action on CPU miner. !!! for test only !!!
-[**PostMinersCpuMiningMineOneBlock**](MinersApi.md#PostMinersCpuMiningMineOneBlock) | **Post** /miners/cpu-mining/mine-one-block | Mine a block on CPU miner. !!! for test only !!!
-[**PostWalletsWalletNameDeriveNextMinerAddresses**](MinersApi.md#PostWalletsWalletNameDeriveNextMinerAddresses) | **Post** /wallets/{wallet_name}/derive-next-miner-addresses | Derive your next miner addresses for each group
-[**PutMinersAddresses**](MinersApi.md#PutMinersAddresses) | **Put** /miners/addresses | Update miner&#39;s addresses, but better to use user.conf instead
+[**GetMinersAddresses**](MinersAPI.md#GetMinersAddresses) | **Get** /miners/addresses | List miner&#39;s addresses
+[**GetWalletsWalletNameMinerAddresses**](MinersAPI.md#GetWalletsWalletNameMinerAddresses) | **Get** /wallets/{wallet_name}/miner-addresses | List all miner addresses per group
+[**PostMinersCpuMining**](MinersAPI.md#PostMinersCpuMining) | **Post** /miners/cpu-mining | Execute an action on CPU miner. !!! for test only !!!
+[**PostMinersCpuMiningMineOneBlock**](MinersAPI.md#PostMinersCpuMiningMineOneBlock) | **Post** /miners/cpu-mining/mine-one-block | Mine a block on CPU miner. !!! for test only !!!
+[**PostWalletsWalletNameDeriveNextMinerAddresses**](MinersAPI.md#PostWalletsWalletNameDeriveNextMinerAddresses) | **Post** /wallets/{wallet_name}/derive-next-miner-addresses | Derive your next miner addresses for each group
+[**PutMinersAddresses**](MinersAPI.md#PutMinersAddresses) | **Put** /miners/addresses | Update miner&#39;s addresses, but better to use user.conf instead
 
 
 
@@ -25,23 +25,23 @@ List miner's addresses
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MinersApi.GetMinersAddresses(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MinersApi.GetMinersAddresses``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetMinersAddresses`: MinerAddresses
-    fmt.Fprintf(os.Stdout, "Response from `MinersApi.GetMinersAddresses`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MinersAPI.GetMinersAddresses(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MinersAPI.GetMinersAddresses``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMinersAddresses`: MinerAddresses
+	fmt.Fprintf(os.Stdout, "Response from `MinersAPI.GetMinersAddresses`: %v\n", resp)
 }
 ```
 
@@ -86,24 +86,24 @@ List all miner addresses per group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
+	walletName := "walletName_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MinersApi.GetWalletsWalletNameMinerAddresses(context.Background(), walletName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MinersApi.GetWalletsWalletNameMinerAddresses``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWalletsWalletNameMinerAddresses`: []MinerAddressesInfo
-    fmt.Fprintf(os.Stdout, "Response from `MinersApi.GetWalletsWalletNameMinerAddresses`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MinersAPI.GetWalletsWalletNameMinerAddresses(context.Background(), walletName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MinersAPI.GetWalletsWalletNameMinerAddresses``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWalletsWalletNameMinerAddresses`: []MinerAddressesInfo
+	fmt.Fprintf(os.Stdout, "Response from `MinersAPI.GetWalletsWalletNameMinerAddresses`: %v\n", resp)
 }
 ```
 
@@ -154,24 +154,24 @@ Execute an action on CPU miner. !!! for test only !!!
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    action := "start-mining" // string | 
+	action := "start-mining" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MinersApi.PostMinersCpuMining(context.Background()).Action(action).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MinersApi.PostMinersCpuMining``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostMinersCpuMining`: bool
-    fmt.Fprintf(os.Stdout, "Response from `MinersApi.PostMinersCpuMining`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MinersAPI.PostMinersCpuMining(context.Background()).Action(action).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MinersAPI.PostMinersCpuMining``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostMinersCpuMining`: bool
+	fmt.Fprintf(os.Stdout, "Response from `MinersAPI.PostMinersCpuMining`: %v\n", resp)
 }
 ```
 
@@ -218,25 +218,25 @@ Mine a block on CPU miner. !!! for test only !!!
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    fromGroup := int32(56) // int32 | 
-    toGroup := int32(56) // int32 | 
+	fromGroup := int32(56) // int32 | 
+	toGroup := int32(56) // int32 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MinersApi.PostMinersCpuMiningMineOneBlock(context.Background()).FromGroup(fromGroup).ToGroup(toGroup).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MinersApi.PostMinersCpuMiningMineOneBlock``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostMinersCpuMiningMineOneBlock`: bool
-    fmt.Fprintf(os.Stdout, "Response from `MinersApi.PostMinersCpuMiningMineOneBlock`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MinersAPI.PostMinersCpuMiningMineOneBlock(context.Background()).FromGroup(fromGroup).ToGroup(toGroup).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MinersAPI.PostMinersCpuMiningMineOneBlock``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostMinersCpuMiningMineOneBlock`: bool
+	fmt.Fprintf(os.Stdout, "Response from `MinersAPI.PostMinersCpuMiningMineOneBlock`: %v\n", resp)
 }
 ```
 
@@ -286,24 +286,24 @@ Derive your next miner addresses for each group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    walletName := "walletName_example" // string | 
+	walletName := "walletName_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MinersApi.PostWalletsWalletNameDeriveNextMinerAddresses(context.Background(), walletName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MinersApi.PostWalletsWalletNameDeriveNextMinerAddresses``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWalletsWalletNameDeriveNextMinerAddresses`: []AddressInfo
-    fmt.Fprintf(os.Stdout, "Response from `MinersApi.PostWalletsWalletNameDeriveNextMinerAddresses`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MinersAPI.PostWalletsWalletNameDeriveNextMinerAddresses(context.Background(), walletName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MinersAPI.PostWalletsWalletNameDeriveNextMinerAddresses``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWalletsWalletNameDeriveNextMinerAddresses`: []AddressInfo
+	fmt.Fprintf(os.Stdout, "Response from `MinersAPI.PostWalletsWalletNameDeriveNextMinerAddresses`: %v\n", resp)
 }
 ```
 
@@ -354,22 +354,22 @@ Update miner's addresses, but better to use user.conf instead
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    minerAddresses := *openapiclient.NewMinerAddresses([]string{"Addresses_example"}) // MinerAddresses | 
+	minerAddresses := *openapiclient.NewMinerAddresses([]string{"Addresses_example"}) // MinerAddresses | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MinersApi.PutMinersAddresses(context.Background()).MinerAddresses(minerAddresses).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MinersApi.PutMinersAddresses``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.MinersAPI.PutMinersAddresses(context.Background()).MinerAddresses(minerAddresses).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MinersAPI.PutMinersAddresses``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

@@ -1,13 +1,13 @@
-# \MultiSignatureApi
+# \MultiSignatureAPI
 
 All URIs are relative to *http://..*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PostMultisigAddress**](MultiSignatureApi.md#PostMultisigAddress) | **Post** /multisig/address | Create the multisig address and unlock script
-[**PostMultisigBuild**](MultiSignatureApi.md#PostMultisigBuild) | **Post** /multisig/build | Build a multisig unsigned transaction
-[**PostMultisigSubmit**](MultiSignatureApi.md#PostMultisigSubmit) | **Post** /multisig/submit | Submit a multi-signed transaction
-[**PostMultisigSweep**](MultiSignatureApi.md#PostMultisigSweep) | **Post** /multisig/sweep | Sweep all unlocked ALPH and token balances of a multisig address to another address
+[**PostMultisigAddress**](MultiSignatureAPI.md#PostMultisigAddress) | **Post** /multisig/address | Create the multisig address and unlock script
+[**PostMultisigBuild**](MultiSignatureAPI.md#PostMultisigBuild) | **Post** /multisig/build | Build a multisig unsigned transaction
+[**PostMultisigSubmit**](MultiSignatureAPI.md#PostMultisigSubmit) | **Post** /multisig/submit | Submit a multi-signed transaction
+[**PostMultisigSweep**](MultiSignatureAPI.md#PostMultisigSweep) | **Post** /multisig/sweep | Sweep all unlocked ALPH and token balances of a multisig address to another address
 
 
 
@@ -23,24 +23,24 @@ Create the multisig address and unlock script
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    buildMultisigAddress := *openapiclient.NewBuildMultisigAddress([]string{"Keys_example"}, int32(123)) // BuildMultisigAddress | Format 1: `1000000000000000000`  Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000  Field fromPublicKeyType can be  `default` or `bip340-schnorr`
+	buildMultisigAddress := *openapiclient.NewBuildMultisigAddress([]string{"Keys_example"}, int32(123)) // BuildMultisigAddress | Format 1: `1000000000000000000`  Format 2: `x.y ALPH`, where `1 ALPH = 1000000000000000000  Field fromPublicKeyType can be  `default` or `bip340-schnorr`
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MultiSignatureApi.PostMultisigAddress(context.Background()).BuildMultisigAddress(buildMultisigAddress).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureApi.PostMultisigAddress``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostMultisigAddress`: BuildMultisigAddressResult
-    fmt.Fprintf(os.Stdout, "Response from `MultiSignatureApi.PostMultisigAddress`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MultiSignatureAPI.PostMultisigAddress(context.Background()).BuildMultisigAddress(buildMultisigAddress).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureAPI.PostMultisigAddress``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostMultisigAddress`: BuildMultisigAddressResult
+	fmt.Fprintf(os.Stdout, "Response from `MultiSignatureAPI.PostMultisigAddress`: %v\n", resp)
 }
 ```
 
@@ -77,7 +77,7 @@ No authorization required
 
 ## PostMultisigBuild
 
-> BuildTransactionResult PostMultisigBuild(ctx).BuildMultisig(buildMultisig).Execute()
+> BuildTransferTxResult PostMultisigBuild(ctx).BuildMultisig(buildMultisig).Execute()
 
 Build a multisig unsigned transaction
 
@@ -87,24 +87,24 @@ Build a multisig unsigned transaction
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    buildMultisig := *openapiclient.NewBuildMultisig("FromAddress_example", []string{"FromPublicKeys_example"}, []openapiclient.Destination{*openapiclient.NewDestination("Address_example", "AttoAlphAmount_example")}) // BuildMultisig | 
+	buildMultisig := *openapiclient.NewBuildMultisig("FromAddress_example", []string{"FromPublicKeys_example"}, []openapiclient.Destination{*openapiclient.NewDestination("Address_example")}) // BuildMultisig | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MultiSignatureApi.PostMultisigBuild(context.Background()).BuildMultisig(buildMultisig).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureApi.PostMultisigBuild``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostMultisigBuild`: BuildTransactionResult
-    fmt.Fprintf(os.Stdout, "Response from `MultiSignatureApi.PostMultisigBuild`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MultiSignatureAPI.PostMultisigBuild(context.Background()).BuildMultisig(buildMultisig).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureAPI.PostMultisigBuild``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostMultisigBuild`: BuildTransferTxResult
+	fmt.Fprintf(os.Stdout, "Response from `MultiSignatureAPI.PostMultisigBuild`: %v\n", resp)
 }
 ```
 
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuildTransactionResult**](BuildTransactionResult.md)
+[**BuildTransferTxResult**](BuildTransferTxResult.md)
 
 ### Authorization
 
@@ -151,24 +151,24 @@ Submit a multi-signed transaction
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    submitMultisig := *openapiclient.NewSubmitMultisig("UnsignedTx_example", []string{"Signatures_example"}) // SubmitMultisig | 
+	submitMultisig := *openapiclient.NewSubmitMultisig("UnsignedTx_example", []string{"Signatures_example"}) // SubmitMultisig | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MultiSignatureApi.PostMultisigSubmit(context.Background()).SubmitMultisig(submitMultisig).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureApi.PostMultisigSubmit``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostMultisigSubmit`: SubmitTxResult
-    fmt.Fprintf(os.Stdout, "Response from `MultiSignatureApi.PostMultisigSubmit`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MultiSignatureAPI.PostMultisigSubmit(context.Background()).SubmitMultisig(submitMultisig).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureAPI.PostMultisigSubmit``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostMultisigSubmit`: SubmitTxResult
+	fmt.Fprintf(os.Stdout, "Response from `MultiSignatureAPI.PostMultisigSubmit`: %v\n", resp)
 }
 ```
 
@@ -215,24 +215,24 @@ Sweep all unlocked ALPH and token balances of a multisig address to another addr
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/alephium/go-sdk"
 )
 
 func main() {
-    buildSweepMultisig := *openapiclient.NewBuildSweepMultisig("FromAddress_example", []string{"FromPublicKeys_example"}, "ToAddress_example") // BuildSweepMultisig | 
+	buildSweepMultisig := *openapiclient.NewBuildSweepMultisig("FromAddress_example", []string{"FromPublicKeys_example"}, "ToAddress_example") // BuildSweepMultisig | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MultiSignatureApi.PostMultisigSweep(context.Background()).BuildSweepMultisig(buildSweepMultisig).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureApi.PostMultisigSweep``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostMultisigSweep`: BuildSweepAddressTransactionsResult
-    fmt.Fprintf(os.Stdout, "Response from `MultiSignatureApi.PostMultisigSweep`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MultiSignatureAPI.PostMultisigSweep(context.Background()).BuildSweepMultisig(buildSweepMultisig).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MultiSignatureAPI.PostMultisigSweep``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostMultisigSweep`: BuildSweepAddressTransactionsResult
+	fmt.Fprintf(os.Stdout, "Response from `MultiSignatureAPI.PostMultisigSweep`: %v\n", resp)
 }
 ```
 

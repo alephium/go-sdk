@@ -10,12 +10,14 @@ Name | Type | Description | Notes
 **GasAmount** | **int32** |  | 
 **GasPrice** | **string** |  | 
 **TxId** | **string** |  | 
+**SimulationResult** | [**SimulationResult**](SimulationResult.md) |  | 
+**FundingTxs** | Pointer to [**[]BuildSimpleTransferTxResult**](BuildSimpleTransferTxResult.md) |  | [optional] 
 
 ## Methods
 
 ### NewBuildExecuteScriptTxResult
 
-`func NewBuildExecuteScriptTxResult(fromGroup int32, toGroup int32, unsignedTx string, gasAmount int32, gasPrice string, txId string, ) *BuildExecuteScriptTxResult`
+`func NewBuildExecuteScriptTxResult(fromGroup int32, toGroup int32, unsignedTx string, gasAmount int32, gasPrice string, txId string, simulationResult SimulationResult, ) *BuildExecuteScriptTxResult`
 
 NewBuildExecuteScriptTxResult instantiates a new BuildExecuteScriptTxResult object
 This constructor will assign default values to properties that have it defined,
@@ -149,6 +151,51 @@ and a boolean to check if the value has been set.
 
 SetTxId sets TxId field to given value.
 
+
+### GetSimulationResult
+
+`func (o *BuildExecuteScriptTxResult) GetSimulationResult() SimulationResult`
+
+GetSimulationResult returns the SimulationResult field if non-nil, zero value otherwise.
+
+### GetSimulationResultOk
+
+`func (o *BuildExecuteScriptTxResult) GetSimulationResultOk() (*SimulationResult, bool)`
+
+GetSimulationResultOk returns a tuple with the SimulationResult field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSimulationResult
+
+`func (o *BuildExecuteScriptTxResult) SetSimulationResult(v SimulationResult)`
+
+SetSimulationResult sets SimulationResult field to given value.
+
+
+### GetFundingTxs
+
+`func (o *BuildExecuteScriptTxResult) GetFundingTxs() []BuildSimpleTransferTxResult`
+
+GetFundingTxs returns the FundingTxs field if non-nil, zero value otherwise.
+
+### GetFundingTxsOk
+
+`func (o *BuildExecuteScriptTxResult) GetFundingTxsOk() (*[]BuildSimpleTransferTxResult, bool)`
+
+GetFundingTxsOk returns a tuple with the FundingTxs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFundingTxs
+
+`func (o *BuildExecuteScriptTxResult) SetFundingTxs(v []BuildSimpleTransferTxResult)`
+
+SetFundingTxs sets FundingTxs field to given value.
+
+### HasFundingTxs
+
+`func (o *BuildExecuteScriptTxResult) HasFundingTxs() bool`
+
+HasFundingTxs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

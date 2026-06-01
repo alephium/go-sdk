@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **IgnoreUnusedPrivateFunctionsWarnings** | Pointer to **bool** |  | [optional] 
 **IgnoreUpdateFieldsCheckWarnings** | Pointer to **bool** |  | [optional] 
 **IgnoreCheckExternalCallerWarnings** | Pointer to **bool** |  | [optional] 
+**IgnoreUnusedFunctionReturnWarnings** | Pointer to **bool** |  | [optional] 
+**SkipAbstractContractCheck** | Pointer to **bool** |  | [optional] 
+**SkipTests** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +182,81 @@ SetIgnoreCheckExternalCallerWarnings sets IgnoreCheckExternalCallerWarnings fiel
 `func (o *CompilerOptions) HasIgnoreCheckExternalCallerWarnings() bool`
 
 HasIgnoreCheckExternalCallerWarnings returns a boolean if a field has been set.
+
+### GetIgnoreUnusedFunctionReturnWarnings
+
+`func (o *CompilerOptions) GetIgnoreUnusedFunctionReturnWarnings() bool`
+
+GetIgnoreUnusedFunctionReturnWarnings returns the IgnoreUnusedFunctionReturnWarnings field if non-nil, zero value otherwise.
+
+### GetIgnoreUnusedFunctionReturnWarningsOk
+
+`func (o *CompilerOptions) GetIgnoreUnusedFunctionReturnWarningsOk() (*bool, bool)`
+
+GetIgnoreUnusedFunctionReturnWarningsOk returns a tuple with the IgnoreUnusedFunctionReturnWarnings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIgnoreUnusedFunctionReturnWarnings
+
+`func (o *CompilerOptions) SetIgnoreUnusedFunctionReturnWarnings(v bool)`
+
+SetIgnoreUnusedFunctionReturnWarnings sets IgnoreUnusedFunctionReturnWarnings field to given value.
+
+### HasIgnoreUnusedFunctionReturnWarnings
+
+`func (o *CompilerOptions) HasIgnoreUnusedFunctionReturnWarnings() bool`
+
+HasIgnoreUnusedFunctionReturnWarnings returns a boolean if a field has been set.
+
+### GetSkipAbstractContractCheck
+
+`func (o *CompilerOptions) GetSkipAbstractContractCheck() bool`
+
+GetSkipAbstractContractCheck returns the SkipAbstractContractCheck field if non-nil, zero value otherwise.
+
+### GetSkipAbstractContractCheckOk
+
+`func (o *CompilerOptions) GetSkipAbstractContractCheckOk() (*bool, bool)`
+
+GetSkipAbstractContractCheckOk returns a tuple with the SkipAbstractContractCheck field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSkipAbstractContractCheck
+
+`func (o *CompilerOptions) SetSkipAbstractContractCheck(v bool)`
+
+SetSkipAbstractContractCheck sets SkipAbstractContractCheck field to given value.
+
+### HasSkipAbstractContractCheck
+
+`func (o *CompilerOptions) HasSkipAbstractContractCheck() bool`
+
+HasSkipAbstractContractCheck returns a boolean if a field has been set.
+
+### GetSkipTests
+
+`func (o *CompilerOptions) GetSkipTests() bool`
+
+GetSkipTests returns the SkipTests field if non-nil, zero value otherwise.
+
+### GetSkipTestsOk
+
+`func (o *CompilerOptions) GetSkipTestsOk() (*bool, bool)`
+
+GetSkipTestsOk returns a tuple with the SkipTests field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSkipTests
+
+`func (o *CompilerOptions) SetSkipTests(v bool)`
+
+SetSkipTests sets SkipTests field to given value.
+
+### HasSkipTests
+
+`func (o *CompilerOptions) HasSkipTests() bool`
+
+HasSkipTests returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
