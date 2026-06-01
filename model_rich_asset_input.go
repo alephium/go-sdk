@@ -272,9 +272,27 @@ func (o *RichAssetInput) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
+	decodeData := data
+	if rawTypeValue, exists := allProperties["type"]; exists {
+		typeValue, ok := rawTypeValue.(string)
+		if !ok || typeValue != "AssetInput" {
+			return fmt.Errorf("invalid rich asset input type %v", rawTypeValue)
+		}
+		decodedProperties := map[string]json.RawMessage{}
+		err = json.Unmarshal(data, &decodedProperties)
+		if err != nil {
+			return err
+		}
+		delete(decodedProperties, "type")
+		decodeData, err = json.Marshal(decodedProperties)
+		if err != nil {
+			return err
+		}
+	}
+
 	varRichAssetInput := _RichAssetInput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder := json.NewDecoder(bytes.NewReader(decodeData))
 	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRichAssetInput)
 
