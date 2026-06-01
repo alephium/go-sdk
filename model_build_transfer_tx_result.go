@@ -12,14 +12,13 @@ package alephium
 
 import (
 	"encoding/json"
-	"fmt"
 	"gopkg.in/validator.v2"
 )
 
 // BuildTransferTxResult - struct for BuildTransferTxResult
 type BuildTransferTxResult struct {
 	BuildGrouplessTransferTxResult *BuildGrouplessTransferTxResult
-	BuildSimpleTransferTxResult *BuildSimpleTransferTxResult
+	BuildSimpleTransferTxResult    *BuildSimpleTransferTxResult
 }
 
 // BuildGrouplessTransferTxResultAsBuildTransferTxResult is a convenience function that returns BuildGrouplessTransferTxResult wrapped in BuildTransferTxResult
@@ -36,56 +35,35 @@ func BuildSimpleTransferTxResultAsBuildTransferTxResult(v *BuildSimpleTransferTx
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *BuildTransferTxResult) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into BuildGrouplessTransferTxResult
-	err = newStrictDecoder(data).Decode(&dst.BuildGrouplessTransferTxResult)
-	if err == nil {
-		jsonBuildGrouplessTransferTxResult, _ := json.Marshal(dst.BuildGrouplessTransferTxResult)
-		if string(jsonBuildGrouplessTransferTxResult) == "{}" { // empty struct
-			dst.BuildGrouplessTransferTxResult = nil
-		} else {
-			if err = validator.Validate(dst.BuildGrouplessTransferTxResult); err != nil {
-				dst.BuildGrouplessTransferTxResult = nil
-			} else {
-				match++
-			}
+	var fields map[string]interface{}
+	if err := json.Unmarshal(data, &fields); err != nil {
+		return err
+	}
+	if _, ok := fields["fundingTxs"]; ok {
+		var result BuildGrouplessTransferTxResult
+		if err := newStrictDecoder(data).Decode(&result); err != nil {
+			return err
 		}
-	} else {
-		dst.BuildGrouplessTransferTxResult = nil
-	}
-
-	// try to unmarshal data into BuildSimpleTransferTxResult
-	err = newStrictDecoder(data).Decode(&dst.BuildSimpleTransferTxResult)
-	if err == nil {
-		jsonBuildSimpleTransferTxResult, _ := json.Marshal(dst.BuildSimpleTransferTxResult)
-		if string(jsonBuildSimpleTransferTxResult) == "{}" { // empty struct
-			dst.BuildSimpleTransferTxResult = nil
-		} else {
-			if err = validator.Validate(dst.BuildSimpleTransferTxResult); err != nil {
-				dst.BuildSimpleTransferTxResult = nil
-			} else {
-				match++
-			}
+		if err := validator.Validate(&result); err != nil {
+			return err
 		}
-	} else {
+		dst.BuildGrouplessTransferTxResult = &result
 		dst.BuildSimpleTransferTxResult = nil
+		return nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.BuildGrouplessTransferTxResult = nil
-		dst.BuildSimpleTransferTxResult = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(BuildTransferTxResult)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(BuildTransferTxResult)")
+	var result BuildSimpleTransferTxResult
+	if err := newStrictDecoder(data).Decode(&result); err != nil {
+		return err
 	}
+	if err := validator.Validate(&result); err != nil {
+		return err
+	}
+	dst.BuildGrouplessTransferTxResult = nil
+	dst.BuildSimpleTransferTxResult = &result
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
@@ -102,7 +80,7 @@ func (src BuildTransferTxResult) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *BuildTransferTxResult) GetActualInstance() (interface{}) {
+func (obj *BuildTransferTxResult) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +97,7 @@ func (obj *BuildTransferTxResult) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj BuildTransferTxResult) GetActualInstanceValue() (interface{}) {
+func (obj BuildTransferTxResult) GetActualInstanceValue() interface{} {
 	if obj.BuildGrouplessTransferTxResult != nil {
 		return *obj.BuildGrouplessTransferTxResult
 	}
@@ -167,5 +145,3 @@ func (v *NullableBuildTransferTxResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

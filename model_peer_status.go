@@ -18,7 +18,7 @@ import (
 
 // PeerStatus - struct for PeerStatus
 type PeerStatus struct {
-	Banned *Banned
+	Banned  *Banned
 	Penalty *Penalty
 }
 
@@ -36,7 +36,6 @@ func PenaltyAsPeerStatus(v *Penalty) PeerStatus {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *PeerStatus) UnmarshalJSON(data []byte) error {
 	var err error
@@ -44,8 +43,7 @@ func (dst *PeerStatus) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Banned
 	err = newStrictDecoder(data).Decode(&dst.Banned)
 	if err == nil {
-		jsonBanned, _ := json.Marshal(dst.Banned)
-		if string(jsonBanned) == "{}" { // empty struct
+		if dst.Banned == nil || dst.Banned.Type != "Banned" { // not the right type
 			dst.Banned = nil
 		} else {
 			if err = validator.Validate(dst.Banned); err != nil {
@@ -61,8 +59,7 @@ func (dst *PeerStatus) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Penalty
 	err = newStrictDecoder(data).Decode(&dst.Penalty)
 	if err == nil {
-		jsonPenalty, _ := json.Marshal(dst.Penalty)
-		if string(jsonPenalty) == "{}" { // empty struct
+		if dst.Penalty == nil || dst.Penalty.Type != "Penalty" { // not the right type
 			dst.Penalty = nil
 		} else {
 			if err = validator.Validate(dst.Penalty); err != nil {
@@ -102,7 +99,7 @@ func (src PeerStatus) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *PeerStatus) GetActualInstance() (interface{}) {
+func (obj *PeerStatus) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +116,7 @@ func (obj *PeerStatus) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj PeerStatus) GetActualInstanceValue() (interface{}) {
+func (obj PeerStatus) GetActualInstanceValue() interface{} {
 	if obj.Banned != nil {
 		return *obj.Banned
 	}
@@ -167,5 +164,3 @@ func (v *NullablePeerStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

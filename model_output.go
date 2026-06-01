@@ -18,7 +18,7 @@ import (
 
 // Output - struct for Output
 type Output struct {
-	AssetOutput *AssetOutput
+	AssetOutput    *AssetOutput
 	ContractOutput *ContractOutput
 }
 
@@ -36,7 +36,6 @@ func ContractOutputAsOutput(v *ContractOutput) Output {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Output) UnmarshalJSON(data []byte) error {
 	var err error
@@ -44,8 +43,7 @@ func (dst *Output) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into AssetOutput
 	err = newStrictDecoder(data).Decode(&dst.AssetOutput)
 	if err == nil {
-		jsonAssetOutput, _ := json.Marshal(dst.AssetOutput)
-		if string(jsonAssetOutput) == "{}" { // empty struct
+		if dst.AssetOutput == nil || dst.AssetOutput.Type != "AssetOutput" { // not the right type
 			dst.AssetOutput = nil
 		} else {
 			if err = validator.Validate(dst.AssetOutput); err != nil {
@@ -61,8 +59,7 @@ func (dst *Output) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into ContractOutput
 	err = newStrictDecoder(data).Decode(&dst.ContractOutput)
 	if err == nil {
-		jsonContractOutput, _ := json.Marshal(dst.ContractOutput)
-		if string(jsonContractOutput) == "{}" { // empty struct
+		if dst.ContractOutput == nil || dst.ContractOutput.Type != "ContractOutput" { // not the right type
 			dst.ContractOutput = nil
 		} else {
 			if err = validator.Validate(dst.ContractOutput); err != nil {
@@ -102,7 +99,7 @@ func (src Output) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Output) GetActualInstance() (interface{}) {
+func (obj *Output) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +116,7 @@ func (obj *Output) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Output) GetActualInstanceValue() (interface{}) {
+func (obj Output) GetActualInstanceValue() interface{} {
 	if obj.AssetOutput != nil {
 		return *obj.AssetOutput
 	}
@@ -167,5 +164,3 @@ func (v *NullableOutput) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

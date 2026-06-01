@@ -244,9 +244,27 @@ func (o *RichContractInput) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
+	decodeData := data
+	if rawTypeValue, exists := allProperties["type"]; exists {
+		typeValue, ok := rawTypeValue.(string)
+		if !ok || typeValue != "ContractInput" {
+			return fmt.Errorf("invalid rich contract input type %v", rawTypeValue)
+		}
+		decodedProperties := map[string]json.RawMessage{}
+		err = json.Unmarshal(data, &decodedProperties)
+		if err != nil {
+			return err
+		}
+		delete(decodedProperties, "type")
+		decodeData, err = json.Marshal(decodedProperties)
+		if err != nil {
+			return err
+		}
+	}
+
 	varRichContractInput := _RichContractInput{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder := json.NewDecoder(bytes.NewReader(decodeData))
 	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRichContractInput)
 

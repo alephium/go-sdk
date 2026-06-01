@@ -18,7 +18,7 @@ import (
 
 // DiscoveryAction - struct for DiscoveryAction
 type DiscoveryAction struct {
-	Reachable *Reachable
+	Reachable   *Reachable
 	Unreachable *Unreachable
 }
 
@@ -36,7 +36,6 @@ func UnreachableAsDiscoveryAction(v *Unreachable) DiscoveryAction {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *DiscoveryAction) UnmarshalJSON(data []byte) error {
 	var err error
@@ -44,8 +43,7 @@ func (dst *DiscoveryAction) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Reachable
 	err = newStrictDecoder(data).Decode(&dst.Reachable)
 	if err == nil {
-		jsonReachable, _ := json.Marshal(dst.Reachable)
-		if string(jsonReachable) == "{}" { // empty struct
+		if dst.Reachable == nil || dst.Reachable.Type != "Reachable" { // not the right type
 			dst.Reachable = nil
 		} else {
 			if err = validator.Validate(dst.Reachable); err != nil {
@@ -61,8 +59,7 @@ func (dst *DiscoveryAction) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Unreachable
 	err = newStrictDecoder(data).Decode(&dst.Unreachable)
 	if err == nil {
-		jsonUnreachable, _ := json.Marshal(dst.Unreachable)
-		if string(jsonUnreachable) == "{}" { // empty struct
+		if dst.Unreachable == nil || dst.Unreachable.Type != "Unreachable" { // not the right type
 			dst.Unreachable = nil
 		} else {
 			if err = validator.Validate(dst.Unreachable); err != nil {
@@ -102,7 +99,7 @@ func (src DiscoveryAction) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *DiscoveryAction) GetActualInstance() (interface{}) {
+func (obj *DiscoveryAction) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +116,7 @@ func (obj *DiscoveryAction) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj DiscoveryAction) GetActualInstanceValue() (interface{}) {
+func (obj DiscoveryAction) GetActualInstanceValue() interface{} {
 	if obj.Reachable != nil {
 		return *obj.Reachable
 	}
@@ -167,5 +164,3 @@ func (v *NullableDiscoveryAction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

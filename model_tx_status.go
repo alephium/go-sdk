@@ -18,9 +18,9 @@ import (
 
 // TxStatus - struct for TxStatus
 type TxStatus struct {
-	Confirmed *Confirmed
+	Confirmed  *Confirmed
 	Conflicted *Conflicted
-	MemPooled *MemPooled
+	MemPooled  *MemPooled
 	TxNotFound *TxNotFound
 }
 
@@ -52,7 +52,6 @@ func TxNotFoundAsTxStatus(v *TxNotFound) TxStatus {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *TxStatus) UnmarshalJSON(data []byte) error {
 	var err error
@@ -60,8 +59,7 @@ func (dst *TxStatus) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Confirmed
 	err = newStrictDecoder(data).Decode(&dst.Confirmed)
 	if err == nil {
-		jsonConfirmed, _ := json.Marshal(dst.Confirmed)
-		if string(jsonConfirmed) == "{}" { // empty struct
+		if dst.Confirmed == nil || dst.Confirmed.Type != "Confirmed" { // not the right type
 			dst.Confirmed = nil
 		} else {
 			if err = validator.Validate(dst.Confirmed); err != nil {
@@ -77,8 +75,7 @@ func (dst *TxStatus) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Conflicted
 	err = newStrictDecoder(data).Decode(&dst.Conflicted)
 	if err == nil {
-		jsonConflicted, _ := json.Marshal(dst.Conflicted)
-		if string(jsonConflicted) == "{}" { // empty struct
+		if dst.Conflicted == nil || dst.Conflicted.Type != "Conflicted" { // not the right type
 			dst.Conflicted = nil
 		} else {
 			if err = validator.Validate(dst.Conflicted); err != nil {
@@ -94,8 +91,7 @@ func (dst *TxStatus) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into MemPooled
 	err = newStrictDecoder(data).Decode(&dst.MemPooled)
 	if err == nil {
-		jsonMemPooled, _ := json.Marshal(dst.MemPooled)
-		if string(jsonMemPooled) == "{}" { // empty struct
+		if dst.MemPooled == nil || dst.MemPooled.Type != "MemPooled" { // not the right type
 			dst.MemPooled = nil
 		} else {
 			if err = validator.Validate(dst.MemPooled); err != nil {
@@ -111,8 +107,7 @@ func (dst *TxStatus) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into TxNotFound
 	err = newStrictDecoder(data).Decode(&dst.TxNotFound)
 	if err == nil {
-		jsonTxNotFound, _ := json.Marshal(dst.TxNotFound)
-		if string(jsonTxNotFound) == "{}" { // empty struct
+		if dst.TxNotFound == nil || dst.TxNotFound.Type != "TxNotFound" { // not the right type
 			dst.TxNotFound = nil
 		} else {
 			if err = validator.Validate(dst.TxNotFound); err != nil {
@@ -162,7 +157,7 @@ func (src TxStatus) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *TxStatus) GetActualInstance() (interface{}) {
+func (obj *TxStatus) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -187,7 +182,7 @@ func (obj *TxStatus) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj TxStatus) GetActualInstanceValue() (interface{}) {
+func (obj TxStatus) GetActualInstanceValue() interface{} {
 	if obj.Confirmed != nil {
 		return *obj.Confirmed
 	}
@@ -243,5 +238,3 @@ func (v *NullableTxStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

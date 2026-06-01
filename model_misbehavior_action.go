@@ -18,7 +18,7 @@ import (
 
 // MisbehaviorAction - struct for MisbehaviorAction
 type MisbehaviorAction struct {
-	Ban *Ban
+	Ban   *Ban
 	Unban *Unban
 }
 
@@ -36,7 +36,6 @@ func UnbanAsMisbehaviorAction(v *Unban) MisbehaviorAction {
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *MisbehaviorAction) UnmarshalJSON(data []byte) error {
 	var err error
@@ -44,8 +43,7 @@ func (dst *MisbehaviorAction) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Ban
 	err = newStrictDecoder(data).Decode(&dst.Ban)
 	if err == nil {
-		jsonBan, _ := json.Marshal(dst.Ban)
-		if string(jsonBan) == "{}" { // empty struct
+		if dst.Ban == nil || dst.Ban.Type != "Ban" { // not the right type
 			dst.Ban = nil
 		} else {
 			if err = validator.Validate(dst.Ban); err != nil {
@@ -61,8 +59,7 @@ func (dst *MisbehaviorAction) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Unban
 	err = newStrictDecoder(data).Decode(&dst.Unban)
 	if err == nil {
-		jsonUnban, _ := json.Marshal(dst.Unban)
-		if string(jsonUnban) == "{}" { // empty struct
+		if dst.Unban == nil || dst.Unban.Type != "Unban" { // not the right type
 			dst.Unban = nil
 		} else {
 			if err = validator.Validate(dst.Unban); err != nil {
@@ -102,7 +99,7 @@ func (src MisbehaviorAction) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *MisbehaviorAction) GetActualInstance() (interface{}) {
+func (obj *MisbehaviorAction) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +116,7 @@ func (obj *MisbehaviorAction) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj MisbehaviorAction) GetActualInstanceValue() (interface{}) {
+func (obj MisbehaviorAction) GetActualInstanceValue() interface{} {
 	if obj.Ban != nil {
 		return *obj.Ban
 	}
@@ -167,5 +164,3 @@ func (v *NullableMisbehaviorAction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

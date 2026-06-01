@@ -12,14 +12,13 @@ package alephium
 
 import (
 	"encoding/json"
-	"fmt"
 	"gopkg.in/validator.v2"
 )
 
 // BuildExecuteScriptTxResult - struct for BuildExecuteScriptTxResult
 type BuildExecuteScriptTxResult struct {
 	BuildGrouplessExecuteScriptTxResult *BuildGrouplessExecuteScriptTxResult
-	BuildSimpleExecuteScriptTxResult *BuildSimpleExecuteScriptTxResult
+	BuildSimpleExecuteScriptTxResult    *BuildSimpleExecuteScriptTxResult
 }
 
 // BuildGrouplessExecuteScriptTxResultAsBuildExecuteScriptTxResult is a convenience function that returns BuildGrouplessExecuteScriptTxResult wrapped in BuildExecuteScriptTxResult
@@ -36,56 +35,35 @@ func BuildSimpleExecuteScriptTxResultAsBuildExecuteScriptTxResult(v *BuildSimple
 	}
 }
 
-
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *BuildExecuteScriptTxResult) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into BuildGrouplessExecuteScriptTxResult
-	err = newStrictDecoder(data).Decode(&dst.BuildGrouplessExecuteScriptTxResult)
-	if err == nil {
-		jsonBuildGrouplessExecuteScriptTxResult, _ := json.Marshal(dst.BuildGrouplessExecuteScriptTxResult)
-		if string(jsonBuildGrouplessExecuteScriptTxResult) == "{}" { // empty struct
-			dst.BuildGrouplessExecuteScriptTxResult = nil
-		} else {
-			if err = validator.Validate(dst.BuildGrouplessExecuteScriptTxResult); err != nil {
-				dst.BuildGrouplessExecuteScriptTxResult = nil
-			} else {
-				match++
-			}
+	var fields map[string]interface{}
+	if err := json.Unmarshal(data, &fields); err != nil {
+		return err
+	}
+	if _, ok := fields["fundingTxs"]; ok {
+		var result BuildGrouplessExecuteScriptTxResult
+		if err := newStrictDecoder(data).Decode(&result); err != nil {
+			return err
 		}
-	} else {
-		dst.BuildGrouplessExecuteScriptTxResult = nil
-	}
-
-	// try to unmarshal data into BuildSimpleExecuteScriptTxResult
-	err = newStrictDecoder(data).Decode(&dst.BuildSimpleExecuteScriptTxResult)
-	if err == nil {
-		jsonBuildSimpleExecuteScriptTxResult, _ := json.Marshal(dst.BuildSimpleExecuteScriptTxResult)
-		if string(jsonBuildSimpleExecuteScriptTxResult) == "{}" { // empty struct
-			dst.BuildSimpleExecuteScriptTxResult = nil
-		} else {
-			if err = validator.Validate(dst.BuildSimpleExecuteScriptTxResult); err != nil {
-				dst.BuildSimpleExecuteScriptTxResult = nil
-			} else {
-				match++
-			}
+		if err := validator.Validate(&result); err != nil {
+			return err
 		}
-	} else {
+		dst.BuildGrouplessExecuteScriptTxResult = &result
 		dst.BuildSimpleExecuteScriptTxResult = nil
+		return nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.BuildGrouplessExecuteScriptTxResult = nil
-		dst.BuildSimpleExecuteScriptTxResult = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(BuildExecuteScriptTxResult)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(BuildExecuteScriptTxResult)")
+	var result BuildSimpleExecuteScriptTxResult
+	if err := newStrictDecoder(data).Decode(&result); err != nil {
+		return err
 	}
+	if err := validator.Validate(&result); err != nil {
+		return err
+	}
+	dst.BuildGrouplessExecuteScriptTxResult = nil
+	dst.BuildSimpleExecuteScriptTxResult = &result
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
@@ -102,7 +80,7 @@ func (src BuildExecuteScriptTxResult) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *BuildExecuteScriptTxResult) GetActualInstance() (interface{}) {
+func (obj *BuildExecuteScriptTxResult) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +97,7 @@ func (obj *BuildExecuteScriptTxResult) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj BuildExecuteScriptTxResult) GetActualInstanceValue() (interface{}) {
+func (obj BuildExecuteScriptTxResult) GetActualInstanceValue() interface{} {
 	if obj.BuildGrouplessExecuteScriptTxResult != nil {
 		return *obj.BuildGrouplessExecuteScriptTxResult
 	}
@@ -167,5 +145,3 @@ func (v *NullableBuildExecuteScriptTxResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

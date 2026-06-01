@@ -12,6 +12,8 @@ func TestUnmarshalContractEventWithoutTimestamp(t *testing.T) {
 		"events": [{
 			"blockHash": "block-hash",
 			"txId": "tx-id",
+			"timestamp": 0,
+			"contractAddress": "contract-address",
 			"eventIndex": 0,
 			"fields": [{
 				"type": "U256",
