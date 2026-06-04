@@ -197,7 +197,6 @@ func (o *ContractEvent) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"blockHash",
 		"txId",
-		"timestamp",
 		"eventIndex",
 		"fields",
 	}
