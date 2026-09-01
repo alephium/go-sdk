@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **BlockHash** | **string** |  | 
 **TxId** | **string** |  | 
 **Timestamp** | **int64** |  | 
+**ContractAddress** | **string** |  | 
 **EventIndex** | **int32** |  | 
 **Fields** | [**[]Val**](Val.md) |  | 
 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewContractEvent
 
-`func NewContractEvent(blockHash string, txId string, timestamp int64, eventIndex int32, fields []Val, ) *ContractEvent`
+`func NewContractEvent(blockHash string, txId string, timestamp int64, contractAddress string, eventIndex int32, fields []Val, ) *ContractEvent`
 
 NewContractEvent instantiates a new ContractEvent object
 This constructor will assign default values to properties that have it defined,
@@ -87,6 +88,26 @@ and a boolean to check if the value has been set.
 `func (o *ContractEvent) SetTimestamp(v int64)`
 
 SetTimestamp sets Timestamp field to given value.
+
+
+### GetContractAddress
+
+`func (o *ContractEvent) GetContractAddress() string`
+
+GetContractAddress returns the ContractAddress field if non-nil, zero value otherwise.
+
+### GetContractAddressOk
+
+`func (o *ContractEvent) GetContractAddressOk() (*string, bool)`
+
+GetContractAddressOk returns a tuple with the ContractAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContractAddress
+
+`func (o *ContractEvent) SetContractAddress(v string)`
+
+SetContractAddress sets ContractAddress field to given value.
 
 
 ### GetEventIndex

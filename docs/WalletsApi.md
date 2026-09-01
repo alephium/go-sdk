@@ -844,6 +844,8 @@ No authorization required
 
 Transfer all unlocked ALPH from the active address to another address
 
+
+
 ### Example
 
 ```go
@@ -913,6 +915,8 @@ No authorization required
 > TransferResults PostWalletsWalletNameSweepAllAddresses(ctx, walletName).Sweep(sweep).Execute()
 
 Transfer unlocked ALPH from all addresses (including all mining addresses if applicable) to another address
+
+
 
 ### Example
 

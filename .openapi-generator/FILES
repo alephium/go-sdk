@@ -366,4 +366,15 @@ model_wallet_restore_result.go
 model_wallet_status.go
 model_wallet_unlock.go
 response.go
+test/api_addresses_test.go
+test/api_blockflow_test.go
+test/api_contracts_test.go
+test/api_events_test.go
+test/api_infos_test.go
+test/api_mempool_test.go
+test/api_miners_test.go
+test/api_multi_signature_test.go
+test/api_transactions_test.go
+test/api_utils_test.go
+test/api_wallets_test.go
 utils.go

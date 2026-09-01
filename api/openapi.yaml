@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Alephium API
-  version: 4.5.1
+  version: 4.7.0
 servers:
 - url: ../
 - url: "{protocol}://{host}:{port}"
@@ -845,6 +845,8 @@ paths:
       - Wallets
   /wallets/{wallet_name}/sweep-active-address:
     post:
+      description: Sweep transactions are submitted in batches of two. Each non-final
+        batch must be confirmed before the next batch is submitted.
       operationId: postWalletsWallet_nameSweep-active-address
       parameters:
       - explode: false
@@ -939,6 +941,8 @@ paths:
       - Wallets
   /wallets/{wallet_name}/sweep-all-addresses:
     post:
+      description: "All transactions are prepared before submission. Normal wallets\
+        \ use one batch lane, while miner wallets use one lane per source group."
       operationId: postWalletsWallet_nameSweep-all-addresses
       parameters:
       - explode: false
@@ -1802,7 +1806,7 @@ paths:
                 nodes:
                 - address: 1.2.3.4
                   restPort: 12377
-                  wsPort: 12366
+                  wsPort: 12377
                   minerApiPort: 12355
                 selfReady: true
                 synced: true
@@ -8236,6 +8240,7 @@ paths:
                 - blockHash: bdaf9dc514ce7d34b6474b8ca10a3dfb93ba997cb9d5ff1ea724ebe2af48abe5
                   txId: 503bfb16230888af4924aa8f8250d7d348b862e267d75d3147f1998050b6da69
                   timestamp: 1611041396892
+                  contractAddress: uomjgUz6D4tLejTkQtbNJMY8apAjTm1bgQf7em1wDV7S
                   eventIndex: 1
                   fields:
                   - type: Address
@@ -13166,6 +13171,7 @@ components:
       example:
         blockHash: blockHash
         txId: txId
+        contractAddress: contractAddress
         eventIndex: 6
         fields:
         - type: Address
@@ -13183,6 +13189,9 @@ components:
         timestamp:
           format: int64
           type: integer
+        contractAddress:
+          format: address
+          type: string
         eventIndex:
           format: int32
           type: integer
@@ -13192,6 +13201,7 @@ components:
           type: array
       required:
       - blockHash
+      - contractAddress
       - eventIndex
       - fields
       - timestamp
@@ -13271,6 +13281,7 @@ components:
         events:
         - blockHash: blockHash
           txId: txId
+          contractAddress: contractAddress
           eventIndex: 6
           fields:
           - type: Address
@@ -13280,6 +13291,7 @@ components:
           timestamp: 0
         - blockHash: blockHash
           txId: txId
+          contractAddress: contractAddress
           eventIndex: 6
           fields:
           - type: Address
